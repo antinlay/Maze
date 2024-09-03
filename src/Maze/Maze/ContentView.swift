@@ -46,8 +46,9 @@ struct ContentView: View {
                     path.addLine(to: CGPoint(x: geometry.size.width, y: geometry.size.height))
                 }
             }
-            .stroke(Color.black, lineWidth: 2)
+            .stroke(Color.accentColor, lineWidth: 2)
         }
+        .padding()
     }
 }
 
