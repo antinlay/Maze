@@ -14,6 +14,10 @@
 		5C08167C2C86EC450080B4FD /* MazeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C08167B2C86EC450080B4FD /* MazeTests.swift */; };
 		5C0816862C86EC450080B4FD /* MazeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C0816852C86EC450080B4FD /* MazeUITests.swift */; };
 		5C0816882C86EC450080B4FD /* MazeUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C0816872C86EC450080B4FD /* MazeUITestsLaunchTests.swift */; };
+		5CF944CA2C89ED4C0026A45F /* 🧭MazeNavigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CF944C92C89ED4C0026A45F /* 🧭MazeNavigation.swift */; };
+		5CF944CC2C89EDE00026A45F /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CF944CB2C89EDE00026A45F /* Category.swift */; };
+		5CF944CF2C89F0120026A45F /* MazeNavigationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CF944CE2C89F0120026A45F /* MazeNavigationModel.swift */; };
+		5CF944D12C89F3B30026A45F /* Maze.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CF944D02C89F3B30026A45F /* Maze.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,6 +49,10 @@
 		5C0816812C86EC450080B4FD /* MazeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MazeUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5C0816852C86EC450080B4FD /* MazeUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MazeUITests.swift; sourceTree = "<group>"; };
 		5C0816872C86EC450080B4FD /* MazeUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MazeUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		5CF944C92C89ED4C0026A45F /* 🧭MazeNavigation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "🧭MazeNavigation.swift"; sourceTree = "<group>"; };
+		5CF944CB2C89EDE00026A45F /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
+		5CF944CE2C89F0120026A45F /* MazeNavigationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MazeNavigationModel.swift; sourceTree = "<group>"; };
+		5CF944D02C89F3B30026A45F /* Maze.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Maze.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,7 +104,8 @@
 			isa = PBXGroup;
 			children = (
 				5C0816692C86EC440080B4FD /* MazeApp.swift */,
-				5C08166B2C86EC440080B4FD /* ContentView.swift */,
+				5CF944CD2C89EFA70026A45F /* Models */,
+				5CF944C82C89EC560026A45F /* 💠Views */,
 				5C08166D2C86EC450080B4FD /* Assets.xcassets */,
 				5C08166F2C86EC450080B4FD /* Maze.entitlements */,
 				5C0816702C86EC450080B4FD /* Preview Content */,
@@ -127,6 +136,25 @@
 				5C0816872C86EC450080B4FD /* MazeUITestsLaunchTests.swift */,
 			);
 			path = MazeUITests;
+			sourceTree = "<group>";
+		};
+		5CF944C82C89EC560026A45F /* 💠Views */ = {
+			isa = PBXGroup;
+			children = (
+				5C08166B2C86EC440080B4FD /* ContentView.swift */,
+				5CF944C92C89ED4C0026A45F /* 🧭MazeNavigation.swift */,
+			);
+			path = "💠Views";
+			sourceTree = "<group>";
+		};
+		5CF944CD2C89EFA70026A45F /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				5CF944CB2C89EDE00026A45F /* Category.swift */,
+				5CF944D02C89F3B30026A45F /* Maze.swift */,
+				5CF944CE2C89F0120026A45F /* MazeNavigationModel.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -260,7 +288,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				5C08166C2C86EC440080B4FD /* ContentView.swift in Sources */,
+				5CF944CA2C89ED4C0026A45F /* 🧭MazeNavigation.swift in Sources */,
+				5CF944D12C89F3B30026A45F /* Maze.swift in Sources */,
 				5C08166A2C86EC440080B4FD /* MazeApp.swift in Sources */,
+				5CF944CF2C89F0120026A45F /* MazeNavigationModel.swift in Sources */,
+				5CF944CC2C89EDE00026A45F /* Category.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -432,10 +464,10 @@
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 12.0;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = school21.Maze;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -468,10 +500,10 @@
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 12.0;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = school21.Maze;
 				PRODUCT_NAME = "$(TARGET_NAME)";
