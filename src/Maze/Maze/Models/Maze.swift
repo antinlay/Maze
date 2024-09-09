@@ -5,16 +5,30 @@
 //  Created by Janiece Eleonour on 05.09.2024.
 //
 
+import SwiftData
 import SwiftUI
 
-struct Maze: Identifiable {
-    let id = UUID()
-    let name: String
+@Model
+class Maze: Identifiable {
+    let id: UUID
+    var name: String
+    var imageData: Data?
     let category: MazeCategory
     let rows: Int
     let columns: Int
     let rightWalls: [[Bool]]
     let lowerWalls: [[Bool]]
+    
+    init(id: UUID = UUID(), name: String, imageData: Data? = nil, category: MazeCategory, rows: Int, columns: Int, rightWalls: [[Bool]], lowerWalls: [[Bool]]) {
+        self.id = id
+        self.name = name
+        self.imageData = imageData
+        self.category = category
+        self.rows = rows
+        self.columns = columns
+        self.rightWalls = rightWalls
+        self.lowerWalls = lowerWalls
+    }
 }
 
 extension Maze {

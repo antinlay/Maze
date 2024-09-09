@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-enum MazeCategory: Int, CaseIterable, Identifiable {
+enum MazeCategory: Int, CaseIterable, Identifiable, Codable {
     case rectangularMaze, caveMaze, cyclicMaze, keyMaze, teleportMaze, trapMaze, timeMaze, obstacleMaze
 
     var id: Int { rawValue }
@@ -33,5 +33,3 @@ enum MazeCategory: Int, CaseIterable, Identifiable {
         }
     }
 }
-
-
