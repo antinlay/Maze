@@ -1,6 +1,6 @@
 //
-//  Maze.swift
-//  Maze
+//  MazeRectengular.swift
+//  MazeRectengular
 //
 //  Created by Janiece Eleonour on 05.09.2024.
 //
@@ -9,7 +9,7 @@ import SwiftData
 import SwiftUI
 
 @Model
-class Maze: Identifiable {
+class MazeRectengular: Identifiable {
     let id: UUID
     var name: String
     var imageData: Data?
@@ -31,9 +31,9 @@ class Maze: Identifiable {
     }
 }
 
-extension Maze {
+extension MazeRectengular {
     static let mazes = [
-        Maze(name: "Maze 1", category: .rectangularMaze, rows: 10, columns: 10, rightWalls: [
+        MazeRectengular(name: "MazeRectengular 1", category: .rectangularMaze, rows: 10, columns: 10, rightWalls: [
             [false, false, true, false, false, false, false, true, false, true],
             [false, true, true, true, false, false, false, true, true, true],
             [true, false, true, false, false, true, true, true, true, true],
@@ -56,7 +56,7 @@ extension Maze {
             [true, false, true, false, false, false, false, true, true, true],
             [true, true, true, true, true, true, true, true, true, true]
         ]),
-        Maze(name: "Cave 1", category: .rectangularMaze, rows: 10, columns: 10, rightWalls: [
+        MazeRectengular(name: "Cave 1", category: .rectangularMaze, rows: 10, columns: 10, rightWalls: [
             [true, false, false, true, false, true, false, false, true, false],
             [true, true, true, false, false, false, false, false, false, false],
             [false, false, false, true, true, true, false, true, false, false],
@@ -79,7 +79,7 @@ extension Maze {
             [false, false, true, false, true, true, true, false, false, true],
             [true, true, true, true, true, true, true, true, true, true]
         ]),
-        Maze(name: "Maze 2", category: .rectangularMaze, rows: 20, columns: 20, rightWalls: [
+        MazeRectengular(name: "MazeRectengular 2", category: .rectangularMaze, rows: 20, columns: 20, rightWalls: [
             [false, false, false, false, true, false, true, false, false, true, false, false, false, false, false, false, false, false, false, true],
             [false, false, false, true, true, true, false, true, false, false, true, true, false, false, true, false, true, true, false, true],
             [true, false, false, true, false, false, false, false, false, false, true, true, false, true, false, true, true, true, true, true],

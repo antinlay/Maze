@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct MazeDetail: View {
-    var maze: Maze
+    var maze: MazeRectengular
     var mazeDataModel = MazeDataModel.shared
     
     var body: some View {
@@ -20,6 +20,11 @@ struct MazeDetail: View {
             .scenePadding()
         }
         .navigationTitle(maze.name)
+        .onDisappear {
+            let renderer = ImageRenderer(content: mazeDraw)
+            let mazeImage = renderer.uiImage
+            maze.imageData = mazeImage?.pngData()
+        }
     }
     
     private var wideDetails: some View {
@@ -33,6 +38,8 @@ struct MazeDetail: View {
             }
             Divider()
             mazeDraw
+                .aspectRatio(contentMode: .fit)
+
         }
     }
     
@@ -48,6 +55,7 @@ struct MazeDetail: View {
             image
             Divider()
             mazeDraw
+                .aspectRatio(contentMode: .fit)
         }
     }
     
@@ -62,30 +70,31 @@ struct MazeDetail: View {
     
     private var image: some View {
         MazeImage(maze: maze)
-            .frame(width: 300, height: 300)
             .clipShape(.rect(cornerRadius: 20))
     }
     
     private var mazeDraw: some View {
         GeometryReader { geometry in
+            let size = min(geometry.size.width, geometry.size.height, 500)
+            let cellWidth = size / Double(maze.rightWalls.count)
+            let cellHeight = size / Double(maze.lowerWalls.count)
+            
             Path { path in
-                let cellWidth = geometry.size.width / CGFloat(maze.rightWalls.count)
-                let cellHeight = geometry.size.height / CGFloat(maze.lowerWalls.count)
-                
+
                 for i in 0..<maze.rightWalls.count {
                     for j in 0..<maze.rightWalls[i].count {
                         if maze.rightWalls[i][j] {
-                            path.move(to: CGPoint(x: CGFloat(j) * cellWidth, y: CGFloat(i) * cellHeight))
-                            path.addLine(to: CGPoint(x: CGFloat(j) * cellWidth, y: CGFloat(i + 1) * cellHeight))
+                            path.move(to: CGPoint(x: Double(j) * cellWidth, y: Double(i) * cellHeight))
+                            path.addLine(to: CGPoint(x: Double(j) * cellWidth, y: Double(i + 1) * cellHeight))
                         }
                         if maze.lowerWalls[i][j] {
-                            path.move(to: CGPoint(x: CGFloat(j) * cellWidth, y: CGFloat(i) * cellHeight))
-                            path.addLine(to: CGPoint(x: CGFloat(j + 1) * cellWidth, y: CGFloat(i) * cellHeight))
+                            path.move(to: CGPoint(x: Double(j) * cellWidth, y: Double(i) * cellHeight))
+                            path.addLine(to: CGPoint(x: Double(j + 1) * cellWidth, y: Double(i) * cellHeight))
                         }
                     }
                     if maze.lowerWalls[i].last! {
-                        path.move(to: CGPoint(x: geometry.size.width, y: CGFloat(i) * cellHeight))
-                        path.addLine(to: CGPoint(x: geometry.size.width, y: CGFloat(i + 1) * cellHeight))
+                        path.move(to: CGPoint(x: geometry.size.width, y: Double(i) * cellHeight))
+                        path.addLine(to: CGPoint(x: geometry.size.width, y: Double(i + 1) * cellHeight))
                     }
                 }
                 if maze.rightWalls.last?.last != true {
@@ -93,12 +102,13 @@ struct MazeDetail: View {
                     path.addLine(to: CGPoint(x: geometry.size.width, y: geometry.size.height))
                 }
             }
-            .stroke(Color.accentColor, lineWidth: 2)
+            .trim(from: 0, to: 1)
+            .stroke(Color.accentColor, style: StrokeStyle(lineWidth: 2, lineCap: .round, lineJoin: .round))
+            .frame(width: size, height: size)
+
         }
         .padding()
     }
-    
-    
 }
 
 #Preview {

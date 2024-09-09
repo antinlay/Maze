@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct MazeTile: View {
-    var maze: Maze
+    var maze: MazeRectengular
     var isSelected: Bool
     
     private var strokeStyle: AnyShapeStyle {

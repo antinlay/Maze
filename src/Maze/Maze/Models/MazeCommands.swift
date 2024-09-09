@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct SelectedMzeKey: FocusedValueKey {
-    typealias Value = Maze
+    typealias Value = MazeRectengular
 }
 
 extension FocusedValues {

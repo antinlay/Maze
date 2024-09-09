@@ -8,22 +8,22 @@
 import SwiftData
 
 @Observable final class MazeDataModel {
-    private var mazes: [Maze] = []
-    private var mazesByID: [Maze.ID: Maze]? = nil
+    private var mazes: [MazeRectengular] = []
+    private var mazesByID: [MazeRectengular.ID: MazeRectengular]? = nil
 
     static let shared: MazeDataModel = MazeDataModel()
 
     private init() {
-        mazes = Maze.mazes
+        mazes = MazeRectengular.mazes
     }
 
-    func mazes(in category: MazeCategory?) -> [Maze] {
+    func mazes(in category: MazeCategory?) -> [MazeRectengular] {
         mazes
             .filter { $0.category == category }
             .sorted { $0.name < $1.name }
     }
 
-    subscript(mazeID: Maze.ID?) -> Maze? {
+    subscript(mazeID: MazeRectengular.ID?) -> MazeRectengular? {
         guard let mazeID else { return nil }
         if mazesByID == nil {
             mazesByID = Dictionary(
@@ -32,7 +32,7 @@ import SwiftData
         return mazesByID![mazeID]
     }
 
-    var mazeOfTheDay: Maze {
+    var mazeOfTheDay: MazeRectengular {
         mazes[0]
     }
 }

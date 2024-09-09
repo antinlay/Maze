@@ -15,6 +15,6 @@ struct MazeApp: App {
         WindowGroup {
             ContentView()
         }
-        .modelContainer(for: Maze.self)
+        .modelContainer(for: MazeRectengular.self)
     }
 }

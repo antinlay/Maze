@@ -1,11 +1,12 @@
 //
-//  MazeGen2.swift
-//  myTests
+//  MazeGenerator.swift
+//  Maze
 //
 //  Created by Chingisbek Anvardinov on 07.09.2024.
 //
 
 import Foundation
+
 class MazeGenerator {
     var maze: Maze
     private var mazeRow: [Int]

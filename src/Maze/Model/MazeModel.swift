@@ -80,4 +80,3 @@ struct Maze {
         }
     }
 }    // struct Maze
-

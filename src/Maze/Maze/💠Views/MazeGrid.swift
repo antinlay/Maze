@@ -14,22 +14,22 @@ struct MazeGrid: View {
     let category: MazeCategory?
 
     /// The mazes of the category.
-    private var mazes: [Maze] {
+    private var mazes: [MazeRectengular] {
         dataModel.mazes(in: category)
     }
 
     /// A `Binding` to the identifier of the selected maze.
-    @Binding var selection: Maze.ID?
+    @Binding var selection: MazeRectengular.ID?
 
     @Environment(\.layoutDirection) private var layoutDirection
     @Environment(MazeNavigationModel.self) private var navigationModel
 
     /// The currently-selected maze.
-    private var selectedMaze: Maze? {
+    private var selectedMaze: MazeRectengular? {
         dataModel[selection]
     }
 
-    private func gridItem(for maze: Maze) -> some View {
+    private func gridItem(for maze: MazeRectengular) -> some View {
         MazeTile(maze: maze, isSelected: selection == maze.id)
             .id(maze.id)
             .padding(Self.spacing)
@@ -69,7 +69,7 @@ struct MazeGrid: View {
                 }
             }
             .navigationTitle(category.name)
-            .navigationDestination(for: Maze.ID.self) { mazeID in
+            .navigationDestination(for: MazeRectengular.ID.self) { mazeID in
                 if let maze = dataModel[mazeID] {
                     MazeDetail(maze: maze)
                 }
@@ -95,7 +95,7 @@ struct MazeGrid: View {
 
     // MARK: Keyboard selection
 
-    private func navigate(to maze: Maze) {
+    private func navigate(to maze: MazeRectengular) {
         navigationModel.selectedMazeID = maze.id
     }
 
