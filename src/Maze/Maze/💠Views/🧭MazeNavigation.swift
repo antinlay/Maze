@@ -10,10 +10,8 @@ import SwiftUI
 struct MazeNavigation: View {
     @Bindable var mazeNavigationModel: MazeNavigationModel
     
-    @State var selectedMaze: MazeRectengular.ID?
+    @State var selectedMaze: MazeRectangular.ID?
     var categories = MazeCategory.allCases
-    
-    
     
     var body: some View {
         NavigationSplitView {

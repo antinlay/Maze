@@ -1,6 +1,6 @@
 //
-//  MazeRectengular.swift
-//  MazeRectengular
+//  MazeRectangular.swift
+//  MazeRectangular
 //
 //  Created by Janiece Eleonour on 05.09.2024.
 //
@@ -8,32 +8,56 @@
 import SwiftData
 import SwiftUI
 
+
 @Model
-class MazeRectengular: Identifiable {
+class MazeRectangular: Identifiable {
     let id: UUID
     var name: String
     var imageData: Data?
     let category: MazeCategory
-    let rows: Int
-    let columns: Int
     let rightWalls: [[Bool]]
     let lowerWalls: [[Bool]]
     
-    init(id: UUID = UUID(), name: String, imageData: Data? = nil, category: MazeCategory, rows: Int, columns: Int, rightWalls: [[Bool]], lowerWalls: [[Bool]]) {
+    init(id: UUID = UUID(), name: String, imageData: Data? = nil, category: MazeCategory, rightWalls: [[Bool]], lowerWalls: [[Bool]]) {
         self.id = id
         self.name = name
         self.imageData = imageData
         self.category = category
-        self.rows = rows
-        self.columns = columns
         self.rightWalls = rightWalls
         self.lowerWalls = lowerWalls
     }
 }
 
-extension MazeRectengular {
+extension [MazeRectangular] {
+    subscript(mazeID: MazeRectangular.ID?) -> MazeRectangular? {
+        guard let mazeID else { return nil }
+        var mazesByID: [MazeRectangular.ID: MazeRectangular]? = nil
+        if mazesByID == nil {
+            mazesByID = Dictionary(
+                uniqueKeysWithValues: self.map { ($0.id, $0) })
+        }
+        return mazesByID![mazeID]
+    }
+}
+
+extension MazeRectangular {
+    var toMaze: Maze {
+        Maze(horizontalWalls: rightWalls, verticalWalls: lowerWalls)
+    }
+}
+
+extension Maze {
+    var toMazeRectangular: MazeRectangular {
+        MazeRectangular(name: Date.now.description,
+                        category: .rectangularMaze,
+                        rightWalls: horizontalWalls,
+                        lowerWalls: verticalWalls)
+    }
+}
+
+extension MazeRectangular {
     static let mazes = [
-        MazeRectengular(name: "MazeRectengular 1", category: .rectangularMaze, rows: 10, columns: 10, rightWalls: [
+        MazeRectangular(name: "MazeRectangular 1", category: .rectangularMaze, rightWalls: [
             [false, false, true, false, false, false, false, true, false, true],
             [false, true, true, true, false, false, false, true, true, true],
             [true, false, true, false, false, true, true, true, true, true],
@@ -56,7 +80,7 @@ extension MazeRectengular {
             [true, false, true, false, false, false, false, true, true, true],
             [true, true, true, true, true, true, true, true, true, true]
         ]),
-        MazeRectengular(name: "Cave 1", category: .rectangularMaze, rows: 10, columns: 10, rightWalls: [
+        MazeRectangular(name: "Cave 1", category: .rectangularMaze, rightWalls: [
             [true, false, false, true, false, true, false, false, true, false],
             [true, true, true, false, false, false, false, false, false, false],
             [false, false, false, true, true, true, false, true, false, false],
@@ -79,7 +103,7 @@ extension MazeRectengular {
             [false, false, true, false, true, true, true, false, false, true],
             [true, true, true, true, true, true, true, true, true, true]
         ]),
-        MazeRectengular(name: "MazeRectengular 2", category: .rectangularMaze, rows: 20, columns: 20, rightWalls: [
+        MazeRectangular(name: "MazeRectangular 2", category: .rectangularMaze, rightWalls: [
             [false, false, false, false, true, false, true, false, false, true, false, false, false, false, false, false, false, false, false, true],
             [false, false, false, true, true, true, false, true, false, false, true, true, false, false, true, false, true, true, false, true],
             [true, false, false, true, false, false, false, false, false, false, true, true, false, true, false, true, true, true, true, true],

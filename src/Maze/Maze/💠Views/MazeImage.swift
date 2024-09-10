@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct MazeImage: View {
-    var maze: MazeRectengular
+    var maze: MazeRectangular
     
     var body: some View {
         if let imageData = maze.imageData, let image = Image(data: imageData) {

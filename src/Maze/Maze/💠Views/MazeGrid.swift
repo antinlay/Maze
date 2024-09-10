@@ -5,31 +5,30 @@
 //  Created by Janiece Eleonour on 09.09.2024.
 //
 
+import SwiftData
 import SwiftUI
 
 struct MazeGrid: View {
-    var dataModel = MazeDataModel.shared
+    @Environment(\.modelContext) var modelContext
+    /// The mazes of the category.
+    @Query(sort: [SortDescriptor(\MazeRectangular.name, order: .forward)]) var mazes: [MazeRectangular]
 
     /// The category of mazes to display.
     let category: MazeCategory?
 
-    /// The mazes of the category.
-    private var mazes: [MazeRectengular] {
-        dataModel.mazes(in: category)
-    }
 
     /// A `Binding` to the identifier of the selected maze.
-    @Binding var selection: MazeRectengular.ID?
+    @Binding var selection: MazeRectangular.ID?
 
     @Environment(\.layoutDirection) private var layoutDirection
     @Environment(MazeNavigationModel.self) private var navigationModel
 
     /// The currently-selected maze.
-    private var selectedMaze: MazeRectengular? {
-        dataModel[selection]
+    private var selectedMaze: MazeRectangular? {
+        mazes.first { $0.id == selection }
     }
 
-    private func gridItem(for maze: MazeRectengular) -> some View {
+    private func gridItem(for maze: MazeRectangular) -> some View {
         MazeTile(maze: maze, isSelected: selection == maze.id)
             .id(maze.id)
             .padding(Self.spacing)
@@ -68,10 +67,15 @@ struct MazeGrid: View {
                         scrollViewProxy: scrollViewProxy)
                 }
             }
+            .toolbar {
+                Button("Add Samples") {
+                    addSamples()
+                }
+            }
             .navigationTitle(category.name)
-            .navigationDestination(for: MazeRectengular.ID.self) { mazeID in
-                if let maze = dataModel[mazeID] {
-                    MazeDetail(maze: maze)
+            .navigationDestination(for: MazeRectangular.ID.self) { mazeID in
+                if let maze = mazes[mazeID] {
+                    MazeDetail(mazeRectangular: maze)
                 }
             }
         } else {
@@ -95,7 +99,7 @@ struct MazeGrid: View {
 
     // MARK: Keyboard selection
 
-    private func navigate(to maze: MazeRectengular) {
+    private func navigate(to maze: MazeRectangular) {
         navigationModel.selectedMazeID = maze.id
     }
 
@@ -119,5 +123,12 @@ struct MazeGrid: View {
 
     private var columns: [GridItem] {
         [ GridItem(.adaptive(minimum: MazeTile.size), spacing: 0) ]
+    }
+    
+    // Add samples
+    func addSamples() {
+        MazeRectangular.mazes.forEach { maze in
+            modelContext.insert(maze)
+        }
     }
 }

@@ -35,6 +35,13 @@ struct Maze {
         }
     }
     
+    init(horizontalWalls: [[Bool]] = [], verticalWalls: [[Bool]] = []) {
+        self._col = horizontalWalls.first?.count ?? 0
+        self._row = verticalWalls.count
+        self.horizontalWalls = horizontalWalls
+        self.verticalWalls = verticalWalls
+    }
+    
     init(col: Int, row: Int) {
 //        guard col > 0 && row > 0 else {
 //            throw fatalError("Matrix is not valid cols = \(col), rows = \(row)")

@@ -8,8 +8,7 @@
 import SwiftUI
 
 struct MazeDetail: View {
-    var maze: MazeRectengular
-    var mazeDataModel = MazeDataModel.shared
+    var mazeRectangular: MazeRectangular
     
     var body: some View {
         ScrollView {
@@ -19,27 +18,27 @@ struct MazeDetail: View {
             }
             .scenePadding()
         }
-        .navigationTitle(maze.name)
+        .navigationTitle(mazeRectangular.name)
         .onDisappear {
-            let renderer = ImageRenderer(content: mazeDraw)
+#if os(iOS)
+            let renderer = ImageRenderer(content: MazeDraw(maze: mazeRectangular.toMaze))
             let mazeImage = renderer.uiImage
-            maze.imageData = mazeImage?.pngData()
+            mazeRectangular.imageData = mazeImage?.pngData()
+#endif
         }
     }
     
     private var wideDetails: some View {
         VStack(alignment: .leading, spacing: 22) {
             HStack(alignment: .top) {
-                image
                 VStack(alignment: .leading) {
                     title.padding(.bottom)
                 }
                 .padding()
             }
-            Divider()
-            mazeDraw
+            MazeDraw(maze: mazeRectangular.toMaze)
                 .aspectRatio(contentMode: .fit)
-
+                .padding()
         }
     }
     
@@ -52,67 +51,23 @@ struct MazeDetail: View {
 #endif
         return VStack(alignment: alignment, spacing: 22) {
             title
-            image
-            Divider()
-            mazeDraw
+            MazeDraw(maze: mazeRectangular.toMaze)
                 .aspectRatio(contentMode: .fit)
         }
     }
     
     private var title: some View {
 #if os(macOS)
-        Text(maze.name)
+        Text(mazeRectangular.name)
             .font(.largeTitle.bold())
 #else
         EmptyView()
 #endif
     }
-    
-    private var image: some View {
-        MazeImage(maze: maze)
-            .clipShape(.rect(cornerRadius: 20))
-    }
-    
-    private var mazeDraw: some View {
-        GeometryReader { geometry in
-            let size = min(geometry.size.width, geometry.size.height, 500)
-            let cellWidth = size / Double(maze.rightWalls.count)
-            let cellHeight = size / Double(maze.lowerWalls.count)
-            
-            Path { path in
-
-                for i in 0..<maze.rightWalls.count {
-                    for j in 0..<maze.rightWalls[i].count {
-                        if maze.rightWalls[i][j] {
-                            path.move(to: CGPoint(x: Double(j) * cellWidth, y: Double(i) * cellHeight))
-                            path.addLine(to: CGPoint(x: Double(j) * cellWidth, y: Double(i + 1) * cellHeight))
-                        }
-                        if maze.lowerWalls[i][j] {
-                            path.move(to: CGPoint(x: Double(j) * cellWidth, y: Double(i) * cellHeight))
-                            path.addLine(to: CGPoint(x: Double(j + 1) * cellWidth, y: Double(i) * cellHeight))
-                        }
-                    }
-                    if maze.lowerWalls[i].last! {
-                        path.move(to: CGPoint(x: geometry.size.width, y: Double(i) * cellHeight))
-                        path.addLine(to: CGPoint(x: geometry.size.width, y: Double(i + 1) * cellHeight))
-                    }
-                }
-                if maze.rightWalls.last?.last != true {
-                    path.move(to: CGPoint(x: geometry.size.width, y: geometry.size.height))
-                    path.addLine(to: CGPoint(x: geometry.size.width, y: geometry.size.height))
-                }
-            }
-            .trim(from: 0, to: 1)
-            .stroke(Color.accentColor, style: StrokeStyle(lineWidth: 2, lineCap: .round, lineJoin: .round))
-            .frame(width: size, height: size)
-
-        }
-        .padding()
-    }
 }
 
 #Preview {
     NavigationStack {
-        MazeDetail(maze: .mazes.first!)
+        MazeDetail(mazeRectangular: .mazes.first!)
     }
 }
