@@ -24,8 +24,7 @@ struct MazeEdit: View {
         Button {
             isImporting = true
         } label: {
-            Label("Import file",
-                  systemImage: "square.and.arrow.down")
+            Label("Import file", systemImage: "square.and.arrow.down")
         }
     }
     

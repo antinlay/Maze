@@ -21,6 +21,8 @@ struct MazeRectangularGrid: View {
 
     @Environment(\.layoutDirection) private var layoutDirection
     @Environment(MazeNavigationModel.self) private var navigationModel
+    
+    @State private var isPresentedGenerateSheet: Bool = false
 
     /// The currently-selected maze.
     private var selectedMaze: MazeRectangular? {
@@ -67,8 +69,10 @@ struct MazeRectangularGrid: View {
                 }
             }
             .toolbar {
-                Button("Add Samples") {
-                    addSamples()
+                Button {
+                    isPresentedGenerateSheet = true
+                } label: {
+                    Label("Generate Maze", systemImage: "plus")
                 }
             }
             .navigationTitle(category.name)
@@ -76,6 +80,9 @@ struct MazeRectangularGrid: View {
                 if let maze = mazes[mazeID] {
                     MazeDetail(mazeRectangular: maze)
                 }
+            }
+            .sheet(isPresented: $isPresentedGenerateSheet) {
+                MazeRectangularGenerate()
             }
         } else {
             ContentUnavailableView("Choose a category", systemImage: "square.grid.3x3.topleft.filled")

@@ -20,23 +20,32 @@ struct Line: Shape {
 }
 
 struct MazeDraw: View {
-    @State var maze: Maze
+    var maze: Maze
     @State private var showLines = false
     
     var body: some View {
         GeometryReader { geometry in
-            let size = min(geometry.size.width, geometry.size.height, 500)
-            let cellWidth = size / Double(maze.horizontalWalls.count)
-            let cellHeight = size / Double(maze.verticalWalls.count)
+            let sizeWidth = min(geometry.size.width, 500)
+            let sizeHeight = min(geometry.size.height, 500)
+            let cellWidth = sizeWidth / Double(maze.horizontalWalls.count)
+            let cellHeight = sizeHeight / Double(maze.verticalWalls.count)
             
             ZStack {
                 // Draw left border
-                Line(from: CGPoint(x: 0, y: 0), to: CGPoint(x: 0, y: size))
+                Line(from: CGPoint(x: 0, y: 0), to: CGPoint(x: 0, y: sizeHeight))
+                    .stroke(Color.accentColor, style: StrokeStyle(lineWidth: 2, lineCap: .round, lineJoin: .round))
+                // Draw top border
+                Line(from: CGPoint(x: 0, y: 0), to: CGPoint(x: sizeWidth, y: 0))
                     .stroke(Color.accentColor, style: StrokeStyle(lineWidth: 2, lineCap: .round, lineJoin: .round))
                 
-                // Draw top border
-                Line(from: CGPoint(x: 0, y: 0), to: CGPoint(x: size, y: 0))
+                // Draw right border
+                Line(from: CGPoint(x: sizeWidth, y: 0), to: CGPoint(x: sizeWidth, y: sizeHeight))
                     .stroke(Color.accentColor, style: StrokeStyle(lineWidth: 2, lineCap: .round, lineJoin: .round))
+                
+                // Draw bottom border
+                Line(from: CGPoint(x: 0, y: sizeHeight), to: CGPoint(x: sizeWidth, y: sizeHeight))
+                    .stroke(Color.accentColor, style: StrokeStyle(lineWidth: 2, lineCap: .round, lineJoin: .round))
+
                 
                 ForEach(maze.horizontalWalls.indices, id: \.self) { i in
                     ForEach(maze.horizontalWalls[i].indices, id: \.self) { j in
