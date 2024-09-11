@@ -31,6 +31,12 @@ class ParseMazeFiles: Parse {
         self.stringData = str
     }
     
+    func setData(data: Data) -> Bool {
+        guard let str = String(data: data, encoding: .utf8) else { return false }
+        self.stringData = str
+        return true
+    }
+    
     func parse() -> Result<Maze, ParseError> {
         guard !stringData.isEmpty else {
             return .failure(ParseError.invalidFormat("Error: Not enouth data."))
