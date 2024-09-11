@@ -1,5 +1,5 @@
 //
-//  MazeGrid.swift
+//  MazeRectangularGrid.swift
 //  Maze
 //
 //  Created by Janiece Eleonour on 09.09.2024.
@@ -8,14 +8,13 @@
 import SwiftData
 import SwiftUI
 
-struct MazeGrid: View {
+struct MazeRectangularGrid: View {
     @Environment(\.modelContext) var modelContext
     /// The mazes of the category.
     @Query(sort: [SortDescriptor(\MazeRectangular.name, order: .forward)]) var mazes: [MazeRectangular]
-
+    
     /// The category of mazes to display.
     let category: MazeCategory?
-
 
     /// A `Binding` to the identifier of the selected maze.
     @Binding var selection: MazeRectangular.ID?
@@ -127,6 +126,11 @@ struct MazeGrid: View {
     
     // Add samples
     func addSamples() {
+        do {
+            try modelContext.delete(model: MazeRectangular.self)
+        } catch {
+            print("Failed to delete students.")
+        }
         MazeRectangular.mazes.forEach { maze in
             modelContext.insert(maze)
         }

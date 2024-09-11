@@ -15,8 +15,8 @@ class MazeRectangular: Identifiable {
     var name: String
     var imageData: Data?
     let category: MazeCategory
-    let rightWalls: [[Bool]]
-    let lowerWalls: [[Bool]]
+    var rightWalls: [[Bool]]
+    var lowerWalls: [[Bool]]
     
     init(id: UUID = UUID(), name: String, imageData: Data? = nil, category: MazeCategory, rightWalls: [[Bool]], lowerWalls: [[Bool]]) {
         self.id = id
@@ -80,30 +80,30 @@ extension MazeRectangular {
             [true, false, true, false, false, false, false, true, true, true],
             [true, true, true, true, true, true, true, true, true, true]
         ]),
-        MazeRectangular(name: "Cave 1", category: .rectangularMaze, rightWalls: [
-            [true, false, false, true, false, true, false, false, true, false],
-            [true, true, true, false, false, false, false, false, false, false],
+        MazeRectangular(name: "MazeRectangular 2", category: .rectangularMaze, rightWalls: [
+            [true, true, false, false, false, false, true, false, false, true],
+            [false, true, false, true, true, true, true, true, true, true],
+            [true, false, false, true, false, true, true, false, true, true],
+            [true, true, true, false, false, false, true, true, false, true],
+            [false, true, false, true, false, false, true, false, true, true],
+            [true, false, true, false, true, false, false, true, true, true],
+            [true, false, true, true, true, false, false, true, false, true],
+            [false, false, false, false, false, true, false, true, true, true],
+            [true, true, false, false, true, false, false, true, false, true],
+            [false, false, false, true, false, false, false, false, false, true]
+        ], lowerWalls: [
+            [false, false, false, true, false, true, false, false, true, false],
+            [false, true, true, false, false, false, false, false, false, false],
             [false, false, false, true, true, true, false, true, false, false],
             [false, false, true, true, true, true, false, false, false, false],
             [false, false, false, true, false, true, true, false, false, false],
             [false, true, true, false, true, false, true, true, true, false],
             [true, true, false, false, false, true, true, false, false, true],
-            [false, true, true, true, true, false, false, false, true, false],
-            [false, false, true, false, false, false, false, true, true, true],
-            [true, true, true, false, true, true, false, false, false, true]
-        ], lowerWalls: [
-            [false, false, false, true, false, false, false, false, true, false],
-            [false, false, true, false, false, true, true, true, false, false],
-            [false, false, false, true, true, true, false, false, false, false],
-            [false, false, true, true, true, true, false, false, true, false],
-            [false, false, false, true, false, false, true, true, false, false],
-            [true, false, true, true, false, true, false, false, false, false],
-            [true, true, false, false, true, false, true, false, true, true],
-            [false, true, true, true, true, false, false, false, true, false],
-            [false, false, true, false, true, true, true, false, false, true],
+            [false, true, true, true, true, false, true, false, false, false],
+            [false, false, true, true, false, true, true, true, true, false],
             [true, true, true, true, true, true, true, true, true, true]
         ]),
-        MazeRectangular(name: "MazeRectangular 2", category: .rectangularMaze, rightWalls: [
+        MazeRectangular(name: "MazeRectangular 3", category: .rectangularMaze, rightWalls: [
             [false, false, false, false, true, false, true, false, false, true, false, false, false, false, false, false, false, false, false, true],
             [false, false, false, true, true, true, false, true, false, false, true, true, false, false, true, false, true, true, false, true],
             [true, false, false, true, false, false, false, false, false, false, true, true, false, true, false, true, true, true, true, true],

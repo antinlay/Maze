@@ -21,7 +21,7 @@ struct MazeImage: View {
                     .fill(.tertiary)
                 Image(systemName: "camera")
                     .font(.system(size: 64))
-                    .foregroundStyle(.secondary)
+                    .foregroundStyle(.accent)
             }
         }
     }

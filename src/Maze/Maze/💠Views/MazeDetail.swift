@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct MazeDetail: View {
+    @Environment(\.displayScale) var displayScale
     var mazeRectangular: MazeRectangular
     
     var body: some View {
@@ -19,13 +20,30 @@ struct MazeDetail: View {
             .scenePadding()
         }
         .navigationTitle(mazeRectangular.name)
-        .onDisappear {
-#if os(iOS)
-            let renderer = ImageRenderer(content: MazeDraw(maze: mazeRectangular.toMaze))
-            let mazeImage = renderer.uiImage
-            mazeRectangular.imageData = mazeImage?.pngData()
-#endif
+        .toolbar {
+            NavigationLink("Edit") {
+                MazeEdit(maze: mazeRectangular)
+            }
         }
+//        .onDisappear {
+//            render()
+//        }
+    }
+    
+    @MainActor func render() {
+        let renderer = ImageRenderer(content: MazeDraw(maze: mazeRectangular.toMaze))
+
+        // make sure and use the correct display scale for this device
+        renderer.scale = displayScale
+#if os(iOS)
+        if let uiImage = renderer.uiImage {
+            mazeRectangular.imageData = uiImage.pngData()
+        }
+#else
+        if let nsImage = renderer.nsImage {
+            mazeRectangular.imageData = nsImage.tiffRepresentation
+        }
+#endif
     }
     
     private var wideDetails: some View {
@@ -33,6 +51,9 @@ struct MazeDetail: View {
             HStack(alignment: .top) {
                 VStack(alignment: .leading) {
                     title.padding(.bottom)
+                    if let imageData = mazeRectangular.imageData {
+                        Image(data: imageData)
+                    }
                 }
                 .padding()
             }

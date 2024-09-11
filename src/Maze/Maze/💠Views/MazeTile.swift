@@ -13,12 +13,12 @@ struct MazeTile: View {
     
     private var strokeStyle: AnyShapeStyle {
         isSelected
-            ? AnyShapeStyle(.selection)
-            : AnyShapeStyle(.clear)
+        ? AnyShapeStyle(.selection)
+        : AnyShapeStyle(.clear)
     }
     
     var body: some View {
-        VStack {
+        HStack {
             imageView
             captionView
         }
@@ -50,10 +50,21 @@ extension MazeTile {
     }
     
     private var captionView: some View {
-        Text(maze.name)
-            .lineLimit(1)
+        VStack(alignment: .leading) {
+            Text(maze.name)
+                .lineLimit(2)
+                .truncationMode(.tail)
+                .font(.headline)
+                .padding(.bottom)
+            Group {
+                Text("Rows: ") +
+                Text(maze.toMaze.row, format: .number)
+                Text("Columns: ") +
+                Text(maze.toMaze.col, format: .number)
+            }
             .truncationMode(.tail)
-            .font(.headline)
+            .font(.caption)
+        }
     }
 }
 
