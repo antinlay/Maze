@@ -13,6 +13,7 @@ struct MazeRectangularGenerate: View {
     @State private var maze = Maze()
     @State private var rows: Int = 10
     @State private var columns: Int = 10
+    @State private var isDisabled = true
     
     private var numbers: some View {
         ForEach(1...50, id: \.self) { amount in
@@ -36,35 +37,48 @@ struct MazeRectangularGenerate: View {
                 numbers
             }
         }
-        Button {
-            withAnimation {
-                maze = generateMaze()
-                mazeRectangular = maze.toMazeRectangular
-            }
-        } label: {
-            Text("Generate Maze")
-                .foregroundStyle(.accentReverse)
-                .padding()
-                .background(
-                    Color.accentColor
-                        .clipShape(Capsule())
-                )
+        .padding(.bottom)
+        
+        HStack {
+            Text("Name:")
+            TextField("Name of Maze", text: $mazeRectangular.name, prompt: Text("Enter name"))
+                .textFieldStyle(.roundedBorder)
         }
-        TextField("Name of Maze", text: $mazeRectangular.name)
-            .font(.headline)
+        .foregroundStyle(isDisabled ? .gray : .black)
+        .font(.headline)
+        .disabled(isDisabled)
             .padding(.horizontal)
         MazeDraw(maze: maze)
             .padding()
-        Button {
-            modelContext.insert(mazeRectangular)
-        } label: {
-            Text("Save Maze")
-                .foregroundStyle(.accentReverse)
-                .padding()
-                .background(
-                    Color.accentColor
-                        .clipShape(Capsule())
-                )
+        HStack {
+            Button {
+                withAnimation {
+                    maze = generateMaze()
+                    mazeRectangular = maze.toMazeRectangular
+                    isDisabled = false
+                }
+            } label: {
+                Text("Generate Maze")
+                    .foregroundStyle(.accentReverse)
+                    .padding()
+                    .background(
+                        Color.accentColor
+                            .clipShape(Capsule())
+                    )
+            }
+
+            Button {
+                modelContext.insert(mazeRectangular)
+            } label: {
+                Text("Save Maze")
+                    .foregroundStyle(.accentReverse)
+                    .padding()
+                    .background(
+                        Color.accentColor
+                            .clipShape(Capsule())
+                    )
+            }
+            .disabled(isDisabled)
         }
     }
 }
