@@ -22,6 +22,11 @@ class MazeGenerator {
     }
     
     func generate() {
+        if maze.row == 1 {
+            soloRowMaze()
+            return
+        }
+        
         for row in 0..<maze.row {
             genVWalls(row)
             genHWalls(row)
@@ -86,6 +91,14 @@ class MazeGenerator {
             if isDoor { break }
         }
         return isDoor
+    }
+    
+    private func soloRowMaze() {
+        if maze.col > 2 {
+            for i in 0..<maze.col - 1 {
+                maze.verticalWalls[0][i] = false
+            }
+        }
     }
     
     fileprivate func printMaze() {
