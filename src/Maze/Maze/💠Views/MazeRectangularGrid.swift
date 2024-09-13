@@ -69,6 +69,9 @@ struct MazeRectangularGrid: View {
                 }
             }
             .toolbar {
+                Button("Add Samples") {
+                    addSamples()
+                }
                 Button {
                     isPresentedGenerateSheet = true
                 } label: {
@@ -131,7 +134,6 @@ struct MazeRectangularGrid: View {
         [ GridItem(.adaptive(minimum: MazeTile.size), spacing: 0) ]
     }
     
-    // Add samples
     func addSamples() {
         do {
             try modelContext.delete(model: MazeRectangular.self)

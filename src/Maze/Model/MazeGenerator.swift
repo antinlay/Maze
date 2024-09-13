@@ -101,16 +101,16 @@ class MazeGenerator {
         }
     }
     
-    fileprivate func printMaze() {
+    func printMaze() {
         for _ in 0...maze.col {
-            let x = "———"
+            let x = "￣￣"
             print(x, terminator: "")
         }
         print("")
         for i in 0..<maze.row {
             for k in 0..<maze.col {
                 if i != maze.row && k != maze.col {
-                    let hw = maze.horizontalWalls[i][k] ? "__" : "  "
+                    let hw = maze.horizontalWalls[i][k] ? "＿" : "  "
                     let vw = maze.verticalWalls[i][k] ? "|" : " "
                     print(hw, vw, separator: "", terminator: "")
                 }

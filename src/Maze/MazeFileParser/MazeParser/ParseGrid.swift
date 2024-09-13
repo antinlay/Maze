@@ -8,8 +8,8 @@
 import Foundation
 
 class ParseGrid {
-    internal let stringData: [String]
-    internal var size: (row: Int, col: Int) = (0, 0)
+    let stringData: [String]
+    var size: (row: Int, col: Int) = (0, 0)
     
     init(_ stringData: [String]) {
         self.stringData = stringData
