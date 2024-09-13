@@ -7,12 +7,6 @@
 
 import SwiftUI
 
-struct Coordinate: Hashable {
-    let x: Double
-    let y: Double
-}
-
-
 struct Line: Shape {
     var from: CGPoint
     var to: CGPoint
@@ -26,7 +20,7 @@ struct Line: Shape {
 }
 
 struct TapRectangle: View {
-    var id: Coordinate
+    var id: Maze.Coordinate
     var isOpen: Bool
     
     var body: some View {
@@ -40,9 +34,9 @@ struct MazeDraw: View {
     @State private var showLines = false
     @State private var selectedCell: (Double, Double) = (0, 0)
     @State private var isOpen: Bool = false
-    @State private var start: Coordinate?
-    @State private var end: Coordinate?
-    
+    @State private var start: Maze.Coordinate?
+    @State private var end: Maze.Coordinate?
+    @State private var shortWays: [Maze.Coordinate] = []
     
     private func drawingWalls(drawRightWalls: @escaping (_ i: Double, _ j: Double) -> some View,
                               drawLowerWalls: @escaping (_ i: Double, _ j: Double) -> some View,
@@ -85,20 +79,20 @@ struct MazeDraw: View {
                     Line(from: CGPoint(x: j * cellWidth, y: (i + 1) * cellHeight), to: CGPoint(x: (j + 1) * cellWidth, y: (i + 1) * cellHeight))
                         .stroke(Color.accentColor, style: StrokeStyle(lineWidth: 2, lineCap: .round, lineJoin: .round))
                 } drawTapRectangle: { i, j in
-                    TapRectangle(id: Coordinate(x: i, y: j), isOpen: Coordinate(x: i, y: j) == start || Coordinate(x: i, y: j) == end)
+                    TapRectangle(id: Maze.Coordinate(x: Int(i), y: Int(j)), isOpen: Maze.Coordinate(x: Int(i), y: Int(j)) == start || Maze.Coordinate(x: Int(i), y: Int(j)) == end || shortWays.contains(where: { $0 == Maze.Coordinate(x: Int(i), y: Int(j)) }))
                         .onTapGesture {
                             withAnimation {
                                 if start == nil {
-                                    start = Coordinate(x: i, y: j)
+                                    start = Maze.Coordinate(x: Int(i), y: Int(j))
                                 } else if end == nil {
-                                    end = Coordinate(x: i, y: j)
-                                } else {
+                                    end = Maze.Coordinate(x: Int(i), y: Int(j))
+                                    shortWays = maze.findPath(from: start!, to: end!)
                                     start = nil
                                     end = nil
                                 }
                             }
                         }
-                        .frame(width: cellWidth, height: cellHeight)
+                        .frame(width: cellWidth * 0.5, height: cellHeight * 0.5)
                         .position(x: (j + 0.5) * cellWidth, y: (i + 0.5) * cellHeight)
                 }
             }
