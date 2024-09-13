@@ -26,15 +26,15 @@ struct MazeTile: View {
 }
 
 extension MazeTile {
-    static let size: CGFloat = 240
+    static let size: CGFloat = 340
     static let selectionStrokeWidth: CGFloat = 4
 }
 
 extension MazeTile {
     private var imageView: some View {
         MazeImage(maze: maze)
-            .frame(minWidth: 120, maxWidth: Self.size)
-            .aspectRatio(1, contentMode: .fill)
+            .frame(width: 150)
+            .aspectRatio(1, contentMode: .fit)
             .clipShape(.containerRelative)
             .padding(Self.selectionStrokeWidth)
             .overlay(

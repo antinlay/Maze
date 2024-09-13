@@ -41,7 +41,7 @@ struct MazeRectangularGrid: View {
     var body: some View {
         if let category = category {
             container { geometryProxy, scrollViewProxy in
-                LazyVGrid(columns: columns) {
+                LazyVGrid(columns: columns, alignment: .leading) {
                     ForEach(mazes) { maze in
                         gridItem(for: maze)
                     }
@@ -131,7 +131,7 @@ struct MazeRectangularGrid: View {
     private static let spacing: CGFloat = 10
 
     private var columns: [GridItem] {
-        [ GridItem(.adaptive(minimum: MazeTile.size), spacing: 0) ]
+        [ GridItem(.fixed(MazeTile.size), spacing: 0) ]
     }
     
     func addSamples() {
