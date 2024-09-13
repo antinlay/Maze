@@ -51,11 +51,10 @@ struct MazeDetail: View {
             HStack(alignment: .top) {
                 VStack(alignment: .leading) {
                     title.padding(.bottom)
-                    if let imageData = mazeRectangular.imageData {
-                        Image(data: imageData)
-                    }
+                    Text("Rows: ") + Text(mazeRectangular.toMaze.row, format: .number)
+                    Text("Columns: ") + Text(mazeRectangular.toMaze.col, format: .number)
                 }
-                .padding()
+                .padding(.horizontal)
             }
             MazeDraw(maze: mazeRectangular.toMaze)
                 .aspectRatio(contentMode: .fit)

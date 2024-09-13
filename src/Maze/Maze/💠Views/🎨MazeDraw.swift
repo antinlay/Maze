@@ -7,6 +7,12 @@
 
 import SwiftUI
 
+struct Coordinate: Hashable {
+    let x: Double
+    let y: Double
+}
+
+
 struct Line: Shape {
     var from: CGPoint
     var to: CGPoint
@@ -19,18 +25,40 @@ struct Line: Shape {
     }
 }
 
+struct TapRectangle: View {
+    var id: Coordinate
+    var isOpen: Bool
+    
+    var body: some View {
+        Rectangle()
+            .fill(isOpen ? Color.blue : Color.clear)
+            .contentShape(Rectangle())
+    }
+}
 struct MazeDraw: View {
     var maze: Maze
     @State private var showLines = false
+    @State private var selectedCell: (Double, Double) = (0, 0)
+    @State private var isOpen: Bool = false
+    @State private var start: Coordinate?
+    @State private var end: Coordinate?
     
-    private func drawingWalls(walls: [[Bool]], action: @escaping (_ i: Double, _ j: Double) -> some View) -> some View {
-        ForEach(walls.indices, id: \.self) { i in
-            ForEach(walls[i].indices, id: \.self) { j in
-                let isWall = walls[i][j]
+    
+    private func drawingWalls(drawRightWalls: @escaping (_ i: Double, _ j: Double) -> some View,
+                              drawLowerWalls: @escaping (_ i: Double, _ j: Double) -> some View,
+                              drawTapRectangle: @escaping (_ i: Double, _ j: Double) -> some View) -> some View {
+        ForEach(maze.horizontalWalls.indices, id: \.self) { i in
+            ForEach(maze.horizontalWalls[i].indices, id: \.self) { j in
+                drawTapRectangle(Double(i), Double(j))
                 
-                if isWall {
-                    action(Double(i), Double(j))
+                if maze.horizontalWalls[i][j] {
+                    drawLowerWalls(Double(i), Double(j))
                 }
+                
+                if maze.verticalWalls[i][j] {
+                    drawRightWalls(Double(i), Double(j))
+                }
+                
             }
         }
     }
@@ -50,16 +78,29 @@ struct MazeDraw: View {
                 Line(from: CGPoint(x: 0, y: 0), to: CGPoint(x: sizeWidth, y: 0))
                     .stroke(Color.accentColor, style: StrokeStyle(lineWidth: 2, lineCap: .round, lineJoin: .round))
                 // Draw horizontal
-                drawingWalls(walls: maze.horizontalWalls) { i, j in
-                    Line(from: CGPoint(x: j * cellWidth, y: (i + 1) * cellHeight), to: CGPoint(x: (j + 1) * cellWidth, y: (i + 1) * cellHeight))
-                        .stroke(Color.accentColor, style: StrokeStyle(lineWidth: 2, lineCap: .round, lineJoin: .round))
-                }
-                // Draw vertical
-                drawingWalls(walls: maze.verticalWalls) { i, j in
+                drawingWalls { i, j in
                     Line(from: CGPoint(x: (j + 1) * cellWidth, y: i * cellHeight), to: CGPoint(x: (j + 1) * cellWidth, y: (i + 1) * cellHeight))
                         .stroke(Color.accentColor, style: StrokeStyle(lineWidth: 2, lineCap: .round, lineJoin: .round))
+                } drawLowerWalls: { i, j in
+                    Line(from: CGPoint(x: j * cellWidth, y: (i + 1) * cellHeight), to: CGPoint(x: (j + 1) * cellWidth, y: (i + 1) * cellHeight))
+                        .stroke(Color.accentColor, style: StrokeStyle(lineWidth: 2, lineCap: .round, lineJoin: .round))
+                } drawTapRectangle: { i, j in
+                    TapRectangle(id: Coordinate(x: i, y: j), isOpen: Coordinate(x: i, y: j) == start || Coordinate(x: i, y: j) == end)
+                        .onTapGesture {
+                            withAnimation {
+                                if start == nil {
+                                    start = Coordinate(x: i, y: j)
+                                } else if end == nil {
+                                    end = Coordinate(x: i, y: j)
+                                } else {
+                                    start = nil
+                                    end = nil
+                                }
+                            }
+                        }
+                        .frame(width: cellWidth, height: cellHeight)
+                        .position(x: (j + 0.5) * cellWidth, y: (i + 0.5) * cellHeight)
                 }
-
             }
             .opacity(showLines ? 1 : .zero)
             .onAppear {
