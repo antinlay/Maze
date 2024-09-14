@@ -79,13 +79,13 @@ struct MazeDraw: View {
                     Line(from: CGPoint(x: j * cellWidth, y: (i + 1) * cellHeight), to: CGPoint(x: (j + 1) * cellWidth, y: (i + 1) * cellHeight))
                         .stroke(Color.accentColor, style: StrokeStyle(lineWidth: 2, lineCap: .round, lineJoin: .round))
                 } drawTapRectangle: { i, j in
-                    TapRectangle(id: Maze.Coordinate(x: Int(i), y: Int(j)), isOpen: Maze.Coordinate(x: Int(i), y: Int(j)) == start || Maze.Coordinate(x: Int(i), y: Int(j)) == end || shortWays.contains(where: { $0 == Maze.Coordinate(x: Int(i), y: Int(j)) }))
+                    TapRectangle(id: Maze.Coordinate(x: Int(j), y: Int(i)), isOpen: Maze.Coordinate(x: Int(j), y: Int(i)) == start || Maze.Coordinate(x: Int(j), y: Int(i)) == end || shortWays.contains(where: { $0 == Maze.Coordinate(x: Int(j), y: Int(i)) }))
                         .onTapGesture {
                             withAnimation {
                                 if start == nil {
-                                    start = Maze.Coordinate(x: Int(i), y: Int(j))
+                                    start = Maze.Coordinate(x: Int(j), y: Int(i))
                                 } else if end == nil {
-                                    end = Maze.Coordinate(x: Int(i), y: Int(j))
+                                    end = Maze.Coordinate(x: Int(j), y: Int(i))
                                     shortWays = maze.findPath(from: start!, to: end!)
                                     start = nil
                                     end = nil

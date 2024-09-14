@@ -15,6 +15,7 @@
 		5C0816862C86EC450080B4FD /* MazeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C0816852C86EC450080B4FD /* MazeUITests.swift */; };
 		5C0816882C86EC450080B4FD /* MazeUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C0816872C86EC450080B4FD /* MazeUITestsLaunchTests.swift */; };
 		5C48A9652C94810A000EF3BD /* PathFinder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C48A9642C94810A000EF3BD /* PathFinder.swift */; };
+		5C48A9672C94F725000EF3BD /* MazeExporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C48A9662C94F725000EF3BD /* MazeExporter.swift */; };
 		5C9AB5092C90842700B3BF73 /* 🎨MazeDraw.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C9AB5082C90842700B3BF73 /* 🎨MazeDraw.swift */; };
 		5C9AB50A2C90848700B3BF73 /* MazeGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C9AB4EB2C8F52F800B3BF73 /* MazeGenerator.swift */; };
 		5C9AB50B2C90848700B3BF73 /* MazeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C9AB4EC2C8F52F800B3BF73 /* MazeModel.swift */; };
@@ -65,6 +66,7 @@
 		5C0816852C86EC450080B4FD /* MazeUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MazeUITests.swift; sourceTree = "<group>"; };
 		5C0816872C86EC450080B4FD /* MazeUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MazeUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		5C48A9642C94810A000EF3BD /* PathFinder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PathFinder.swift; sourceTree = "<group>"; };
+		5C48A9662C94F725000EF3BD /* MazeExporter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MazeExporter.swift; sourceTree = "<group>"; };
 		5C9AB4EB2C8F52F800B3BF73 /* MazeGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MazeGenerator.swift; sourceTree = "<group>"; };
 		5C9AB4EC2C8F52F800B3BF73 /* MazeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MazeModel.swift; sourceTree = "<group>"; };
 		5C9AB5082C90842700B3BF73 /* 🎨MazeDraw.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "🎨MazeDraw.swift"; sourceTree = "<group>"; };
@@ -185,6 +187,7 @@
 			children = (
 				5C9AB4EB2C8F52F800B3BF73 /* MazeGenerator.swift */,
 				5C9AB4EC2C8F52F800B3BF73 /* MazeModel.swift */,
+				5C48A9662C94F725000EF3BD /* MazeExporter.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -391,6 +394,7 @@
 				6D326E0A2C91B1AB00AC557C /* ParseMaze.swift in Sources */,
 				5C08166A2C86EC440080B4FD /* MazeApp.swift in Sources */,
 				5CF944CF2C89F0120026A45F /* MazeNavigationModel.swift in Sources */,
+				5C48A9672C94F725000EF3BD /* MazeExporter.swift in Sources */,
 				5CF944CC2C89EDE00026A45F /* Category.swift in Sources */,
 				5CF944D92C8F14EA0026A45F /* MazeImage.swift in Sources */,
 			);
@@ -552,6 +556,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Maze/Preview Content\"";
+				DEVELOPMENT_TEAM = N9NN3CSS37;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
@@ -588,6 +593,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Maze/Preview Content\"";
+				DEVELOPMENT_TEAM = N9NN3CSS37;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;

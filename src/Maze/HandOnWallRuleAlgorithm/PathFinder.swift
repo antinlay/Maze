@@ -83,5 +83,4 @@ extension Maze {
         }
         return route
     }
-    
 }

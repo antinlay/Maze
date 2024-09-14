@@ -15,78 +15,85 @@ struct MazeRectangularGenerate: View {
     @State private var columns: Int = 10
     @State private var isDisabled = true
     @State private var isImporting = false
+    @State private var isExporting = false
     @State private var error: Error?
     @State private var text = ""
+    @State private var textDocument: TextFile?
     
     private var numbers: some View {
         ForEach(1...50, id: \.self) { amount in
-            Text(amount, format: .number)
+            Text(amount, format: .number).tag(amount)
         }
     }
     
-    private func generateMaze() -> Maze {
+    private func generateMaze() {
         let mazeGenerator = MazeGenerator(rows: rows, cols: columns)
         mazeGenerator.generate()
         mazeGenerator.printMaze()
-        return mazeGenerator.maze
+        maze = mazeGenerator.maze
+        mazeRectangular = maze.toMazeRectangular
+        withAnimation {
+            isDisabled = false
+        }
+        
     }
     
     var body: some View {
-        importButton
-            .padding()
-        List {
-            Picker("Rows", selection: $rows) {
-                numbers
-            }
-            .pickerStyle(.menu)
-            Picker("Columns", selection: $columns) {
-                numbers
-            }
-        }
-        .padding(.bottom)
-        
-        HStack {
-            Text("Name:")
-            TextField("Name of Maze", text: $mazeRectangular.name, prompt: Text("Enter name"))
-                .textFieldStyle(.roundedBorder)
-        }
-        .foregroundStyle(isDisabled ? .gray : .black)
-        .font(.headline)
-        .disabled(isDisabled)
-            .padding(.horizontal)
-        MazeDraw(maze: maze)
-            .padding()
-        HStack {
-            Button {
-                withAnimation {
-                    maze = generateMaze()
-                    mazeRectangular = maze.toMazeRectangular
-                    isDisabled = false
+        VStack {
+            Spacer()
+            importButton
+                .padding()
+            HStack {
+                Spacer()
+                Form {
+                    Picker("Rows:", selection: $rows) {
+                        numbers
+                            .padding(.horizontal)
+                    }
+                    
+                    Picker("Columns:", selection: $columns) {
+                        numbers
+                            .padding(.horizontal)
+                    }
+                    TextField("Name:", text: $mazeRectangular.name, prompt: Text("Enter name"))
+                        .foregroundStyle(isDisabled ? .gray : .accent)
+                        .font(.headline)
+                        .disabled(isDisabled)
+                    
+                    MazeDraw(maze: maze)
+                        .padding()
+                        .frame(minWidth: 200, idealWidth: 400, maxWidth: .infinity, minHeight: 200, idealHeight: 400, maxHeight: .infinity, alignment: .center)
+                    
                 }
-            } label: {
-                Text("Generate Maze")
-                    .foregroundStyle(.accentReverse)
-                    .padding()
-                    .background(
-                        Color.accentColor
-                            .clipShape(Capsule())
-                    )
+                
             }
-
-            Button {
-                modelContext.insert(mazeRectangular)
-            } label: {
-                Text("Save Maze")
-                    .foregroundStyle(.accentReverse)
-                    .padding()
-                    .background(
-                        Color.accentColor
-                            .clipShape(Capsule())
-                    )
+            .onChange(of: columns) { _, _ in
+                generateMaze()
             }
+            .onChange(of: rows) { _, _ in
+                generateMaze()
+            }
+            
+            HStack {
+                exportButton
+                Spacer()
+                saveButton
+            }
+            .padding()
             .disabled(isDisabled)
+            Spacer()
         }
-
+        .onAppear {
+            generateMaze()
+        }
+        .fileExporter(isPresented: $isExporting, document: textDocument, contentType: .plainText) { result in
+            switch result {
+            case .success(let url):
+                print("Saved to \(url)")
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        }
         .fileImporter(isPresented: $isImporting,
                       allowedContentTypes: [.text]) {
             let result = $0.flatMap { url in
@@ -110,7 +117,42 @@ struct MazeRectangularGenerate: View {
                 self.error = failure
             }
         }
-
+        
+    }
+    
+    private var saveButton: some View {
+        Button {
+            modelContext.insert(mazeRectangular)
+        } label: {
+            Text("Save")
+#if os(iOS)
+                .padding()
+                .foregroundStyle(.accentReverse)
+                .background(
+                    Color.accentColor
+                        .clipShape(Capsule())
+                )
+#endif
+        }
+    }
+    
+    private var exportButton: some View {
+        Button {
+            text = maze.parseMazeToText()
+            print(text)
+            textDocument = TextFile(initialText: text)
+            isExporting = true
+        } label: {
+            Text("Export")
+#if os(iOS)
+                .padding()
+                .foregroundStyle(.accentReverse)
+                .background(
+                    Color.accentColor
+                        .clipShape(Capsule())
+                )
+#endif
+        }
     }
     
     private var importButton: some View {
@@ -120,7 +162,7 @@ struct MazeRectangularGenerate: View {
             Label("Import file", systemImage: "square.and.arrow.down")
         }
     }
-
+    
     private func read(from url: URL) -> Result<String,Error> {
         let accessing = url.startAccessingSecurityScopedResource()
         defer {
@@ -131,7 +173,7 @@ struct MazeRectangularGenerate: View {
         
         return Result { try String(contentsOf: url) }
     }
-
+    
 }
 
 #Preview {
