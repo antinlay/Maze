@@ -31,11 +31,10 @@ struct MazeRectangularGenerate: View {
         mazeGenerator.generate()
         mazeGenerator.printMaze()
         maze = mazeGenerator.maze
-        mazeRectangular = maze.toMazeRectangular
         withAnimation {
-            isDisabled = false
+            mazeRectangular = maze.toMazeRectangular
         }
-        
+        isDisabled = false
     }
     
     var body: some View {
@@ -90,9 +89,11 @@ struct MazeRectangularGenerate: View {
             switch result {
             case .success(let url):
                 print("Saved to \(url)")
-            case .failure(let error):
-                print(error.localizedDescription)
+            case .failure(let err):
+                error = err
             }
+            
+            text = ""
         }
         .fileImporter(isPresented: $isImporting,
                       allowedContentTypes: [.text]) {

@@ -261,6 +261,8 @@
 			dependencies = (
 			);
 			name = Maze;
+			packageProductDependencies = (
+			);
 			productName = Maze;
 			productReference = 5C0816662C86EC440080B4FD /* Maze.app */;
 			productType = "com.apple.product-type.application";
@@ -333,6 +335,8 @@
 				Base,
 			);
 			mainGroup = 5C08165D2C86EC440080B4FD;
+			packageReferences = (
+			);
 			productRefGroup = 5C0816672C86EC440080B4FD /* Products */;
 			projectDirPath = "";
 			projectRoot = "";

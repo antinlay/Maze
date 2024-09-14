@@ -25,7 +25,7 @@ struct TapRectangle: View {
     
     var body: some View {
         Rectangle()
-            .fill(isOpen ? Color.blue : Color.clear)
+            .fill(isOpen ? Color.path : Color.clear)
             .contentShape(Rectangle())
     }
 }
