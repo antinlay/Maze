@@ -9,23 +9,6 @@ import SwiftUI
 import PhotosUI
 import SwiftData
 
-enum ImportErrorSaver: LocalizedError {
-    case parseError(String)
-    case fileNotFound(String)
-    case invalidData(String)
-    
-    var errorDescription: String? {
-        switch self {
-        case .parseError(let message):
-            "Parse error: \(message)"
-        case .fileNotFound(let fileName):
-            "File not found: \(fileName)"
-        case .invalidData(let message):
-            "Invalid data: \(message)"
-        }
-    }
-}
-
 struct MazeEdit: View {
     @Environment(\.dismiss) private var dismiss
     @Environment(\.modelContext) private var modelContext
@@ -36,7 +19,14 @@ struct MazeEdit: View {
     @State private var error: ImportErrorSaver? = nil
     @State private var isImporting = false
     @State private var showAlert = false
+    @State private var rightWallsRow = 0
+    @State private var lowerWallsRow = 0
     
+    private var amountRows: some View {
+        ForEach(0..<maze.toMaze.row, id: \.self) { amount in
+            Text(amount, format: .number)
+        }
+    }
     
     private var importButton: some View {
         Button {
@@ -72,48 +62,57 @@ struct MazeEdit: View {
         }
     }
     
-    private func changeWalls(walls: Binding<[[Bool]]>) -> some View {
-        ScrollView([.horizontal, .vertical]) {
-            ForEach(walls.wrappedValue.indices, id: \.self) { row in
+    private func changeWalls(walls: Binding<[Bool]>) -> some View {
+        ScrollView(.horizontal) {
                 HStack {
-                    ForEach(walls.wrappedValue[row].indices, id: \.self) { column in
+                    ForEach(walls.indices, id: \.self) { j in
                         Toggle(isOn: Binding<Bool>(
-                            get: { walls.wrappedValue[row][column] },
-                            set: { walls.wrappedValue[row][column] = $0 }
+                            get: { walls[j].wrappedValue },
+                            set: { walls[j].wrappedValue = $0 }
                         )) {
-                            VStack(alignment: .leading) {
-                                Text(String(format: "%02d", row))
-                                Text(String(format: "%02d", column))
-                            }
-                            .font(.system(size: 8))
-                            .fontWidth(.compressed)
+                            Text(j, format: .number)
+                                .font(.caption2)
+                                .aspectRatio(contentMode: .fit)
                         }
                     }
-                }
             }
         }
+        .scrollIndicators(.hidden)
+    }
+    
+    private func container<Content: View>( @ViewBuilder content: @escaping () -> Content) -> some View {
+#if os(iOS)
+        Form { content() }
+#else
+        List { content() }
+#endif
     }
     
     var body: some View {
-        Form {
+        container {
             Section("Name:") {
-                TextField(text: $maze.name) {
-                    //
-                }
-                .font(.headline)
+                TextField(text: $maze.name) { }
+                    .font(.headline)
             }
             Section("Image:") {
                 imagePicker
             }
             // Display and edit right walls
             Section("Right Walls") {
-                changeWalls(walls: $maze.rightWalls)
+                Picker("Rows:", selection: $rightWallsRow) {
+                    amountRows
+                        .padding(.horizontal)
+                }
+                changeWalls(walls: $maze.rightWalls[rightWallsRow])
             }
             // Display and edit lower walls
             Section("Lower Walls") {
-                changeWalls(walls: $maze.lowerWalls)
+                Picker("Rows:", selection: $lowerWallsRow) {
+                    amountRows
+                        .padding(.horizontal)
+                }
+                changeWalls(walls: $maze.lowerWalls[lowerWallsRow])
             }
-            .padding(10)
         }
         .toolbar {
             importButton
@@ -136,22 +135,28 @@ struct MazeEdit: View {
             switch result {
             case .success(let strings):
                 text += strings
-                
-                let parseResult = ParseMazeFiles(str: text).parse()
-                
-                switch parseResult {
-                case .success(let success):
-                    maze.rightWalls = success.verticalWalls
-                    maze.lowerWalls = success.horizontalWalls
-                case .failure(let failure):
-                    error = .parseError(failure.localizedDescription)
-                }
-                
+                importFromText()
             case .failure(let failure):
                 error = .invalidData(failure.localizedDescription)
+                showAlert = true
             }
         }
     }
+    
+    private func importFromText() {
+        let parseResult = ParseMazeFiles(str: text).parse()
+        
+        switch parseResult {
+        case .success(let success):
+            maze.rightWalls = success.verticalWalls
+            maze.lowerWalls = success.horizontalWalls
+        case .failure(let failure):
+            error = .parseError(failure.localizedDescription)
+            showAlert = true
+        }
+        
+    }
+    
     
     private func read(from url: URL) -> Result<String,Error> {
         let accessing = url.startAccessingSecurityScopedResource()

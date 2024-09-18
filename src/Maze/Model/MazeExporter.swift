@@ -43,7 +43,7 @@ extension Maze {
 
         for i in 0..<rows {
             for j in 0..<columns {
-                result += horizontalWalls[i][j] ? "1 " : "0 "
+                result += verticalWalls[i][j] ? "1 " : "0 "
             }
             result += "\n"
         }
@@ -52,7 +52,7 @@ extension Maze {
 
         for i in 0..<rows {
             for j in 0..<columns {
-                result += verticalWalls[i][j] ? "1 " : "0 "
+                result += horizontalWalls[i][j] ? "1 " : "0 "
             }
             result += "\n"
         }

@@ -11,6 +11,12 @@ struct MazeDetail: View {
     @Environment(\.displayScale) var displayScale
     var mazeRectangular: MazeRectangular
     
+    @State private var isExporting = false
+    @State private var exportText = ""
+    @State private var textDocument: TextFile?
+    @State private var error: ImportErrorSaver? = nil
+    @State private var showAlert = false
+    
     var body: some View {
         ScrollView {
             ViewThatFits(in: .horizontal) {
@@ -21,13 +27,21 @@ struct MazeDetail: View {
         }
         .navigationTitle(mazeRectangular.name)
         .toolbar {
+            exportButton
             NavigationLink("Edit") {
                 MazeEdit(maze: mazeRectangular)
             }
         }
-//        .onDisappear {
-//            render()
-//        }
+        .fileExporter(isPresented: $isExporting, document: textDocument, contentType: .plainText) { result in
+            switch result {
+            case .success(let url):
+                print("Saved to \(url)")
+            case .failure(let err):
+                error = .parseError(err.localizedDescription)
+            }
+            
+            exportText = ""
+        }
     }
     
     @MainActor func render() {
@@ -84,6 +98,18 @@ struct MazeDetail: View {
         EmptyView()
 #endif
     }
+    
+    private var exportButton: some View {
+        Button {
+            exportText = mazeRectangular.toMaze.parseMazeToText()
+            print(exportText)
+            textDocument = TextFile(initialText: exportText)
+            isExporting = true
+        } label: {
+            Label("Export", systemImage: "square.and.arrow.up")
+        }
+    }
+
 }
 
 #Preview {

@@ -31,6 +31,8 @@ struct TapRectangle: View {
 }
 struct MazeDraw: View {
     var maze: Maze
+    
+    @State private var scale: CGFloat = 1.0
     @State private var showLines = false
     @State private var selectedCell: (Double, Double) = (0, 0)
     @State private var isOpen: Bool = false
@@ -97,6 +99,13 @@ struct MazeDraw: View {
                 }
             }
             .opacity(showLines ? 1 : .zero)
+            .scaleEffect(scale)
+            .gesture(
+              MagnificationGesture()
+                .onChanged { value in
+                  self.scale = value.magnitude
+                }
+            )
             .onAppear {
                 withAnimation {
                     showLines = true

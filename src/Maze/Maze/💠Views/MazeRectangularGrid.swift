@@ -69,13 +69,13 @@ struct MazeRectangularGrid: View {
                 }
             }
             .toolbar {
-                Button("Add Samples") {
-                    addSamples()
-                }
+//                Button("Add Samples") {
+//                    addSamples()
+//                }
                 Button {
                     isPresentedGenerateSheet = true
                 } label: {
-                    Label("Generate Maze", systemImage: "plus")
+                    Label("Generate Maze", systemImage: "wand.and.stars")
                 }
             }
             .navigationTitle(category.name)
