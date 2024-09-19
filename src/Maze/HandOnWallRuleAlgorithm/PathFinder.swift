@@ -9,38 +9,25 @@ import Foundation
 
 extension CGPoint {
     var i: Int {
-        Int(y)
+        get { Int(y) }
+        set { y = Double(newValue)}
     }
     var j: Int {
-        Int(x)
+        get { Int(x) }
+        set { x = Double(newValue)}
     }
 }
 
-extension Maze {
-    
-    enum CellValue: Int {
-        case unvisited = -1
-        case visited = 0
-        
-//        var value : Int {
-//            switch self {
-//            case .unvisited: -1
-//            case .visited: 0
-//            }
-//        }
-    }
+extension Int {
+    var down: Int { self + 1 }
+    var up: Int { self - 1 }
+    var left: Int { self - 1 }
+    var right: Int { self + 1 }
+}
 
-    enum Direction {
-        case up, down, left, right
-        
-    }
-    
+extension Maze {
     private func updateCell(value: Int, cell: Int) -> Int {
-        if cell == -1 {
-            value
-        } else {
-            min(cell, value)
-        }
+        cell == -1 ? value : min(cell, value)
     }
     
     private func explorePossibleSteps(step: Int, field: inout [[Int]]) -> Int {
@@ -49,17 +36,17 @@ extension Maze {
         for i in 0..<row {
             for j in 0..<col where field[i][j] == step {
                 result += 1
-                if i < row - 1 && horizontalWalls[i][j] == false {
-                    field[i + 1][j] = updateCell(value: step + 1, cell: field[i + 1][j])
+                if i < row.up && horizontalWalls[i][j] == false {
+                    field[i.down][j] = updateCell(value: step.right, cell: field[i.down][j])
                 }
-                if i > 0 && horizontalWalls[i - 1][j] == false {
-                    field[i - 1][j] = updateCell(value: step + 1, cell: field[i - 1][j])
+                if i > 0 && horizontalWalls[i.up][j] == false {
+                    field[i.up][j] = updateCell(value: step.right, cell: field[i.up][j])
                 }
-                if j < col - 1 && verticalWalls[i][j] == false {
-                    field[i][j + 1] = updateCell(value: step + 1, cell: field[i][j + 1])
+                if j < col.left && verticalWalls[i][j] == false {
+                    field[i][j.right] = updateCell(value: step.right, cell: field[i][j.right])
                 }
-                if j > 0 && verticalWalls[i][j - 1] == false {
-                    field[i][j - 1] = updateCell(value: step + 1, cell: field[i][j - 1])
+                if j > 0 && verticalWalls[i][j.left] == false {
+                    field[i][j.left] = updateCell(value: step.right, cell: field[i][j.left])
                 }
             }
         }
@@ -87,13 +74,13 @@ extension Maze {
             route.append(CGPoint(x: Double(j) + 0.5, y: Double(i) + 0.5))
             
             while i != start.i || j != start.j {
-                if i < row - 1 && horizontalWalls[i][j] == false && field[i + 1][j] == step - 1 {
+                if i < row.up && horizontalWalls[i][j] == false && field[i.down][j] == step.left {
                     i += 1
-                } else if i > 0 && horizontalWalls[i - 1][j] == false && field[i - 1][j] == step - 1 {
+                } else if i > 0 && horizontalWalls[i.up][j] == false && field[i.up][j] == step.left {
                     i -= 1
-                } else if j < col - 1 && verticalWalls[i][j] == false && field[i][j + 1] == step - 1 {
+                } else if j < col.left && verticalWalls[i][j] == false && field[i][j.right] == step.left {
                     j += 1
-                } else if j > 0 && verticalWalls[i][j - 1] == false && field[i][j - 1] == step - 1 {
+                } else if j > 0 && verticalWalls[i][j.left] == false && field[i][j.left] == step.left {
                     j -= 1
                 }
                 route.append(CGPoint(x: Double(j) + 0.5, y: Double(i) + 0.5))

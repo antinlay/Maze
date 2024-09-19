@@ -7,48 +7,6 @@
 
 import SwiftUI
 
-struct Line: Shape {
-    var from: CGPoint
-    var to: CGPoint
-    
-    func path(in rect: CGRect) -> Path {
-        var path = Path()
-        path.move(to: from)
-        path.addLine(to: to)
-        return path
-    }
-}
-
-struct TapRectangle: View {
-    @Binding var start: CGPoint?
-    @Binding var end: CGPoint?
-    @Binding var shortWay: [CGPoint]
-    var maze: Maze
-    var id: CGPoint
-    
-    var body: some View {
-        Button {
-            withAnimation {
-                if start == nil {
-                    start = id
-                } else if end == nil {
-                    end = id
-                    shortWay = maze.findPath(from: start ?? .zero, to: end ?? .zero)
-                } else {
-                    shortWay = []
-                    start = nil
-                    end = nil
-                }
-            }
-        } label: {
-            Rectangle()
-                .fill(id == start || id == end ? Color.path : Color.clear)
-                .contentShape(Rectangle())
-        }
-        .defersSystemGestures(on: .all)
-    }
-}
-
 struct MazeDraw: View {
     var maze: Maze
     
@@ -81,24 +39,41 @@ struct MazeDraw: View {
     var body: some View {
         if maze.row != 0, maze.col != 0 {
             GeometryReader { geometry in
+                // Get size of view
                 let sizeWidth = min(geometry.size.width, 500)
                 let sizeHeight = min(geometry.size.height, 500)
+                // Find size of cell
                 let cellWidth = sizeWidth / Double(maze.col)
                 let cellHeight = sizeHeight / Double(maze.row)
+                // Calculate points for lines
+                let fromRightWall: (_ i: Double, _ j: Double) -> CGPoint = { i, j in
+                    CGPoint(x: (j + 1) * cellWidth, y: i * cellHeight)
+                }
+                let toRightWall: (_ i: Double, _ j: Double) -> CGPoint = { i, j in
+                    CGPoint(x: (j + 1) * cellWidth, y: (i + 1) * cellHeight)
+                }
+                let fromLowerWall: (_ i: Double, _ j: Double) -> CGPoint = { i, j in
+                    CGPoint(x: j * cellWidth, y: (i + 1) * cellHeight)
+                }
+                let toLowerWall: (_ i: Double, _ j: Double) -> CGPoint = { i, j in
+                    CGPoint(x: (j + 1) * cellWidth, y: (i + 1) * cellHeight)
+                }
+                // Line style
+                let strokeStyle = StrokeStyle(lineWidth: 2, lineCap: .round, lineJoin: .round)
                 
                 // Draw left border
-                Line(from: CGPoint(x: 0, y: 0), to: CGPoint(x: 0, y: sizeHeight))
-                    .stroke(Color.accentColor, style: StrokeStyle(lineWidth: 2, lineCap: .round, lineJoin: .round))
+                Line(from: .zero, to: CGPoint(x: 0, y: sizeHeight))
+                    .stroke(.accent, style: strokeStyle)
                 // Draw top border
-                Line(from: CGPoint(x: 0, y: 0), to: CGPoint(x: sizeWidth, y: 0))
-                    .stroke(Color.accentColor, style: StrokeStyle(lineWidth: 2, lineCap: .round, lineJoin: .round))
-                // Draw horizontal
+                Line(from: .zero, to: CGPoint(x: sizeWidth, y: 0))
+                    .stroke(.accent, style: strokeStyle)
+                // Draw right walls
                 drawingWalls { i, j in
-                    Line(from: CGPoint(x: (j + 1) * cellWidth, y: i * cellHeight), to: CGPoint(x: (j + 1) * cellWidth, y: (i + 1) * cellHeight))
-                        .stroke(Color.accentColor, style: StrokeStyle(lineWidth: 2, lineCap: .round, lineJoin: .round))
+                    Line(from: fromRightWall(i, j), to: toRightWall(i, j))
+                        .stroke(.accent, style: strokeStyle)
                 } drawLowerWalls: { i, j in
-                    Line(from: CGPoint(x: j * cellWidth, y: (i + 1) * cellHeight), to: CGPoint(x: (j + 1) * cellWidth, y: (i + 1) * cellHeight))
-                        .stroke(Color.accentColor, style: StrokeStyle(lineWidth: 2, lineCap: .round, lineJoin: .round))
+                    Line(from: fromLowerWall(i, j), to: toLowerWall(i, j))
+                        .stroke(.accent, style: strokeStyle)
                 } drawTapRectangle: { i, j in
                     TapRectangle(start: $start, end: $end, shortWay: $shortWay, maze: maze, id: CGPoint(x: j, y: i))
                         .frame(width: cellWidth * 0.5, height: cellHeight * 0.5)
