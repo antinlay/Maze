@@ -2,8 +2,8 @@
   "colors" : [
     {
       "color" : {
-        "platform" : "osx",
-        "reference" : "findHighlightColor"
+        "platform" : "visionos",
+        "reference" : "systemGrayColor"
       },
       "idiom" : "universal"
     }
@@ -11,5 +11,8 @@
   "info" : {
     "author" : "xcode",
     "version" : 1
+  },
+  "properties" : {
+    "localizable" : true
   }
 }

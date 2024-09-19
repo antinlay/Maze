@@ -78,14 +78,17 @@ struct MazeRectangularGenerate: View {
         .onChange(of: rows) { _, _ in
             generateMaze()
         }
-        MazeDraw(maze: maze)
-            .padding()
-            .frame(minWidth: 200, idealWidth: 400, maxWidth: .infinity, minHeight: 200, idealHeight: 400, maxHeight: .infinity, alignment: .center)
+        Group {
+            MazeDraw(maze: maze)
+                .padding()
+                .frame(minWidth: 200, idealWidth: 400, maxWidth: .infinity, minHeight: 200, idealHeight: 400, maxHeight: .infinity, alignment: .center)
 #if os(iOS)
-        saveButton
-            .disabled(isDisabled)
-            .padding()
+            saveButton
+                .disabled(isDisabled)
+                .padding()
 #endif
+        }
+        .ignoresSafeArea(.keyboard, edges: .bottom)
     }
     
     private var discardButton: some View {

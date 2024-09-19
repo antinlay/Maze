@@ -11,10 +11,10 @@ import SwiftUI
 
 @Model
 class MazeRectangular: Identifiable {
-    let id: UUID
+    var id: UUID
     var name: String
     var imageData: Data?
-    let category: MazeCategory
+    var category: MazeCategory
     var rightWalls: [[Bool]]
     var lowerWalls: [[Bool]]
     
