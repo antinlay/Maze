@@ -148,8 +148,8 @@ struct MazeEdit: View {
         
         switch parseResult {
         case .success(let success):
-            maze.rightWalls = success.verticalWalls
-            maze.lowerWalls = success.horizontalWalls
+            maze.rightWalls = success.rightWalls
+            maze.lowerWalls = success.lowerWalls
         case .failure(let failure):
             error = .parseError(failure.localizedDescription)
             showAlert = true

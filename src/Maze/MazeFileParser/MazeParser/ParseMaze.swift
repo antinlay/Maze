@@ -8,8 +8,8 @@
 import Foundation
 
 //protocol MazeMatrix {
-//    var horizontalWalls: [[Bool]] { get set }
-//    var verticalWalls: [[Bool]] { get set }
+//    var lowerWalls: [[Bool]] { get set }
+//    var rightWalls: [[Bool]] { get set }
 //    var _col: Int { get }
 //    var _row: Int { get }
 //}
@@ -65,8 +65,8 @@ class ParseRectangular: ParseGrid, Parse {
         do {
             size = try mazeSize()
             result = Maze(col: size.col, row: size.row)
-            try parseGrid(mazeRow: &result.verticalWalls, fromString: 1, toString: size.row)
-            try parseGrid(mazeRow: &result.horizontalWalls, fromString: size.row + 1, toString: stringData.count - 1)
+            try parseGrid(mazeRow: &result.rightWalls, fromString: 1, toString: size.row)
+            try parseGrid(mazeRow: &result.lowerWalls, fromString: size.row + 1, toString: stringData.count - 1)
         } catch (let e) as ParseError {
             return .failure(e)
         } catch {
@@ -87,7 +87,7 @@ class ParseCave: ParseGrid, Parse {
         do {
             size = try mazeSize()
             result = Maze(col: size.col, row: size.row)
-            try parseGrid(mazeRow: &result.verticalWalls, fromString: 1, toString: size.row)
+            try parseGrid(mazeRow: &result.rightWalls, fromString: 1, toString: size.row)
         } catch (let e) as ParseError {
             return .failure(e)
         } catch {

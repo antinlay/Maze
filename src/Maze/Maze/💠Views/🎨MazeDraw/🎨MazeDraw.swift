@@ -21,15 +21,15 @@ struct MazeDraw: View {
     private func drawingWalls(drawRightWalls: @escaping (_ i: Double, _ j: Double) -> some View,
                               drawLowerWalls: @escaping (_ i: Double, _ j: Double) -> some View,
                               drawTapRectangle: @escaping (_ i: Double, _ j: Double) -> some View) -> some View {
-        ForEach(maze.horizontalWalls.indices, id: \.self) { i in
-            ForEach(maze.horizontalWalls[i].indices, id: \.self) { j in
+        ForEach(maze.lowerWalls.indices, id: \.self) { i in
+            ForEach(maze.lowerWalls[i].indices, id: \.self) { j in
                 drawTapRectangle(Double(i), Double(j))
                 
-                if maze.horizontalWalls[i][j] {
+                if maze.lowerWalls[i][j] {
                     drawLowerWalls(Double(i), Double(j))
                 }
                 
-                if maze.verticalWalls[i][j] {
+                if maze.rightWalls[i][j] {
                     drawRightWalls(Double(i), Double(j))
                 }
             }
@@ -109,5 +109,5 @@ struct MazeDraw: View {
 }
 
 #Preview {
-    MazeDraw(maze: Maze(horizontalWalls: MazeRectangular.mazes.first!.lowerWalls, verticalWalls: MazeRectangular.mazes.first!.rightWalls))
+    MazeDraw(maze: Maze(lowerWalls: MazeRectangular.mazes.first!.lowerWalls, rightWalls: MazeRectangular.mazes.first!.rightWalls))
 }

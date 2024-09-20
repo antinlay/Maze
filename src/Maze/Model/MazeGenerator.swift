@@ -38,7 +38,7 @@ class MazeGenerator {
     private func genVWalls(_ row: Int) {
         for i in 0..<mazeRow.count - 1 {
             if Bool.random() && mazeRow[i + 1] != mazeRow[i] {
-                maze.verticalWalls[row][i] = false
+                maze.rightWalls[row][i] = false
                 mergeSet(i)
             }
         }
@@ -48,18 +48,18 @@ class MazeGenerator {
         guard row < maze.row - 1 else { return }
         for i in 0..<mazeRow.count {
             if Bool.random() {
-                maze.horizontalWalls[row][i] = false
+                maze.lowerWalls[row][i] = false
             }
-            if maze.verticalWalls[row][i] && !isHaveVerticalDoor(row, pos: i) {
-                maze.horizontalWalls[row][i] = false
+            if maze.rightWalls[row][i] && !isHaveVerticalDoor(row, pos: i) {
+                maze.lowerWalls[row][i] = false
             }
         }
     }
     
     private func lastRow() {
         for i in 0..<maze.col - 1 {
-            if maze.verticalWalls[maze.row - 1][i] && mazeRow[i] != mazeRow[i + 1] {
-                maze.verticalWalls[maze.row - 1][i] = false
+            if maze.rightWalls[maze.row - 1][i] && mazeRow[i] != mazeRow[i + 1] {
+                maze.rightWalls[maze.row - 1][i] = false
                 mergeSet(i)
             }
         }
@@ -76,7 +76,7 @@ class MazeGenerator {
         guard row < maze.row - 1 else { return }
         var uniqueNum = (row + 1) * maze.col + 1
         for i in 0..<mazeRow.count {
-            if maze.horizontalWalls[row][i] {
+            if maze.lowerWalls[row][i] {
                 mazeRow[i] = uniqueNum
             }
             uniqueNum += 1
@@ -84,10 +84,10 @@ class MazeGenerator {
     }
     
     private func isHaveVerticalDoor(_ row: Int, pos: Int) -> Bool {
-        guard pos != 0 else { return !maze.horizontalWalls[row][0] }
+        guard pos != 0 else { return !maze.lowerWalls[row][0] }
         var isDoor = false
         for i in (0...pos).reversed() where mazeRow[i] == mazeRow[pos] {
-            isDoor = !maze.horizontalWalls[row][i]
+            isDoor = !maze.lowerWalls[row][i]
             if isDoor { break }
         }
         return isDoor
@@ -96,7 +96,7 @@ class MazeGenerator {
     private func soloRowMaze() {
         if maze.col > 2 {
             for i in 0..<maze.col - 1 {
-                maze.verticalWalls[0][i] = false
+                maze.rightWalls[0][i] = false
             }
         }
     }
@@ -110,8 +110,8 @@ class MazeGenerator {
         for i in 0..<maze.row {
             for k in 0..<maze.col {
                 if i != maze.row && k != maze.col {
-                    let hw = maze.horizontalWalls[i][k] ? "＿" : "  "
-                    let vw = maze.verticalWalls[i][k] ? "|" : " "
+                    let hw = maze.lowerWalls[i][k] ? "＿" : "  "
+                    let vw = maze.rightWalls[i][k] ? "|" : " "
                     print(hw, vw, separator: "", terminator: "")
                 }
             }

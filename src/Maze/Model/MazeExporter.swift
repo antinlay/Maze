@@ -36,14 +36,14 @@ struct TextFile: FileDocument {
 
 extension Maze {
     public func parseMazeToText() -> String {
-        let rows = horizontalWalls.count
-        let columns = horizontalWalls[0].count
+        let rows = lowerWalls.count
+        let columns = lowerWalls[0].count
 
         var result = "\(rows) \(columns)\n"
 
         for i in 0..<rows {
             for j in 0..<columns {
-                result += verticalWalls[i][j] ? "1 " : "0 "
+                result += rightWalls[i][j] ? "1 " : "0 "
             }
             result += "\n"
         }
@@ -52,7 +52,7 @@ extension Maze {
 
         for i in 0..<rows {
             for j in 0..<columns {
-                result += horizontalWalls[i][j] ? "1 " : "0 "
+                result += lowerWalls[i][j] ? "1 " : "0 "
             }
             result += "\n"
         }

@@ -8,8 +8,8 @@
 import Foundation
 
 struct Maze {
-    var horizontalWalls: [[Bool]]
-    var verticalWalls: [[Bool]]
+    var lowerWalls: [[Bool]]
+    var rightWalls: [[Bool]]
     private var _col: Int
     private var _row: Int
     
@@ -19,8 +19,8 @@ struct Maze {
             guard newValue > 0, newValue != _col else { return }
             self._col = newValue
             
-            self.horizontalWalls = resizeMatrix(newCols: _col, newRows: _row, matrix: horizontalWalls)
-            self.verticalWalls = resizeMatrix(newCols: _col, newRows: _row, matrix: verticalWalls)
+            self.lowerWalls = resizeMatrix(newCols: _col, newRows: _row, matrix: lowerWalls)
+            self.rightWalls = resizeMatrix(newCols: _col, newRows: _row, matrix: rightWalls)
         }
     }
     
@@ -30,16 +30,16 @@ struct Maze {
             guard newValue > 0, newValue != _row else { return }
             self._row = newValue
             
-            self.horizontalWalls = resizeMatrix(newCols: _col, newRows: _row, matrix: horizontalWalls)
-            self.verticalWalls = resizeMatrix(newCols: _col, newRows: _row, matrix: verticalWalls)
+            self.lowerWalls = resizeMatrix(newCols: _col, newRows: _row, matrix: lowerWalls)
+            self.rightWalls = resizeMatrix(newCols: _col, newRows: _row, matrix: rightWalls)
         }
     }
     
-    init(horizontalWalls: [[Bool]] = [], verticalWalls: [[Bool]] = []) {
-        self._col = horizontalWalls.first?.count ?? 0
-        self._row = verticalWalls.count
-        self.horizontalWalls = horizontalWalls
-        self.verticalWalls = verticalWalls
+    init(lowerWalls: [[Bool]] = [], rightWalls: [[Bool]] = []) {
+        self._col = lowerWalls.first?.count ?? 0
+        self._row = rightWalls.count
+        self.lowerWalls = lowerWalls
+        self.rightWalls = rightWalls
     }
     
     init(col: Int, row: Int) {
@@ -48,15 +48,15 @@ struct Maze {
 //        }
         self._col = col
         self._row = row
-        self.horizontalWalls = Array(repeating: Array(repeating: true, count: _col), count: _row)
-        self.verticalWalls = Array(repeating: Array(repeating: true, count: _col), count: _row)
+        self.lowerWalls = Array(repeating: Array(repeating: true, count: _col), count: _row)
+        self.rightWalls = Array(repeating: Array(repeating: true, count: _col), count: _row)
     }
     
     init() {
         self._col = 0
         self._row = 0
-        self.horizontalWalls = [[]]
-        self.verticalWalls = [[]]
+        self.lowerWalls = [[]]
+        self.rightWalls = [[]]
     }
     
     private func resizeMatrix(newCols: Int, newRows: Int, matrix: Array<Array<Bool>>) -> [[Bool]] {
@@ -73,9 +73,9 @@ struct Maze {
     
     func printBothMatrix() {
         print("horizontal")
-        printMatrix(horizontalWalls)
+        printMatrix(lowerWalls)
         print("\nvertical")
-        printMatrix(verticalWalls)
+        printMatrix(rightWalls)
     }
     
     func printMatrix(_ matrix: Array<Array<Bool>>) {

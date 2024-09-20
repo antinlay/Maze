@@ -42,7 +42,7 @@ extension [MazeRectangular] {
 
 extension MazeRectangular {
     var toMaze: Maze {
-        Maze(horizontalWalls: lowerWalls, verticalWalls: rightWalls)
+        Maze(lowerWalls: lowerWalls, rightWalls: rightWalls)
     }
 }
 
@@ -50,8 +50,8 @@ extension Maze {
     var toMazeRectangular: MazeRectangular {
         MazeRectangular(name: Date.now.description,
                         category: .rectangularMaze,
-                        rightWalls: verticalWalls,
-                        lowerWalls: horizontalWalls)
+                        rightWalls: rightWalls,
+                        lowerWalls: lowerWalls)
     }
 }
 

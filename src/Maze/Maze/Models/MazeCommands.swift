@@ -7,14 +7,14 @@
 
 import SwiftUI
 
-struct SelectedMzeKey: FocusedValueKey {
+struct SelectedMazeKey: FocusedValueKey {
     typealias Value = MazeRectangular
 }
 
 extension FocusedValues {
-    var selectedMaze: SelectedMzeKey.Value? {
-        get { self[SelectedMzeKey.self] }
-        set { self[SelectedMzeKey.self] = newValue }
+    var selectedMaze: SelectedMazeKey.Value? {
+        get { self[SelectedMazeKey.self] }
+        set { self[SelectedMazeKey.self] = newValue }
     }
 }
 

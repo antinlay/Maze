@@ -36,16 +36,16 @@ extension Maze {
         for i in 0..<row {
             for j in 0..<col where field[i][j] == step {
                 result += 1
-                if i < row.up && horizontalWalls[i][j] == false {
+                if i < row.up && lowerWalls[i][j] == false {
                     field[i.down][j] = updateCell(value: step.right, cell: field[i.down][j])
                 }
-                if i > 0 && horizontalWalls[i.up][j] == false {
+                if i > 0 && lowerWalls[i.up][j] == false {
                     field[i.up][j] = updateCell(value: step.right, cell: field[i.up][j])
                 }
-                if j < col.left && verticalWalls[i][j] == false {
+                if j < col.left && rightWalls[i][j] == false {
                     field[i][j.right] = updateCell(value: step.right, cell: field[i][j.right])
                 }
-                if j > 0 && verticalWalls[i][j.left] == false {
+                if j > 0 && rightWalls[i][j.left] == false {
                     field[i][j.left] = updateCell(value: step.right, cell: field[i][j.left])
                 }
             }
@@ -74,13 +74,13 @@ extension Maze {
             route.append(CGPoint(x: Double(j) + 0.5, y: Double(i) + 0.5))
             
             while i != start.i || j != start.j {
-                if i < row.up && horizontalWalls[i][j] == false && field[i.down][j] == step.left {
+                if i < row.up && lowerWalls[i][j] == false && field[i.down][j] == step.left {
                     i += 1
-                } else if i > 0 && horizontalWalls[i.up][j] == false && field[i.up][j] == step.left {
+                } else if i > 0 && lowerWalls[i.up][j] == false && field[i.up][j] == step.left {
                     i -= 1
-                } else if j < col.left && verticalWalls[i][j] == false && field[i][j.right] == step.left {
+                } else if j < col.left && rightWalls[i][j] == false && field[i][j.right] == step.left {
                     j += 1
-                } else if j > 0 && verticalWalls[i][j.left] == false && field[i][j.left] == step.left {
+                } else if j > 0 && rightWalls[i][j.left] == false && field[i][j.left] == step.left {
                     j -= 1
                 }
                 route.append(CGPoint(x: Double(j) + 0.5, y: Double(i) + 0.5))

@@ -6,6 +6,7 @@
 //
 
 import XCTest
+@testable import Maze
 
 final class MazeTests: XCTestCase {
 
@@ -31,5 +32,62 @@ final class MazeTests: XCTestCase {
             // Put the code you want to measure the time of here.
         }
     }
+    
+    func testFindPathEmptyMaze() {
+        let maze = Maze(col: 0, row: 0)
+        let start = CGPoint(x: 0, y: 0)
+        let end = CGPoint(x: 0, y: 0)
+        let path = maze.findPath(from: start, to: end)
+        XCTAssertEqual(path, [])
+    }
+
+    func testFindPathSingleCellMaze() {
+        let maze = Maze(col: 1, row: 1)
+        let start = CGPoint(x: 0, y: 0)
+        let end = CGPoint(x: 0, y: 0)
+        let path = maze.findPath(from: start, to: end)
+        XCTAssertEqual(path, [CGPoint(x: 0.5, y: 0.5)])
+    }
+
+    func testFindPathNoPath() {
+        var maze = Maze(col: 2, row: 2)
+        maze.lowerWalls[0][0] = true
+        maze.lowerWalls[0][1] = true
+        maze.rightWalls[0][0] = true
+        maze.rightWalls[1][0] = true
+        let start = CGPoint(x: 0, y: 0)
+        let end = CGPoint(x: 1, y: 1)
+        let path = maze.findPath(from: start, to: end)
+        XCTAssertEqual(path, [])
+    }
+
+    func testFindPathHorizontalPath() {
+        var maze = Maze(col: 2, row: 1)
+        maze.lowerWalls[0][0] = false
+        let start = CGPoint(x: 0, y: 0)
+        let end = CGPoint(x: 1, y: 0)
+        let path = maze.findPath(from: start, to: end)
+        XCTAssertEqual(path, [CGPoint(x: 0.5, y: 0.5), CGPoint(x: 1.5, y: 0.5)])
+    }
+
+    func testFindPathVerticalPath() {
+        var maze = Maze(col: 1, row: 2)
+        maze.rightWalls[0][0] = false
+        let start = CGPoint(x: 0, y: 0)
+        let end = CGPoint(x: 0, y: 1)
+        let path = maze.findPath(from: start, to: end)
+        XCTAssertEqual(path, [CGPoint(x: 0.5, y: 0.5), CGPoint(x: 0.5, y: 1.5)])
+    }
+
+    func testFindPathDiagonalPath() {
+        var maze = Maze(col: 2, row: 2)
+        maze.lowerWalls[0][0] = false
+        maze.rightWalls[0][0] = false
+        let start = CGPoint(x: 0, y: 0)
+        let end = CGPoint(x: 1, y: 1)
+        let path = maze.findPath(from: start, to: end)
+        XCTAssertEqual(path, [CGPoint(x: 0.5, y: 0.5), CGPoint(x: 1.5, y: 0.5), CGPoint(x: 1.5, y: 1.5)])
+    }
+
 
 }
