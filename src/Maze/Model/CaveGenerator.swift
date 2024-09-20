@@ -20,7 +20,7 @@ struct CaveConfigurations {
     static let maxCaveField = 50
 }
 
-/// maze.horizontalWalls - Поле с пещерами
+/// maze.lowerWalls - Поле с пещерами
 class CaveGenertor: MazeGenerate {
     //    true - wall false - cave
     var maze: Maze
@@ -61,12 +61,12 @@ class CaveGenertor: MazeGenerate {
     
     init(maze: Maze) { self.maze = maze }
     
-    /// CaveGenertor.maze.horizontalWalls - Поле с пещерами
+    /// CaveGenertor.maze.lowerWalls - Поле с пещерами
     func initCave() {
-        for row in 0..<maze.horizontalWalls.count {
-            for col in 0..<maze.horizontalWalls.count {
+        for row in 0..<maze.lowerWalls.count {
+            for col in 0..<maze.lowerWalls.count {
                 if Int.random(in: 0...8) <= birthLimit {
-                    maze.horizontalWalls[row][col] = true
+                    maze.lowerWalls[row][col] = true
                 }
             }
         }
@@ -80,32 +80,32 @@ class CaveGenertor: MazeGenerate {
         repeat {
             step()
             if repeats % 2 == 0 {
-                mazeEq = maze.horizontalWalls == maze.verticalWalls
+                mazeEq = maze.lowerWalls == maze.rightWalls
             }
-            maze.horizontalWalls = maze.verticalWalls
+            maze.lowerWalls = maze.rightWalls
             print(repeats)
             printCave()
             repeats += 1
         } while !mazeEq && repeats < repeatCount
     }
     
-    /// CaveGenertor.maze.horizontalWalls - Поле с пещерами
+    /// CaveGenertor.maze.lowerWalls - Поле с пещерами
     func oneStep() {
         step()
-        maze.horizontalWalls = maze.verticalWalls
+        maze.lowerWalls = maze.rightWalls
     }
     
     private func step() {
         for row in 0..<maze.row {
             for col in 0..<maze.col {
                 let neighborsCount = checkNeighbors(row: row, col: col)
-                let isLive = maze.horizontalWalls[row][col]
+                let isLive = maze.lowerWalls[row][col]
                 let isDead = !isLive
                 
                 if isDead && neighborsCount > birthLimit {
-                    maze.verticalWalls[row][col] = true
+                    maze.rightWalls[row][col] = true
                 } else if isLive && neighborsCount > deathLimit {
-                    maze.verticalWalls[row][col] = false
+                    maze.rightWalls[row][col] = false
                 }
             }
         }
@@ -130,13 +130,13 @@ class CaveGenertor: MazeGenerate {
         if row < 0 || row >= maze.row || col < 0 || col >= maze.col {
             return true
         }
-        return maze.horizontalWalls[row][col]
+        return maze.lowerWalls[row][col]
     }
 
     ///    ⬛️ - wall, ⬜️ - cave
     func caveToString() -> String {
         var cave = ""
-        for row in maze.horizontalWalls {
+        for row in maze.lowerWalls {
             for cell in row {
                 cave += cell ? "⬛️" : "⬜️"
             }
