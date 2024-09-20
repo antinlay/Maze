@@ -57,6 +57,14 @@ class ParseMazeFiles: Parse {
 }   // class ParseFiles
 
 class ParseRectangular: ParseGrid, Parse {
+    
+    private func swapIfNeed(_ maze: inout Maze) {
+        if maze.lowerWalls[size.row - 1] != Array(repeating: true, count: size.col) {
+            var tempMatrix = maze.rightWalls
+            maze.rightWalls = maze.lowerWalls
+            maze.lowerWalls = tempMatrix
+        }
+    }
 
     func parse () -> Result<Maze, ParseError>  {
         

@@ -7,7 +7,7 @@
 
 import Foundation
 
-class MazeGenerator {
+class MazeGenerator: MazeGenerate {
     var maze: Maze
     private var mazeRow: [Int]
     
@@ -55,7 +55,7 @@ class MazeGenerator {
             }
         }
     }
-    
+        
     private func lastRow() {
         for i in 0..<maze.col - 1 {
             if maze.rightWalls[maze.row - 1][i] && mazeRow[i] != mazeRow[i + 1] {
