@@ -9,7 +9,7 @@ import SwiftUI
 
 struct MazeDetail: View {
     @Environment(\.displayScale) var displayScale
-    var mazeRectangular: MazeRectangular
+    var mazeRectangular: MazeData
     
     @State private var isExporting = false
     @State private var exportText = ""

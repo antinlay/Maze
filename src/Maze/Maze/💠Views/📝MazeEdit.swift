@@ -12,7 +12,7 @@ import SwiftData
 struct MazeEdit: View {
     @Environment(\.dismiss) private var dismiss
     @Environment(\.modelContext) private var modelContext
-    @State var maze: MazeRectangular
+    @State var maze: MazeData
     @State private var selectedItem: PhotosPickerItem?
     
     @State private var text = ""

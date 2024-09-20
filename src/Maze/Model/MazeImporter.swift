@@ -28,7 +28,7 @@ enum ImportErrorSaver: LocalizedError {
 //struct MazeImporter<Content: View>: View {
 //    @State private var isPresented: Bool = false
 //    @State private var text: String = ""
-//    @State private var maze: MazeRectangular = Maze().toMazeRectangular
+//    @State private var maze: MazeData = Maze().toMazeData
 //    @State private var showAlert: Bool = false
 //    @State private var error: ImportErrorSaver?
 //    

@@ -109,5 +109,5 @@ struct MazeDraw: View {
 }
 
 #Preview {
-    MazeDraw(maze: Maze(lowerWalls: MazeRectangular.mazes.first!.lowerWalls, rightWalls: MazeRectangular.mazes.first!.rightWalls))
+    MazeDraw(maze: Maze(lowerWalls: MazeData.mazes.first!.lowerWalls, rightWalls: MazeData.mazes.first!.rightWalls))
 }

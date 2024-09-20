@@ -43,9 +43,6 @@ struct Maze {
     }
     
     init(col: Int, row: Int) {
-//        guard col > 0 && row > 0 else {
-//            throw fatalError("Matrix is not valid cols = \(col), rows = \(row)")
-//        }
         self._col = col
         self._row = row
         self.lowerWalls = Array(repeating: Array(repeating: true, count: _col), count: _row)

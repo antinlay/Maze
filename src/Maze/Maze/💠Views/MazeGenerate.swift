@@ -1,5 +1,5 @@
 //
-//  MazeRectangularGenerate.swift
+//  MazeDataGenerate.swift
 //  Maze
 //
 //  Created by Janiece Eleonour on 11.09.2024.
@@ -7,10 +7,11 @@
 
 import SwiftUI
 
-struct MazeRectangularGenerate: View {
+struct MazeDataGenerate: View {
+    let category: MazeCategory
     @Environment(\.modelContext) private var modelContext
     @Environment(\.dismiss) private var dismiss
-    @State private var mazeRectangular = Maze().toMazeRectangular
+    @State private var name: String = ""
     @State private var maze = Maze()
     @State private var rows: Int = 10
     @State private var columns: Int = 10
@@ -27,9 +28,6 @@ struct MazeRectangularGenerate: View {
         mazeGenerator.generate()
         mazeGenerator.printMaze()
         maze = mazeGenerator.maze
-        withAnimation {
-            mazeRectangular = maze.toMazeRectangular
-        }
         isDisabled = false
     }
     
@@ -56,7 +54,7 @@ struct MazeRectangularGenerate: View {
                 }
             }
             Section("Name:") {
-                TextField(text: $mazeRectangular.name) { }
+                TextField(text: $name) { }
                     .foregroundStyle(isDisabled ? .gray : .accent)
                     .font(.headline)
                     .disabled(isDisabled)
@@ -99,7 +97,7 @@ struct MazeRectangularGenerate: View {
     
     private var saveButton: some View {
         Button {
-            modelContext.insert(mazeRectangular)
+            modelContext.insert(maze.toMazeData(name: name, category: category))
             dismiss()
         } label: {
             Text("Save")
@@ -117,5 +115,5 @@ struct MazeRectangularGenerate: View {
 }
 
 #Preview {
-    MazeRectangularGenerate()
+    MazeDataGenerate(category: .rectangularMaze)
 }

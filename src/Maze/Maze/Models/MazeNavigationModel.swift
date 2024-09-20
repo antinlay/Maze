@@ -10,9 +10,9 @@ import Observation
 
 @Observable final class MazeNavigationModel {
     var selectedCategory: MazeCategory?
-    var mazePath: [MazeRectangular.ID] = []
+    var mazePath: [MazeData.ID] = []
     
-    var selectedMazeID: MazeRectangular.ID? {
+    var selectedMazeID: MazeData.ID? {
         get { mazePath.first }
         set { mazePath = [newValue].compactMap { $0 } }
     }

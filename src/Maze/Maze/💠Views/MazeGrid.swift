@@ -1,5 +1,5 @@
 //
-//  MazeRectangularGrid.swift
+//  MazeGrid.swift
 //  Maze
 //
 //  Created by Janiece Eleonour on 09.09.2024.
@@ -8,16 +8,13 @@
 import SwiftData
 import SwiftUI
 
-struct MazeRectangularGrid: View {
-    @Environment(\.modelContext) var modelContext
-    /// The mazes of the category.
-    @Query(sort: [SortDescriptor(\MazeRectangular.name, order: .forward)]) var mazes: [MazeRectangular]
-    
+struct MazeGrid: View {
+    let mazeDataModel: MazeDataModel
     /// The category of mazes to display.
     let category: MazeCategory?
 
     /// A `Binding` to the identifier of the selected maze.
-    @Binding var selection: MazeRectangular.ID?
+    @Binding var selection: MazeData.ID?
 
     @Environment(\.layoutDirection) private var layoutDirection
     @Environment(MazeNavigationModel.self) private var navigationModel
@@ -25,11 +22,16 @@ struct MazeRectangularGrid: View {
     @State private var isPresentedGenerateSheet: Bool = false
 
     /// The currently-selected maze.
-    private var selectedMaze: MazeRectangular? {
-        mazes.first { $0.id == selection }
+    private var selectedMaze: MazeData? {
+        mazeDataModel[selection]
+    }
+    
+    /// The recipes of the category.
+    private var mazes: [MazeData] {
+        mazeDataModel.mazes(in: category)
     }
 
-    private func gridItem(for maze: MazeRectangular) -> some View {
+    private func gridItem(for maze: MazeData) -> some View {
         MazeTile(maze: maze, isSelected: selection == maze.id)
             .id(maze.id)
             .padding(Self.spacing)
@@ -79,13 +81,13 @@ struct MazeRectangularGrid: View {
                 }
             }
             .navigationTitle(category.name)
-            .navigationDestination(for: MazeRectangular.ID.self) { mazeID in
+            .navigationDestination(for: MazeData.ID.self) { mazeID in
                 if let maze = mazes[mazeID] {
                     MazeDetail(mazeRectangular: maze)
                 }
             }
             .sheet(isPresented: $isPresentedGenerateSheet) {
-                MazeRectangularGenerate()
+                MazeDataGenerate(category: category)
             }
         } else {
             ContentUnavailableView("Choose a category", systemImage: "square.grid.3x3.topleft.filled")
@@ -108,7 +110,7 @@ struct MazeRectangularGrid: View {
 
     // MARK: Keyboard selection
 
-    private func navigate(to maze: MazeRectangular) {
+    private func navigate(to maze: MazeData) {
         navigationModel.selectedMazeID = maze.id
     }
 
@@ -134,14 +136,14 @@ struct MazeRectangularGrid: View {
         [ GridItem(.fixed(MazeTile.size), spacing: 0) ]
     }
     
-    func addSamples() {
-        do {
-            try modelContext.delete(model: MazeRectangular.self)
-        } catch {
-            print("Failed to delete students.")
-        }
-        MazeRectangular.mazes.forEach { maze in
-            modelContext.insert(maze)
-        }
-    }
+//    func addSamples() {
+//        do {
+//            try modelContext.delete(model: MazeData.self)
+//        } catch {
+//            print("Failed to delete students.")
+//        }
+//        MazeData.mazes.forEach { maze in
+//            modelContext.insert(maze)
+//        }
+//    }
 }

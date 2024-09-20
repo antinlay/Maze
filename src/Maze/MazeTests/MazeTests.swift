@@ -93,7 +93,7 @@ final class MazeTests: XCTestCase {
     }
     
     func testFindPathTemplateMaze() {
-        let maze = MazeRectangular.mazes.first!.toMaze
+        let maze = MazeData.mazes.first!.toMaze
         let start = CGPoint(x: 0, y: 0)
         let end = CGPoint(x: 9, y: 9)
         let path = maze.findPath(from: start, to: end)
