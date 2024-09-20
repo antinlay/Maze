@@ -69,5 +69,5 @@ extension MazeTile {
 }
 
 #Preview {
-    MazeTile(maze: .mazes.first!, isSelected: true)
+    MazeTile(maze: MazeRectangular.mazes.first!, isSelected: true)
 }

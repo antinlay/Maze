@@ -26,6 +26,10 @@ extension Int {
 }
 
 extension Maze {
+    private func isPointIntoMaze(_ point: CGPoint) -> Bool {
+        point.i >= 0 && point.i < row && point.j >= 0 && point.j < col
+    }
+    
     private func updateCell(value: Int, cell: Int) -> Int {
         cell == -1 ? value : min(cell, value)
     }
@@ -55,12 +59,14 @@ extension Maze {
     }
     
     public func findPath(from start: CGPoint, to end: CGPoint) -> [CGPoint] {
+        var field = Array(repeating: Array(repeating: -1, count: col), count: row)
+        guard !field.isEmpty, isPointIntoMaze(start), isPointIntoMaze(end) else { return [] }
+        
         var route = [CGPoint]()
         var j = end.j
         var i = end.i
         var count = 1
         var step = 0
-        var field = Array(repeating: Array(repeating: -1, count: col), count: row)
         
         field[start.i][start.j] = 0
         

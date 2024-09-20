@@ -63,31 +63,39 @@ final class MazeTests: XCTestCase {
 
     func testFindPathHorizontalPath() {
         var maze = Maze(col: 2, row: 1)
-        maze.lowerWalls[0][0] = false
+        maze.rightWalls[0][0] = false
         let start = CGPoint(x: 0, y: 0)
         let end = CGPoint(x: 1, y: 0)
         let path = maze.findPath(from: start, to: end)
-        XCTAssertEqual(path, [CGPoint(x: 0.5, y: 0.5), CGPoint(x: 1.5, y: 0.5)])
+        XCTAssertEqual(path, [CGPoint(x: 1.5, y: 0.5), CGPoint(x: 0.5, y: 0.5)])
     }
 
     func testFindPathVerticalPath() {
         var maze = Maze(col: 1, row: 2)
-        maze.rightWalls[0][0] = false
+        maze.lowerWalls[0][0] = false
         let start = CGPoint(x: 0, y: 0)
         let end = CGPoint(x: 0, y: 1)
         let path = maze.findPath(from: start, to: end)
-        XCTAssertEqual(path, [CGPoint(x: 0.5, y: 0.5), CGPoint(x: 0.5, y: 1.5)])
+        XCTAssertEqual(path, [CGPoint(x: 0.5, y: 1.5), CGPoint(x: 0.5, y: 0.5)])
     }
 
     func testFindPathDiagonalPath() {
         var maze = Maze(col: 2, row: 2)
         maze.lowerWalls[0][0] = false
+        maze.lowerWalls[0][1] = false
         maze.rightWalls[0][0] = false
         let start = CGPoint(x: 0, y: 0)
         let end = CGPoint(x: 1, y: 1)
         let path = maze.findPath(from: start, to: end)
-        XCTAssertEqual(path, [CGPoint(x: 0.5, y: 0.5), CGPoint(x: 1.5, y: 0.5), CGPoint(x: 1.5, y: 1.5)])
+        XCTAssertEqual(path, [CGPoint(x: 1.5, y: 1.5), CGPoint(x: 1.5, y: 0.5), CGPoint(x: 0.5, y: 0.5)])
     }
-
+    
+    func testFindPathTemplateMaze() {
+        let maze = MazeRectangular.mazes.first!.toMaze
+        let start = CGPoint(x: 0, y: 0)
+        let end = CGPoint(x: 9, y: 9)
+        let path = maze.findPath(from: start, to: end)
+        XCTAssertEqual(path, [CGPoint(x: 9.5, y: 9.5), CGPoint(x: 8.5, y: 9.5), CGPoint(x: 7.5, y: 9.5), CGPoint(x: 6.5, y: 9.5), CGPoint(x: 6.5, y: 8.5), CGPoint(x: 6.5, y: 7.5), CGPoint(x: 5.5, y: 7.5), CGPoint(x: 5.5, y: 6.5), CGPoint(x: 6.5, y: 6.5), CGPoint(x: 7.5, y: 6.5), CGPoint(x: 7.5, y: 5.5), CGPoint(x: 8.5, y: 5.5), CGPoint(x: 8.5, y: 6.5), CGPoint(x: 9.5, y: 6.5), CGPoint(x: 9.5, y: 5.5), CGPoint(x: 9.5, y: 4.5), CGPoint(x: 9.5, y: 3.5), CGPoint(x: 9.5, y: 2.5), CGPoint(x: 9.5, y: 1.5), CGPoint(x: 9.5, y: 0.5), CGPoint(x: 8.5, y: 0.5), CGPoint(x: 8.5, y: 1.5), CGPoint(x: 8.5, y: 2.5), CGPoint(x: 8.5, y: 3.5), CGPoint(x: 7.5, y: 3.5), CGPoint(x: 7.5, y: 2.5), CGPoint(x: 7.5, y: 1.5), CGPoint(x: 6.5, y: 1.5), CGPoint(x: 5.5, y: 1.5), CGPoint(x: 4.5, y: 1.5), CGPoint(x: 4.5, y: 0.5), CGPoint(x: 3.5, y: 0.5), CGPoint(x: 3.5, y: 1.5), CGPoint(x: 3.5, y: 2.5), CGPoint(x: 4.5, y: 2.5), CGPoint(x: 5.5, y: 2.5), CGPoint(x: 5.5, y: 3.5), CGPoint(x: 4.5, y: 3.5), CGPoint(x: 4.5, y: 4.5), CGPoint(x: 3.5, y: 4.5), CGPoint(x: 3.5, y: 3.5), CGPoint(x: 2.5, y: 3.5), CGPoint(x: 1.5, y: 3.5), CGPoint(x: 1.5, y: 2.5), CGPoint(x: 2.5, y: 2.5), CGPoint(x: 2.5, y: 1.5), CGPoint(x: 2.5, y: 0.5), CGPoint(x: 1.5, y: 0.5), CGPoint(x: 0.5, y: 0.5)])
+    }
 
 }
