@@ -17,8 +17,13 @@ class MazeGenerator: MazeGenerate {
     }
     
     init(rows: Int, cols: Int) {
-        self.maze = Maze(col: cols, row: rows)
-        self.mazeRow = Array(1...cols)
+        if rows > 0, cols > 0 {
+            self.maze = Maze(col: cols, row: rows)
+            self.mazeRow = Array(1...cols)
+        } else {
+            self.maze = Maze(col: 1, row: 1)
+            self.mazeRow = [0]
+        }
     }
     
     func generate() {
