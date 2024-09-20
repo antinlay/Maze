@@ -114,6 +114,6 @@ struct MazeDetail: View {
 
 #Preview {
     NavigationStack {
-        MazeDetail(mazeRectangular: .mazes.first!)
+        MazeDetail(mazeRectangular: .mazes.last!)
     }
 }

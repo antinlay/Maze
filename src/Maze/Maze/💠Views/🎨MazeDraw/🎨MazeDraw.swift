@@ -59,7 +59,7 @@ struct MazeDraw: View {
                     CGPoint(x: (j + 1) * cellWidth, y: (i + 1) * cellHeight)
                 }
                 // Line style
-                let strokeStyle = StrokeStyle(lineWidth: 2, lineCap: .round, lineJoin: .round)
+                let strokeStyle = StrokeStyle(lineWidth: 2, lineCap: .square)
                 
                 // Draw left border
                 Line(from: .zero, to: CGPoint(x: 0, y: sizeHeight))
@@ -84,7 +84,7 @@ struct MazeDraw: View {
                     if index != shortWay.count - 1 {
                         Line(from: CGPoint(x: shortWay[index].x * cellWidth, y: shortWay[index].y * cellHeight),
                              to: CGPoint(x: shortWay[index + 1].x * cellWidth, y: shortWay[index + 1].y * cellHeight))
-                        .stroke(.path, lineWidth: 2)
+                        .stroke(.path, style: strokeStyle)
                     }
                 }
             }
