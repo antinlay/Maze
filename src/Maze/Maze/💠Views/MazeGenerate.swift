@@ -12,10 +12,18 @@ struct MazeDataGenerate: View {
     @Environment(\.modelContext) private var modelContext
     @Environment(\.dismiss) private var dismiss
     @State private var name: String = ""
-    @State private var maze = Maze()
+    @State private var mazeData: MazeData?
+    @State private var mazeGenerate: MazeGenerate?
     @State private var rows: Int = 10
     @State private var columns: Int = 10
     @State private var isDisabled = true
+    
+    @State private var birthLimit: Int = 3
+    @State private var deathLimit: Int = 6
+    @State private var stepDelay: Double = 0.5
+    @State private var isAutomatic: Bool = false
+    @State private var fromEmptyField: Bool = false
+    @State private var timer: Timer?
     
     private var numbers: some View {
         ForEach(1...50, id: \.self) { amount in
@@ -24,10 +32,20 @@ struct MazeDataGenerate: View {
     }
     
     private func generateMaze() {
-        let mazeGenerator = MazeGenerator(rows: rows, cols: columns)
-        mazeGenerator.generate()
-        mazeGenerator.printMaze()
-        maze = mazeGenerator.maze
+        if category == .rectangularMaze {
+            mazeGenerate = MazeGenerator(rows: rows, cols: columns)
+            (mazeGenerate as? MazeGenerator)!.generate()
+            (mazeGenerate as? MazeGenerator)!.printMaze()
+        } else if category == .caveMaze {
+            mazeGenerate = CaveGenerator(rows: rows, cols: columns)
+            if fromEmptyField {
+                (mazeGenerate as? CaveGenerator)!.initCave()
+            } else {
+                mazeGenerate?.generate()
+            }
+        }
+        
+        mazeData = mazeGenerate!.maze.toMazeData(name: name, category: category)
         isDisabled = false
     }
     
@@ -43,6 +61,13 @@ struct MazeDataGenerate: View {
     
     var body: some View {
         container {
+            Section("Name:") {
+                TextField(text: $name) { }
+                    .foregroundStyle(isDisabled ? .gray : .accent)
+                    .font(.headline)
+                    .disabled(isDisabled)
+            }
+            
             Section("Generate Maze:") {
                 Picker("Rows:", selection: $rows) {
                     numbers
@@ -53,12 +78,23 @@ struct MazeDataGenerate: View {
                         .padding(.horizontal)
                 }
             }
-            Section("Name:") {
-                TextField(text: $name) { }
-                    .foregroundStyle(isDisabled ? .gray : .accent)
-                    .font(.headline)
-                    .disabled(isDisabled)
+            
+            if category == .caveMaze {
+                Section("Cave configuration:") {
+                    Toggle("From Empty Field", isOn: $fromEmptyField)
+                    Stepper("Birth limit: \(birthLimit)", value: $birthLimit, in: CaveConfigurations.minNeighbours...CaveConfigurations.maxNeighbours)
+                    Stepper("Death limit: \(deathLimit)", value: $deathLimit, in: CaveConfigurations.minNeighbours...CaveConfigurations.maxNeighbours)
+                    Toggle("Automatic", isOn: $isAutomatic)
+                        .onChange(of: isAutomatic) { _, _ in
+                            toggleAutomatic()
+                        }
+                    
+                    if !isAutomatic {
+                        Stepper("Delay: \(stepDelay, specifier: "%.1f")с", value: $stepDelay, in: 0.1...5.0, step: 0.1)
+                    }
+                }
             }
+
         }
         .onAppear {
             generateMaze()
@@ -66,10 +102,13 @@ struct MazeDataGenerate: View {
 #if os(macOS)
         .toolbar {
             saveButton
-                .disabled(isDisabled)
+            stepButton
             discardButton
         }
 #endif
+        .onChange(of: fromEmptyField) { _, _ in
+            generateMaze()
+        }
         .onChange(of: columns) { _, _ in
             generateMaze()
         }
@@ -77,17 +116,41 @@ struct MazeDataGenerate: View {
             generateMaze()
         }
         Group {
-            MazeDraw(maze: maze)
-                .padding()
-                .frame(minWidth: 200, idealWidth: 400, maxWidth: .infinity, minHeight: 200, idealHeight: 400, maxHeight: .infinity, alignment: .center)
+            if let mazeData {
+                MazeDraw(mazeData: mazeData)
+                    .padding()
+                    .frame(minWidth: 200, idealWidth: 400, maxWidth: .infinity, minHeight: 200, idealHeight: 400, maxHeight: .infinity, alignment: .center)
+            }
 #if os(iOS)
-            saveButton
-                .disabled(isDisabled)
-                .padding()
+            HStack {
+                saveButton
+                if category == .caveMaze {
+                    stepButton
+                }
+            }
+            .padding()
 #endif
         }
         .ignoresSafeArea(.keyboard, edges: .bottom)
     }
+    
+    private func nextStep() {
+        let caveGenerator = CaveGenerator(maze: mazeData?.toMaze ?? Maze())
+        caveGenerator.oneStep()
+        mazeData = caveGenerator.maze.toMazeData(name: name, category: category)
+    }
+    
+    private func toggleAutomatic() {
+        if isAutomatic {
+            timer = Timer.scheduledTimer(withTimeInterval: stepDelay, repeats: true) { _ in
+                nextStep()
+            }
+        } else {
+            timer?.invalidate()
+            timer = nil
+        }
+    }
+    
     
     private var discardButton: some View {
         Button("Discard", systemImage: "xmark") {
@@ -95,9 +158,30 @@ struct MazeDataGenerate: View {
         }
     }
     
+    private var stepButton: some View {
+        Button {
+            nextStep()
+        } label: {
+            Image(systemName: "arrow.forward")
+#if os(iOS)
+                .frame(maxWidth: .infinity)
+                .padding()
+                .foregroundStyle(.accentReverse)
+                .background(
+                    Color.accentColor
+                        .clipShape(Capsule())
+                )
+#endif
+        }
+        .disabled(isAutomatic)
+    }
+    
     private var saveButton: some View {
         Button {
-            modelContext.insert(maze.toMazeData(name: name, category: category))
+            if let mazeData {
+                mazeData.name = name
+                modelContext.insert(mazeData)
+            }
             dismiss()
         } label: {
             Text("Save")
@@ -111,9 +195,10 @@ struct MazeDataGenerate: View {
                 )
 #endif
         }
+        .disabled(isDisabled)
     }
 }
 
 #Preview {
-    MazeDataGenerate(category: .rectangularMaze)
+    MazeDataGenerate(category: .caveMaze)
 }

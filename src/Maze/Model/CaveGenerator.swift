@@ -21,7 +21,7 @@ struct CaveConfigurations {
 }
 
 /// maze.lowerWalls - Поле с пещерами
-class CaveGenertor: MazeGenerate {
+class CaveGenerator: MazeGenerate {
     //    true - wall false - cave
     var maze: Maze
     var repeatCount: UInt16 = 50
@@ -61,7 +61,7 @@ class CaveGenertor: MazeGenerate {
     
     init(maze: Maze) { self.maze = maze }
     
-    /// CaveGenertor.maze.lowerWalls - Поле с пещерами
+    /// CaveGenerator.maze.lowerWalls - Поле с пещерами
     func initCave() {
         for row in 0..<maze.lowerWalls.count {
             for col in 0..<maze.lowerWalls.count {
@@ -89,7 +89,7 @@ class CaveGenertor: MazeGenerate {
         } while !mazeEq && repeats < repeatCount
     }
     
-    /// CaveGenertor.maze.lowerWalls - Поле с пещерами
+    /// CaveGenerator.maze.lowerWalls - Поле с пещерами
     func oneStep() {
         step()
         maze.lowerWalls = maze.rightWalls

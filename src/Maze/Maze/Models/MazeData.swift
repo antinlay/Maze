@@ -43,6 +43,10 @@ extension MazeData {
     var toMaze: Maze {
         Maze(lowerWalls: lowerWalls, rightWalls: rightWalls)
     }
+    
+    var isEmpty: Bool {
+        rightWalls.isEmpty && lowerWalls.isEmpty
+    }
 }
 
 extension Maze {
@@ -105,6 +109,18 @@ extension MazeData {
             [false, true, true, true, true, false, true, false, false, false],
             [false, false, true, true, false, true, true, true, true, false],
             [true, true, true, true, true, true, true, true, true, true]
+        ]),
+        MazeData(name: "Cave 1", category: .caveMaze, rightWalls: [
+            [false, true, false, true],
+            [true, false, false, true],
+            [false, true, false, false],
+            [false, false, true, true]
+        ], lowerWalls: [
+            [false, true, false, true],
+            [true, false, false, true],
+            [false, true, false, false],
+            [false, false, true, true]
+
         ]),
         MazeData(name: "MazeData 3", category: .rectangularMaze, rightWalls: [
             [false, false, false, false, true, false, true, false, false, true, false, false, false, false, false, false, false, false, false, true],

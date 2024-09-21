@@ -71,9 +71,6 @@ struct MazeGrid: View {
                 }
             }
             .toolbar {
-//                Button("Add Samples") {
-//                    addSamples()
-//                }
                 Button {
                     isPresentedGenerateSheet = true
                 } label: {
@@ -82,8 +79,8 @@ struct MazeGrid: View {
             }
             .navigationTitle(category.name)
             .navigationDestination(for: MazeData.ID.self) { mazeID in
-                if let maze = mazes[mazeID] {
-                    MazeDetail(mazeRectangular: maze)
+                if let mazeData = mazes[mazeID] {
+                    MazeDetail(mazeData: mazeData)
                 }
             }
             .sheet(isPresented: $isPresentedGenerateSheet) {

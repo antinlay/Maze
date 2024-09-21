@@ -9,7 +9,7 @@ import SwiftUI
 
 struct MazeDetail: View {
     @Environment(\.displayScale) var displayScale
-    var mazeRectangular: MazeData
+    var mazeData: MazeData
     
     @State private var isExporting = false
     @State private var exportText = ""
@@ -25,11 +25,11 @@ struct MazeDetail: View {
             }
             .scenePadding()
         }
-        .navigationTitle(mazeRectangular.name)
+        .navigationTitle(mazeData.name)
         .toolbar {
             exportButton
             NavigationLink("Edit") {
-                MazeEdit(maze: mazeRectangular)
+                MazeEdit(maze: mazeData)
             }
         }
         .fileExporter(isPresented: $isExporting, document: textDocument, contentType: .plainText) { result in
@@ -45,17 +45,17 @@ struct MazeDetail: View {
     }
     
     @MainActor func render() {
-        let renderer = ImageRenderer(content: MazeDraw(maze: mazeRectangular.toMaze))
+        let renderer = ImageRenderer(content: MazeDraw(mazeData: mazeData))
 
         // make sure and use the correct display scale for this device
         renderer.scale = displayScale
 #if os(iOS)
         if let uiImage = renderer.uiImage {
-            mazeRectangular.imageData = uiImage.pngData()
+            mazeData.imageData = uiImage.pngData()
         }
 #else
         if let nsImage = renderer.nsImage {
-            mazeRectangular.imageData = nsImage.tiffRepresentation
+            mazeData.imageData = nsImage.tiffRepresentation
         }
 #endif
     }
@@ -65,12 +65,12 @@ struct MazeDetail: View {
             HStack(alignment: .top) {
                 VStack(alignment: .leading) {
                     title.padding(.bottom)
-                    Text("Rows: ") + Text(mazeRectangular.toMaze.row, format: .number)
-                    Text("Columns: ") + Text(mazeRectangular.toMaze.col, format: .number)
+                    Text("Rows: ") + Text(mazeData.toMaze.row, format: .number)
+                    Text("Columns: ") + Text(mazeData.toMaze.col, format: .number)
                 }
                 .padding(.horizontal)
             }
-            MazeDraw(maze: mazeRectangular.toMaze)
+            MazeDraw(mazeData: mazeData)
                 .aspectRatio(contentMode: .fit)
                 .padding()
         }
@@ -85,14 +85,14 @@ struct MazeDetail: View {
 #endif
         return VStack(alignment: alignment, spacing: 22) {
             title
-            MazeDraw(maze: mazeRectangular.toMaze)
+            MazeDraw(mazeData: mazeData)
                 .aspectRatio(contentMode: .fit)
         }
     }
     
     private var title: some View {
 #if os(macOS)
-        Text(mazeRectangular.name)
+        Text(mazeData.name)
             .font(.largeTitle.bold())
 #else
         EmptyView()
@@ -101,7 +101,7 @@ struct MazeDetail: View {
     
     private var exportButton: some View {
         Button {
-            exportText = mazeRectangular.toMaze.parseMazeToText()
+            exportText = mazeData.toMaze.parseMazeToText()
             print(exportText)
             textDocument = TextFile(initialText: exportText)
             isExporting = true
@@ -114,6 +114,6 @@ struct MazeDetail: View {
 
 #Preview {
     NavigationStack {
-        MazeDetail(mazeRectangular: .mazes.last!)
+        MazeDetail(mazeData: .mazes.last!)
     }
 }
