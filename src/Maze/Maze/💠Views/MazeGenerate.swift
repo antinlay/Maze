@@ -96,16 +96,25 @@ struct MazeDataGenerate: View {
             }
 
         }
-        .onAppear {
-            generateMaze()
-        }
 #if os(macOS)
+        .fixedSize(horizontal: true, vertical: true)
         .toolbar {
             saveButton
-            stepButton
+            if category == .caveMaze {
+                stepButton
+            }
             discardButton
         }
 #endif
+        .onAppear {
+            generateMaze()
+        }
+        .onChange(of: birthLimit) { _, _ in
+            (mazeGenerate as? CaveGenerator)!.birthLimit = birthLimit
+        }
+        .onChange(of: deathLimit) { _, _ in
+            (mazeGenerate as? CaveGenerator)!.deathLimit = deathLimit
+        }
         .onChange(of: fromEmptyField) { _, _ in
             generateMaze()
         }
