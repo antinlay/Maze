@@ -66,7 +66,7 @@ class CaveGenerator: MazeGenerate {
         for row in 0..<maze.lowerWalls.count {
             for col in 0..<maze.lowerWalls.count {
                 if Int.random(in: 0...8) <= birthLimit {
-                    maze.lowerWalls[row][col] = true
+                    maze.lowerWalls[row][col] = false
                 }
             }
         }

@@ -84,7 +84,9 @@ struct MazeGrid: View {
                 }
             }
             .sheet(isPresented: $isPresentedGenerateSheet) {
-                MazeDataGenerate(category: category)
+                NavigationStack {
+                    MazeDataGenerate(category: category)
+                }
             }
         } else {
             ContentUnavailableView("Choose a category", systemImage: "square.grid.3x3.topleft.filled")
