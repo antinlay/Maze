@@ -1,0 +1,16 @@
+{
+  "source": "/Users/janiecee/Developer/A1_Maze_Swift-1/src/Maze/Maze/Models/MazeCommands.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "Hello, World!",
+        "location": {
+          "startingColumn": 36,
+          "startingLine": 24
+        }
+      }
+    ]
+  },
+  "version": 1
+}

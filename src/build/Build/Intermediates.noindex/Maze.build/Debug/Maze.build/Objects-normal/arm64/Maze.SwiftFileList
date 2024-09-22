@@ -1,0 +1,30 @@
+/Users/janiecee/Developer/A1_Maze_Swift-1/src/Maze/Model/MazeGenerator.swift
+/Users/janiecee/Developer/A1_Maze_Swift-1/src/Maze/Model/MazeModel.swift
+/Users/janiecee/Developer/A1_Maze_Swift-1/src/Maze/Maze/💠Views/🎨MazeDraw/MazeDraw.swift
+/Users/janiecee/Developer/A1_Maze_Swift-1/src/Maze/Maze/💠Views/🎨MazeDraw/RectangularDraw.swift
+/Users/janiecee/Developer/A1_Maze_Swift-1/src/Maze/Maze/Models/MazeCommands.swift
+/Users/janiecee/Developer/A1_Maze_Swift-1/src/Maze/Maze/💠Views/🎨MazeDraw/Line.swift
+/Users/janiecee/Developer/A1_Maze_Swift-1/src/Maze/Maze/💠Views/MazeGenerate.swift
+/Users/janiecee/Developer/A1_Maze_Swift-1/src/Maze/Maze/💠Views/ContentView.swift
+/Users/janiecee/Developer/A1_Maze_Swift-1/src/Maze/Maze/💠Views/MazeGrid.swift
+/Users/janiecee/Developer/A1_Maze_Swift-1/src/Maze/Maze/💠Views/🧭MazeNavigation.swift
+/Users/janiecee/Developer/A1_Maze_Swift-1/src/Maze/Maze/💠Views/MazeTile.swift
+/Users/janiecee/Developer/A1_Maze_Swift-1/src/Maze/Maze/💠Views/📝MazeEdit.swift
+/Users/janiecee/Developer/A1_Maze_Swift-1/src/Maze/Model/MazeImporter.swift
+/Users/janiecee/Developer/A1_Maze_Swift-1/src/Maze/Maze/Extensions/Image+Data.swift
+/Users/janiecee/Developer/A1_Maze_Swift-1/src/Maze/Model/MazeDataModel.swift
+/Users/janiecee/Developer/A1_Maze_Swift-1/src/Maze/HandOnWallRuleAlgorithm/PathFinder.swift
+/Users/janiecee/Developer/A1_Maze_Swift-1/src/Maze/Maze/Models/MazeData.swift
+/Users/janiecee/Developer/A1_Maze_Swift-1/src/Maze/Maze/💠Views/MazeDetail.swift
+/Users/janiecee/Developer/A1_Maze_Swift-1/src/Maze/Maze/💠Views/🎨MazeDraw/TapRectangle.swift
+/Users/janiecee/Developer/A1_Maze_Swift-1/src/Maze/MazeFileParser/MazeParser/ParseGrid.swift
+/Users/janiecee/Developer/A1_Maze_Swift-1/src/Maze/MazeFileParser/MazeParser/ParseConfigurations.swift
+/Users/janiecee/Developer/A1_Maze_Swift-1/src/Maze/MazeFileParser/MazeParser/ParseMaze.swift
+/Users/janiecee/Developer/A1_Maze_Swift-1/src/Maze/Model/CaveGenerator.swift
+/Users/janiecee/Developer/A1_Maze_Swift-1/src/Maze/Maze/💠Views/🎨MazeDraw/CaveDraw.swift
+/Users/janiecee/Developer/A1_Maze_Swift-1/src/Maze/Maze/MazeApp.swift
+/Users/janiecee/Developer/A1_Maze_Swift-1/src/Maze/Maze/Models/MazeNavigationModel.swift
+/Users/janiecee/Developer/A1_Maze_Swift-1/src/Maze/Model/MazeExporter.swift
+/Users/janiecee/Developer/A1_Maze_Swift-1/src/Maze/Maze/Models/Category.swift
+/Users/janiecee/Developer/A1_Maze_Swift-1/src/Maze/Maze/💠Views/MazeImage.swift
+/Users/janiecee/Developer/A1_Maze_Swift-1/src/build/Build/Intermediates.noindex/Maze.build/Debug/Maze.build/DerivedSources/GeneratedAssetSymbols.swift

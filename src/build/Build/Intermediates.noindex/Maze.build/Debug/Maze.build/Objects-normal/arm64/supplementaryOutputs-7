@@ -1,0 +1,18 @@
+"/Users/janiecee/Developer/A1_Maze_Swift-1/src/Maze/Maze/\U0001F4A0Views/\U0001F3A8MazeDraw/TapRectangle.swift":
+  const-values: "/Users/janiecee/Developer/A1_Maze_Swift-1/src/build/Build/Intermediates.noindex/Maze.build/Debug/Maze.build/Objects-normal/arm64/TapRectangle.swiftconstvalues"
+  swift-dependencies: "/Users/janiecee/Developer/A1_Maze_Swift-1/src/build/Build/Intermediates.noindex/Maze.build/Debug/Maze.build/Objects-normal/arm64/TapRectangle.swiftdeps"
+  dependencies: "/Users/janiecee/Developer/A1_Maze_Swift-1/src/build/Build/Intermediates.noindex/Maze.build/Debug/Maze.build/Objects-normal/arm64/TapRectangle.d"
+  diagnostics: "/Users/janiecee/Developer/A1_Maze_Swift-1/src/build/Build/Intermediates.noindex/Maze.build/Debug/Maze.build/Objects-normal/arm64/TapRectangle.dia"
+  object: "/Users/janiecee/Developer/A1_Maze_Swift-1/src/build/Build/Intermediates.noindex/Maze.build/Debug/Maze.build/Objects-normal/arm64/TapRectangle.o"
+"/Users/janiecee/Developer/A1_Maze_Swift-1/src/Maze/MazeFileParser/MazeParser/ParseGrid.swift":
+  object: "/Users/janiecee/Developer/A1_Maze_Swift-1/src/build/Build/Intermediates.noindex/Maze.build/Debug/Maze.build/Objects-normal/arm64/ParseGrid.o"
+  swift-dependencies: "/Users/janiecee/Developer/A1_Maze_Swift-1/src/build/Build/Intermediates.noindex/Maze.build/Debug/Maze.build/Objects-normal/arm64/ParseGrid.swiftdeps"
+  dependencies: "/Users/janiecee/Developer/A1_Maze_Swift-1/src/build/Build/Intermediates.noindex/Maze.build/Debug/Maze.build/Objects-normal/arm64/ParseGrid.d"
+  const-values: "/Users/janiecee/Developer/A1_Maze_Swift-1/src/build/Build/Intermediates.noindex/Maze.build/Debug/Maze.build/Objects-normal/arm64/ParseGrid.swiftconstvalues"
+  diagnostics: "/Users/janiecee/Developer/A1_Maze_Swift-1/src/build/Build/Intermediates.noindex/Maze.build/Debug/Maze.build/Objects-normal/arm64/ParseGrid.dia"
+"/Users/janiecee/Developer/A1_Maze_Swift-1/src/Maze/MazeFileParser/MazeParser/ParseConfigurations.swift":
+  swift-dependencies: "/Users/janiecee/Developer/A1_Maze_Swift-1/src/build/Build/Intermediates.noindex/Maze.build/Debug/Maze.build/Objects-normal/arm64/ParseConfigurations.swiftdeps"
+  diagnostics: "/Users/janiecee/Developer/A1_Maze_Swift-1/src/build/Build/Intermediates.noindex/Maze.build/Debug/Maze.build/Objects-normal/arm64/ParseConfigurations.dia"
+  const-values: "/Users/janiecee/Developer/A1_Maze_Swift-1/src/build/Build/Intermediates.noindex/Maze.build/Debug/Maze.build/Objects-normal/arm64/ParseConfigurations.swiftconstvalues"
+  object: "/Users/janiecee/Developer/A1_Maze_Swift-1/src/build/Build/Intermediates.noindex/Maze.build/Debug/Maze.build/Objects-normal/arm64/ParseConfigurations.o"
+  dependencies: "/Users/janiecee/Developer/A1_Maze_Swift-1/src/build/Build/Intermediates.noindex/Maze.build/Debug/Maze.build/Objects-normal/arm64/ParseConfigurations.d"

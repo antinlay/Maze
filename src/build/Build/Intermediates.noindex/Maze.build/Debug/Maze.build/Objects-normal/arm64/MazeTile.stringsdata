@@ -1,0 +1,24 @@
+{
+  "source": "/Users/janiecee/Developer/A1_Maze_Swift-1/src/Maze/Maze/💠Views/MazeTile.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "Rows: ",
+        "location": {
+          "startingColumn": 22,
+          "startingLine": 60
+        }
+      },
+      {
+        "comment": "",
+        "key": "Columns: ",
+        "location": {
+          "startingColumn": 22,
+          "startingLine": 62
+        }
+      }
+    ]
+  },
+  "version": 1
+}

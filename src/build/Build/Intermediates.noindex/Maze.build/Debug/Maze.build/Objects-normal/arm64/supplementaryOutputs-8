@@ -1,0 +1,18 @@
+"/Users/janiecee/Developer/A1_Maze_Swift-1/src/Maze/MazeFileParser/MazeParser/ParseMaze.swift":
+  swift-dependencies: "/Users/janiecee/Developer/A1_Maze_Swift-1/src/build/Build/Intermediates.noindex/Maze.build/Debug/Maze.build/Objects-normal/arm64/ParseMaze.swiftdeps"
+  const-values: "/Users/janiecee/Developer/A1_Maze_Swift-1/src/build/Build/Intermediates.noindex/Maze.build/Debug/Maze.build/Objects-normal/arm64/ParseMaze.swiftconstvalues"
+  dependencies: "/Users/janiecee/Developer/A1_Maze_Swift-1/src/build/Build/Intermediates.noindex/Maze.build/Debug/Maze.build/Objects-normal/arm64/ParseMaze.d"
+  object: "/Users/janiecee/Developer/A1_Maze_Swift-1/src/build/Build/Intermediates.noindex/Maze.build/Debug/Maze.build/Objects-normal/arm64/ParseMaze.o"
+  diagnostics: "/Users/janiecee/Developer/A1_Maze_Swift-1/src/build/Build/Intermediates.noindex/Maze.build/Debug/Maze.build/Objects-normal/arm64/ParseMaze.dia"
+"/Users/janiecee/Developer/A1_Maze_Swift-1/src/Maze/Maze/\U0001F4A0Views/\U0001F3A8MazeDraw/CaveDraw.swift":
+  diagnostics: "/Users/janiecee/Developer/A1_Maze_Swift-1/src/build/Build/Intermediates.noindex/Maze.build/Debug/Maze.build/Objects-normal/arm64/CaveDraw.dia"
+  object: "/Users/janiecee/Developer/A1_Maze_Swift-1/src/build/Build/Intermediates.noindex/Maze.build/Debug/Maze.build/Objects-normal/arm64/CaveDraw.o"
+  dependencies: "/Users/janiecee/Developer/A1_Maze_Swift-1/src/build/Build/Intermediates.noindex/Maze.build/Debug/Maze.build/Objects-normal/arm64/CaveDraw.d"
+  const-values: "/Users/janiecee/Developer/A1_Maze_Swift-1/src/build/Build/Intermediates.noindex/Maze.build/Debug/Maze.build/Objects-normal/arm64/CaveDraw.swiftconstvalues"
+  swift-dependencies: "/Users/janiecee/Developer/A1_Maze_Swift-1/src/build/Build/Intermediates.noindex/Maze.build/Debug/Maze.build/Objects-normal/arm64/CaveDraw.swiftdeps"
+"/Users/janiecee/Developer/A1_Maze_Swift-1/src/Maze/Model/CaveGenerator.swift":
+  dependencies: "/Users/janiecee/Developer/A1_Maze_Swift-1/src/build/Build/Intermediates.noindex/Maze.build/Debug/Maze.build/Objects-normal/arm64/CaveGenerator.d"
+  const-values: "/Users/janiecee/Developer/A1_Maze_Swift-1/src/build/Build/Intermediates.noindex/Maze.build/Debug/Maze.build/Objects-normal/arm64/CaveGenerator.swiftconstvalues"
+  object: "/Users/janiecee/Developer/A1_Maze_Swift-1/src/build/Build/Intermediates.noindex/Maze.build/Debug/Maze.build/Objects-normal/arm64/CaveGenerator.o"
+  diagnostics: "/Users/janiecee/Developer/A1_Maze_Swift-1/src/build/Build/Intermediates.noindex/Maze.build/Debug/Maze.build/Objects-normal/arm64/CaveGenerator.dia"
+  swift-dependencies: "/Users/janiecee/Developer/A1_Maze_Swift-1/src/build/Build/Intermediates.noindex/Maze.build/Debug/Maze.build/Objects-normal/arm64/CaveGenerator.swiftdeps"

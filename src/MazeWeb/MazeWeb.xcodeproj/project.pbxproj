@@ -11,7 +11,7 @@
 		5CF0F34C2C95D233000B90B5 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CF0F34B2C95D233000B90B5 /* ContentView.swift */; };
 		5CF0F34E2C95D234000B90B5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5CF0F34D2C95D234000B90B5 /* Assets.xcassets */; };
 		5CF0F3512C95D234000B90B5 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5CF0F3502C95D234000B90B5 /* Preview Assets.xcassets */; };
-		5CF0F35A2C95D276000B90B5 /* SwiftWebUI in Frameworks */ = {isa = PBXBuildFile; productRef = 5CF0F3592C95D276000B90B5 /* SwiftWebUI */; };
+		5CF7AC042CA06A27001DC2B1 /* SwiftWebUI in Frameworks */ = {isa = PBXBuildFile; productRef = 5CF7AC032CA06A27001DC2B1 /* SwiftWebUI */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,7 +28,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5CF0F35A2C95D276000B90B5 /* SwiftWebUI in Frameworks */,
+				5CF7AC042CA06A27001DC2B1 /* SwiftWebUI in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -88,7 +88,7 @@
 			);
 			name = MazeWeb;
 			packageProductDependencies = (
-				5CF0F3592C95D276000B90B5 /* SwiftWebUI */,
+				5CF7AC032CA06A27001DC2B1 /* SwiftWebUI */,
 			);
 			productName = MazeWeb;
 			productReference = 5CF0F3462C95D233000B90B5 /* MazeWeb.app */;
@@ -119,7 +119,7 @@
 			);
 			mainGroup = 5CF0F33D2C95D233000B90B5;
 			packageReferences = (
-				5CF0F3582C95D276000B90B5 /* XCRemoteSwiftPackageReference "SwiftWebUI" */,
+				5CF7AC022CA06A27001DC2B1 /* XCRemoteSwiftPackageReference "SwiftWebUI" */,
 			);
 			productRefGroup = 5CF0F3472C95D233000B90B5 /* Products */;
 			projectDirPath = "";
@@ -351,7 +351,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		5CF0F3582C95D276000B90B5 /* XCRemoteSwiftPackageReference "SwiftWebUI" */ = {
+		5CF7AC022CA06A27001DC2B1 /* XCRemoteSwiftPackageReference "SwiftWebUI" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SwiftWebUI/SwiftWebUI";
 			requirement = {
@@ -362,9 +362,9 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		5CF0F3592C95D276000B90B5 /* SwiftWebUI */ = {
+		5CF7AC032CA06A27001DC2B1 /* SwiftWebUI */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 5CF0F3582C95D276000B90B5 /* XCRemoteSwiftPackageReference "SwiftWebUI" */;
+			package = 5CF7AC022CA06A27001DC2B1 /* XCRemoteSwiftPackageReference "SwiftWebUI" */;
 			productName = SwiftWebUI;
 		};
 /* End XCSwiftPackageProductDependency section */

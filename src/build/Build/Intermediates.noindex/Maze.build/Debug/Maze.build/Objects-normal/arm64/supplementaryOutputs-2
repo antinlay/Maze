@@ -1,0 +1,18 @@
+"/Users/janiecee/Developer/A1_Maze_Swift-1/src/Maze/Maze/\U0001F4A0Views/\U0001F3A8MazeDraw/Line.swift":
+  dependencies: "/Users/janiecee/Developer/A1_Maze_Swift-1/src/build/Build/Intermediates.noindex/Maze.build/Debug/Maze.build/Objects-normal/arm64/Line.d"
+  diagnostics: "/Users/janiecee/Developer/A1_Maze_Swift-1/src/build/Build/Intermediates.noindex/Maze.build/Debug/Maze.build/Objects-normal/arm64/Line.dia"
+  swift-dependencies: "/Users/janiecee/Developer/A1_Maze_Swift-1/src/build/Build/Intermediates.noindex/Maze.build/Debug/Maze.build/Objects-normal/arm64/Line.swiftdeps"
+  const-values: "/Users/janiecee/Developer/A1_Maze_Swift-1/src/build/Build/Intermediates.noindex/Maze.build/Debug/Maze.build/Objects-normal/arm64/Line.swiftconstvalues"
+  object: "/Users/janiecee/Developer/A1_Maze_Swift-1/src/build/Build/Intermediates.noindex/Maze.build/Debug/Maze.build/Objects-normal/arm64/Line.o"
+"/Users/janiecee/Developer/A1_Maze_Swift-1/src/Maze/Maze/\U0001F4A0Views/\U0001F3A8MazeDraw/RectangularDraw.swift":
+  dependencies: "/Users/janiecee/Developer/A1_Maze_Swift-1/src/build/Build/Intermediates.noindex/Maze.build/Debug/Maze.build/Objects-normal/arm64/RectangularDraw.d"
+  diagnostics: "/Users/janiecee/Developer/A1_Maze_Swift-1/src/build/Build/Intermediates.noindex/Maze.build/Debug/Maze.build/Objects-normal/arm64/RectangularDraw.dia"
+  object: "/Users/janiecee/Developer/A1_Maze_Swift-1/src/build/Build/Intermediates.noindex/Maze.build/Debug/Maze.build/Objects-normal/arm64/RectangularDraw.o"
+  swift-dependencies: "/Users/janiecee/Developer/A1_Maze_Swift-1/src/build/Build/Intermediates.noindex/Maze.build/Debug/Maze.build/Objects-normal/arm64/RectangularDraw.swiftdeps"
+  const-values: "/Users/janiecee/Developer/A1_Maze_Swift-1/src/build/Build/Intermediates.noindex/Maze.build/Debug/Maze.build/Objects-normal/arm64/RectangularDraw.swiftconstvalues"
+"/Users/janiecee/Developer/A1_Maze_Swift-1/src/Maze/Maze/Models/MazeCommands.swift":
+  object: "/Users/janiecee/Developer/A1_Maze_Swift-1/src/build/Build/Intermediates.noindex/Maze.build/Debug/Maze.build/Objects-normal/arm64/MazeCommands.o"
+  swift-dependencies: "/Users/janiecee/Developer/A1_Maze_Swift-1/src/build/Build/Intermediates.noindex/Maze.build/Debug/Maze.build/Objects-normal/arm64/MazeCommands.swiftdeps"
+  diagnostics: "/Users/janiecee/Developer/A1_Maze_Swift-1/src/build/Build/Intermediates.noindex/Maze.build/Debug/Maze.build/Objects-normal/arm64/MazeCommands.dia"
+  const-values: "/Users/janiecee/Developer/A1_Maze_Swift-1/src/build/Build/Intermediates.noindex/Maze.build/Debug/Maze.build/Objects-normal/arm64/MazeCommands.swiftconstvalues"
+  dependencies: "/Users/janiecee/Developer/A1_Maze_Swift-1/src/build/Build/Intermediates.noindex/Maze.build/Debug/Maze.build/Objects-normal/arm64/MazeCommands.d"

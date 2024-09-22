@@ -1,0 +1,18 @@
+"/Users/janiecee/Developer/A1_Maze_Swift-1/src/Maze/Maze/\U0001F4A0Views/\U0001F4DDMazeEdit.swift":
+  object: "/Users/janiecee/Developer/A1_Maze_Swift-1/src/build/Build/Intermediates.noindex/Maze.build/Debug/Maze.build/Objects-normal/arm64/\U0001F4DDMazeEdit.o"
+  swift-dependencies: "/Users/janiecee/Developer/A1_Maze_Swift-1/src/build/Build/Intermediates.noindex/Maze.build/Debug/Maze.build/Objects-normal/arm64/\U0001F4DDMazeEdit.swiftdeps"
+  dependencies: "/Users/janiecee/Developer/A1_Maze_Swift-1/src/build/Build/Intermediates.noindex/Maze.build/Debug/Maze.build/Objects-normal/arm64/\U0001F4DDMazeEdit.d"
+  diagnostics: "/Users/janiecee/Developer/A1_Maze_Swift-1/src/build/Build/Intermediates.noindex/Maze.build/Debug/Maze.build/Objects-normal/arm64/\U0001F4DDMazeEdit.dia"
+  const-values: "/Users/janiecee/Developer/A1_Maze_Swift-1/src/build/Build/Intermediates.noindex/Maze.build/Debug/Maze.build/Objects-normal/arm64/\U0001F4DDMazeEdit.swiftconstvalues"
+"/Users/janiecee/Developer/A1_Maze_Swift-1/src/Maze/Maze/\U0001F4A0Views/\U0001F9EDMazeNavigation.swift":
+  dependencies: "/Users/janiecee/Developer/A1_Maze_Swift-1/src/build/Build/Intermediates.noindex/Maze.build/Debug/Maze.build/Objects-normal/arm64/\U0001F9EDMazeNavigation.d"
+  const-values: "/Users/janiecee/Developer/A1_Maze_Swift-1/src/build/Build/Intermediates.noindex/Maze.build/Debug/Maze.build/Objects-normal/arm64/\U0001F9EDMazeNavigation.swiftconstvalues"
+  object: "/Users/janiecee/Developer/A1_Maze_Swift-1/src/build/Build/Intermediates.noindex/Maze.build/Debug/Maze.build/Objects-normal/arm64/\U0001F9EDMazeNavigation.o"
+  diagnostics: "/Users/janiecee/Developer/A1_Maze_Swift-1/src/build/Build/Intermediates.noindex/Maze.build/Debug/Maze.build/Objects-normal/arm64/\U0001F9EDMazeNavigation.dia"
+  swift-dependencies: "/Users/janiecee/Developer/A1_Maze_Swift-1/src/build/Build/Intermediates.noindex/Maze.build/Debug/Maze.build/Objects-normal/arm64/\U0001F9EDMazeNavigation.swiftdeps"
+"/Users/janiecee/Developer/A1_Maze_Swift-1/src/Maze/Maze/\U0001F4A0Views/MazeTile.swift":
+  object: "/Users/janiecee/Developer/A1_Maze_Swift-1/src/build/Build/Intermediates.noindex/Maze.build/Debug/Maze.build/Objects-normal/arm64/MazeTile.o"
+  const-values: "/Users/janiecee/Developer/A1_Maze_Swift-1/src/build/Build/Intermediates.noindex/Maze.build/Debug/Maze.build/Objects-normal/arm64/MazeTile.swiftconstvalues"
+  dependencies: "/Users/janiecee/Developer/A1_Maze_Swift-1/src/build/Build/Intermediates.noindex/Maze.build/Debug/Maze.build/Objects-normal/arm64/MazeTile.d"
+  swift-dependencies: "/Users/janiecee/Developer/A1_Maze_Swift-1/src/build/Build/Intermediates.noindex/Maze.build/Debug/Maze.build/Objects-normal/arm64/MazeTile.swiftdeps"
+  diagnostics: "/Users/janiecee/Developer/A1_Maze_Swift-1/src/build/Build/Intermediates.noindex/Maze.build/Debug/Maze.build/Objects-normal/arm64/MazeTile.dia"

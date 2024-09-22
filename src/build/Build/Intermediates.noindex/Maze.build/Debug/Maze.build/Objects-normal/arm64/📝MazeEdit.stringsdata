@@ -1,0 +1,80 @@
+{
+  "source": "/Users/janiecee/Developer/A1_Maze_Swift-1/src/Maze/Maze/💠Views/📝MazeEdit.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "Import file",
+        "location": {
+          "startingColumn": 19,
+          "startingLine": 35
+        }
+      },
+      {
+        "comment": "",
+        "key": "Change image",
+        "location": {
+          "startingColumn": 18,
+          "startingLine": 47
+        }
+      },
+      {
+        "comment": "",
+        "key": "Name:",
+        "location": {
+          "startingColumn": 21,
+          "startingLine": 93
+        }
+      },
+      {
+        "comment": "",
+        "key": "Image:",
+        "location": {
+          "startingColumn": 21,
+          "startingLine": 97
+        }
+      },
+      {
+        "comment": "",
+        "key": "Right Walls",
+        "location": {
+          "startingColumn": 21,
+          "startingLine": 101
+        }
+      },
+      {
+        "comment": "",
+        "key": "Lower Walls",
+        "location": {
+          "startingColumn": 21,
+          "startingLine": 109
+        }
+      },
+      {
+        "comment": "",
+        "key": "Rows:",
+        "location": {
+          "startingColumn": 24,
+          "startingLine": 102
+        }
+      },
+      {
+        "comment": "",
+        "key": "Rows:",
+        "location": {
+          "startingColumn": 24,
+          "startingLine": 110
+        }
+      },
+      {
+        "comment": "",
+        "key": "OK",
+        "location": {
+          "startingColumn": 20,
+          "startingLine": 121
+        }
+      }
+    ]
+  },
+  "version": 1
+}

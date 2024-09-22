@@ -1,0 +1,104 @@
+{
+  "source": "/Users/janiecee/Developer/A1_Maze_Swift-1/src/Maze/Maze/💠Views/MazeGenerate.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "Name:",
+        "location": {
+          "startingColumn": 21,
+          "startingLine": 63
+        }
+      },
+      {
+        "comment": "",
+        "key": "Generate Maze:",
+        "location": {
+          "startingColumn": 21,
+          "startingLine": 70
+        }
+      },
+      {
+        "comment": "",
+        "key": "Cave configuration:",
+        "location": {
+          "startingColumn": 25,
+          "startingLine": 82
+        }
+      },
+      {
+        "comment": "",
+        "key": " ",
+        "location": {
+          "startingColumn": 88,
+          "startingLine": 64
+        }
+      },
+      {
+        "comment": "",
+        "key": "",
+        "location": {
+          "startingColumn": 27,
+          "startingLine": 64
+        }
+      },
+      {
+        "comment": "",
+        "key": "Rows:",
+        "location": {
+          "startingColumn": 24,
+          "startingLine": 71
+        }
+      },
+      {
+        "comment": "",
+        "key": "Columns:",
+        "location": {
+          "startingColumn": 24,
+          "startingLine": 75
+        }
+      },
+      {
+        "comment": "",
+        "key": "Birth limit: %lld",
+        "location": {
+          "startingColumn": 33,
+          "startingLine": 84
+        }
+      },
+      {
+        "comment": "",
+        "key": "Death limit: %lld",
+        "location": {
+          "startingColumn": 33,
+          "startingLine": 85
+        }
+      },
+      {
+        "comment": "",
+        "key": "Delay: %.1f seconds",
+        "location": {
+          "startingColumn": 33,
+          "startingLine": 87
+        }
+      },
+      {
+        "comment": "",
+        "key": "Discard",
+        "location": {
+          "startingColumn": 16,
+          "startingLine": 158
+        }
+      },
+      {
+        "comment": "",
+        "key": "Save",
+        "location": {
+          "startingColumn": 16,
+          "startingLine": 200
+        }
+      }
+    ]
+  },
+  "version": 1
+}

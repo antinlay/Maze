@@ -1,0 +1,2 @@
+Target dependency graph (1 target)
+Target 'Maze' in project 'Maze' (no dependencies)

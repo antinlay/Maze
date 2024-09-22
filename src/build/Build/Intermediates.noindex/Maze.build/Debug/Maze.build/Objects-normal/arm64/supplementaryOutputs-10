@@ -1,0 +1,18 @@
+"/Users/janiecee/Developer/A1_Maze_Swift-1/src/Maze/Maze/\U0001F4A0Views/MazeImage.swift":
+  object: "/Users/janiecee/Developer/A1_Maze_Swift-1/src/build/Build/Intermediates.noindex/Maze.build/Debug/Maze.build/Objects-normal/arm64/MazeImage.o"
+  diagnostics: "/Users/janiecee/Developer/A1_Maze_Swift-1/src/build/Build/Intermediates.noindex/Maze.build/Debug/Maze.build/Objects-normal/arm64/MazeImage.dia"
+  const-values: "/Users/janiecee/Developer/A1_Maze_Swift-1/src/build/Build/Intermediates.noindex/Maze.build/Debug/Maze.build/Objects-normal/arm64/MazeImage.swiftconstvalues"
+  dependencies: "/Users/janiecee/Developer/A1_Maze_Swift-1/src/build/Build/Intermediates.noindex/Maze.build/Debug/Maze.build/Objects-normal/arm64/MazeImage.d"
+  swift-dependencies: "/Users/janiecee/Developer/A1_Maze_Swift-1/src/build/Build/Intermediates.noindex/Maze.build/Debug/Maze.build/Objects-normal/arm64/MazeImage.swiftdeps"
+"/Users/janiecee/Developer/A1_Maze_Swift-1/src/Maze/Maze/Models/Category.swift":
+  dependencies: "/Users/janiecee/Developer/A1_Maze_Swift-1/src/build/Build/Intermediates.noindex/Maze.build/Debug/Maze.build/Objects-normal/arm64/Category.d"
+  object: "/Users/janiecee/Developer/A1_Maze_Swift-1/src/build/Build/Intermediates.noindex/Maze.build/Debug/Maze.build/Objects-normal/arm64/Category.o"
+  swift-dependencies: "/Users/janiecee/Developer/A1_Maze_Swift-1/src/build/Build/Intermediates.noindex/Maze.build/Debug/Maze.build/Objects-normal/arm64/Category.swiftdeps"
+  diagnostics: "/Users/janiecee/Developer/A1_Maze_Swift-1/src/build/Build/Intermediates.noindex/Maze.build/Debug/Maze.build/Objects-normal/arm64/Category.dia"
+  const-values: "/Users/janiecee/Developer/A1_Maze_Swift-1/src/build/Build/Intermediates.noindex/Maze.build/Debug/Maze.build/Objects-normal/arm64/Category.swiftconstvalues"
+"/Users/janiecee/Developer/A1_Maze_Swift-1/src/build/Build/Intermediates.noindex/Maze.build/Debug/Maze.build/DerivedSources/GeneratedAssetSymbols.swift":
+  dependencies: "/Users/janiecee/Developer/A1_Maze_Swift-1/src/build/Build/Intermediates.noindex/Maze.build/Debug/Maze.build/Objects-normal/arm64/GeneratedAssetSymbols.d"
+  swift-dependencies: "/Users/janiecee/Developer/A1_Maze_Swift-1/src/build/Build/Intermediates.noindex/Maze.build/Debug/Maze.build/Objects-normal/arm64/GeneratedAssetSymbols.swiftdeps"
+  object: "/Users/janiecee/Developer/A1_Maze_Swift-1/src/build/Build/Intermediates.noindex/Maze.build/Debug/Maze.build/Objects-normal/arm64/GeneratedAssetSymbols.o"
+  diagnostics: "/Users/janiecee/Developer/A1_Maze_Swift-1/src/build/Build/Intermediates.noindex/Maze.build/Debug/Maze.build/Objects-normal/arm64/GeneratedAssetSymbols.dia"
+  const-values: "/Users/janiecee/Developer/A1_Maze_Swift-1/src/build/Build/Intermediates.noindex/Maze.build/Debug/Maze.build/Objects-normal/arm64/GeneratedAssetSymbols.swiftconstvalues"

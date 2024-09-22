@@ -8,11 +8,11 @@
 import Foundation
 
 extension CGPoint {
-    var i: Int {
+    var iRow: Int {
         get { Int(y) }
         set { y = Double(newValue)}
     }
-    var j: Int {
+    var jCol: Int {
         get { Int(x) }
         set { x = Double(newValue)}
     }
@@ -20,14 +20,14 @@ extension CGPoint {
 
 extension Int {
     var down: Int { self + 1 }
-    var up: Int { self - 1 }
+    var upward: Int { self - 1 }
     var left: Int { self - 1 }
     var right: Int { self + 1 }
 }
 
 extension Maze {
     private func isPointIntoMaze(_ point: CGPoint) -> Bool {
-        point.i >= 0 && point.i < row && point.j >= 0 && point.j < col
+        point.iRow >= 0 && point.iRow < row && point.jCol >= 0 && point.jCol < col
     }
     
     private func updateCell(value: Int, cell: Int) -> Int {
@@ -40,11 +40,11 @@ extension Maze {
         for i in 0..<row {
             for j in 0..<col where field[i][j] == step {
                 result += 1
-                if i < row.up && lowerWalls[i][j] == false {
+                if i < row.upward && lowerWalls[i][j] == false {
                     field[i.down][j] = updateCell(value: step.right, cell: field[i.down][j])
                 }
-                if i > 0 && lowerWalls[i.up][j] == false {
-                    field[i.up][j] = updateCell(value: step.right, cell: field[i.up][j])
+                if i > 0 && lowerWalls[i.upward][j] == false {
+                    field[i.upward][j] = updateCell(value: step.right, cell: field[i.upward][j])
                 }
                 if j < col.left && rightWalls[i][j] == false {
                     field[i][j.right] = updateCell(value: step.right, cell: field[i][j.right])
@@ -63,33 +63,33 @@ extension Maze {
         guard !field.isEmpty, isPointIntoMaze(start), isPointIntoMaze(end) else { return [] }
         
         var route = [CGPoint]()
-        var j = end.j
-        var i = end.i
+        var jCol = end.jCol
+        var iRow = end.iRow
         var count = 1
         var step = 0
         
-        field[start.i][start.j] = 0
+        field[start.iRow][start.jCol] = 0
         
-        while count > 0 && field[i][j] == -1 {
+        while count > 0 && field[iRow][jCol] == -1 {
             count = explorePossibleSteps(step: step, field: &field)
             step += 1
         }
         
-        if field[i][j] != -1 {
-            step = field[i][j]
-            route.append(CGPoint(x: Double(j) + 0.5, y: Double(i) + 0.5))
+        if field[iRow][jCol] != -1 {
+            step = field[iRow][jCol]
+            route.append(CGPoint(x: Double(jCol) + 0.5, y: Double(iRow) + 0.5))
             
-            while i != start.i || j != start.j {
-                if i < row.up && lowerWalls[i][j] == false && field[i.down][j] == step.left {
-                    i += 1
-                } else if i > 0 && lowerWalls[i.up][j] == false && field[i.up][j] == step.left {
-                    i -= 1
-                } else if j < col.left && rightWalls[i][j] == false && field[i][j.right] == step.left {
-                    j += 1
-                } else if j > 0 && rightWalls[i][j.left] == false && field[i][j.left] == step.left {
-                    j -= 1
+            while iRow != start.iRow || jCol != start.jCol {
+                if iRow < row.upward && lowerWalls[iRow][jCol] == false && field[iRow.down][jCol] == step.left {
+                    iRow += 1
+                } else if iRow > 0 && lowerWalls[iRow.upward][jCol] == false && field[iRow.upward][jCol] == step.left {
+                    iRow -= 1
+                } else if jCol < col.left && rightWalls[iRow][jCol] == false && field[iRow][jCol.right] == step.left {
+                    jCol += 1
+                } else if jCol > 0 && rightWalls[iRow][jCol.left] == false && field[iRow][jCol.left] == step.left {
+                    jCol -= 1
                 }
-                route.append(CGPoint(x: Double(j) + 0.5, y: Double(i) + 0.5))
+                route.append(CGPoint(x: Double(jCol) + 0.5, y: Double(iRow) + 0.5))
                 step -= 1
             }
         }
