@@ -17,7 +17,12 @@ class MazeData: Identifiable {
     var rightWalls: [[Bool]]
     var lowerWalls: [[Bool]]
     
-    init(id: UUID = UUID(), name: String, imageData: Data? = nil, category: MazeCategory, rightWalls: [[Bool]], lowerWalls: [[Bool]]) {
+    init(id: UUID = UUID(),
+         name: String,
+         imageData: Data? = nil,
+         category: MazeCategory,
+         rightWalls: [[Bool]],
+         lowerWalls: [[Bool]]) {
         self.id = id
         self.name = name
         self.imageData = imageData
@@ -30,7 +35,7 @@ class MazeData: Identifiable {
 extension [MazeData] {
     subscript(mazeID: MazeData.ID?) -> MazeData? {
         guard let mazeID else { return nil }
-        var mazesByID: [MazeData.ID: MazeData]? = nil
+        var mazesByID: [MazeData.ID: MazeData]?
         if mazesByID == nil {
             mazesByID = Dictionary(
                 uniqueKeysWithValues: self.map { ($0.id, $0) })
@@ -121,49 +126,6 @@ extension MazeData {
             [false, true, false, false],
             [false, false, true, true]
 
-        ]),
-        MazeData(name: "MazeData 3", category: .rectangularMaze, rightWalls: [
-            [false, false, false, false, true, false, true, false, false, true, false, false, false, false, false, false, false, false, false, true],
-            [false, false, false, true, true, true, false, true, false, false, true, true, false, false, true, false, true, true, false, true],
-            [true, false, false, true, false, false, false, false, false, false, true, true, false, true, false, true, true, true, true, true],
-            [true, true, false, false, false, false, false, false, true, false, true, false, true, false, true, false, true, true, true, true],
-            [true, true, false, false, false, false, false, false, true, true, false, false, false, false, true, false, false, true, true, true],
-            [false, true, false, true, false, false, false, false, true, true, false, false, false, false, false, false, false, false, false, true],
-            [true, false, false, true, false, false, false, false, false, true, false, false, true, false, false, false, false, false, false, true],
-            [false, false, false, true, true, false, true, false, true, false, false, false, true, true, false, false, false, false, false, true],
-            [true, false, true, true, true, true, true, true, true, false, false, false, true, true, true, true, false, false, false, true],
-            [true, true, false, true, true, true, true, false, true, true, false, false, true, true, false, false, false, false, false, true],
-            [false, false, true, false, true, false, true, false, false, true, false, false, true, true, false, true, false, true, false, true],
-            [false, false, true, false, true, true, false, true, false, false, true, true, true, true, true, true, true, false, true, true],
-            [false, false, false, false, false, false, false, false, false, true, true, false, true, true, false, false, true, true, true, true],
-            [true, false, true, false, false, false, false, true, true, true, false, false, true, true, false, false, true, true, true, true],
-            [true, true, true, false, false, false, false, true, true, true, false, false, true, true, false, true, false, true, false, true],
-            [true, true, false, false, false, false, true, true, true, true, false, false, true, true, true, false, true, false, true, true],
-            [true, true, true, false, false, true, true, true, true, true, false, false, true, true, false, false, false, false, true, true],
-            [true, true, true, false, true, true, true, true, true, true, false, false, true, true, false, false, false, false, true, true],
-            [true, true, true, false, true, false, true, true, true, true, false, false, true, false, false, false, false, false, false, true],
-            [true, true, true, false, true, true, true, false, true, false, true, true, false, false, false, false, false, false, false, true]
-        ], lowerWalls: [
-            [false, true, true, true, false, false, false, true, false, false, true, false, false, true, true, true, true, false, true, false],
-            [false, true, true, false, false, true, true, true, false, true, true, false, false, true, false, false, false, false, false, false],
-            [false, false, false, true, true, true, true, true, true, true, false, false, true, false, true, false, false, false, false, false],
-            [false, false, true, true, true, true, true, true, false, false, true, true, false, true, false, false, false, false, false, false],
-            [false, false, false, true, true, true, true, true, false, false, true, true, true, true, true, false, false, false, false, false],
-            [true, false, true, false, true, true, true, true, true, false, false, true, true, true, true, true, true, true, true, true],
-            [false, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, false],
-            [false, true, true, false, false, false, false, false, false, true, true, true, false, false, false, true, true, true, true, false],
-            [false, false, false, false, false, false, false, false, false, false, true, false, true, false, false, false, true, true, true, false],
-            [true, false, true, false, true, true, true, false, true, true, false, false, true, false, false, false, false, false, true, false],
-            [true, true, false, true, false, false, true, false, false, true, false, false, true, true, false, false, true, true, false, false],
-            [true, true, true, true, true, false, true, true, false, false, true, true, true, true, true, true, true, false, true, false],
-            [false, true, true, true, true, true, true, true, false, false, true, true, false, false, false, true, true, true, true, false],
-            [false, false, false, true, true, true, true, true, false, false, false, true, true, false, true, true, true, true, true, true],
-            [false, false, false, true, true, true, true, true, true, false, false, true, true, false, false, false, false, false, false, false],
-            [false, false, false, true, true, true, true, true, true, true, false, false, true, false, false, true, false, true, false, false],
-            [false, false, false, true, true, true, true, true, true, true, false, false, true, true, true, false, false, false, false, false],
-            [false, false, false, true, true, true, true, true, true, true, false, false, true, true, false, false, false, false, true, false],
-            [false, false, false, true, true, true, true, true, true, true, false, false, true, false, false, false, false, false, false, false],
-            [true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true]
         ])
     ]
 

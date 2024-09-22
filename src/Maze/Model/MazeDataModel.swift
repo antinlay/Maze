@@ -10,7 +10,7 @@ import Observation
 
 @Observable final class MazeDataModel {
     private var mazes: [MazeData] = []
-    private var mazesByID: [MazeData.ID: MazeData]? = nil
+    private var mazesByID: [MazeData.ID: MazeData]?
 
     init(mazes: [MazeData]) {
         self.mazes = mazes

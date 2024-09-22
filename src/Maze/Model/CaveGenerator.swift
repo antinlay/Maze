@@ -7,7 +7,6 @@
 
 import Foundation
 
-
 protocol MazeGenerate {
     var maze: Maze { get set }
     
@@ -63,11 +62,9 @@ class CaveGenerator: MazeGenerate {
     
     /// CaveGenerator.maze.lowerWalls - Поле с пещерами
     func initCave() {
-        for row in 0..<maze.lowerWalls.count {
-            for col in 0..<maze.lowerWalls.count {
-                if Int.random(in: 0...8) <= birthLimit {
-                    maze.lowerWalls[row][col] = false
-                }
+        for row in 0..<maze.row {
+            for col in 0..<maze.col {
+                maze.lowerWalls[row][col] = Int.random(in: 0...8) <= birthLimit ? false : true
             }
         }
     }
@@ -76,7 +73,7 @@ class CaveGenerator: MazeGenerate {
         var mazeEq = false
         var repeats = 0
         printCave()
-
+        
         repeat {
             step()
             if repeats % 2 == 0 {
@@ -109,7 +106,7 @@ class CaveGenerator: MazeGenerate {
                 }
             }
         }
-
+        
     }
     
     private func checkNeighbors(row: Int, col: Int) -> Int {
@@ -118,7 +115,7 @@ class CaveGenerator: MazeGenerate {
             for j in -1..<2 {
                 if i == 0 && j == 0 { continue }
                 if isAliveNeighbor(row: row + i,
-                           col: col + j) {
+                                   col: col + j) {
                     countLiveNeighbors += 1
                 }
             }
@@ -132,7 +129,7 @@ class CaveGenerator: MazeGenerate {
         }
         return maze.lowerWalls[row][col]
     }
-
+    
     ///    ⬛️ - wall, ⬜️ - cave
     func caveToString() -> String {
         var cave = ""
@@ -144,7 +141,7 @@ class CaveGenerator: MazeGenerate {
         }
         return cave
     }
-
+    
     ///    ⬛️ - wall, ⬜️ - cave
     func printCave() {
         print(caveToString())

@@ -25,7 +25,9 @@ struct MazeNavigation: View {
             .navigationTitle("Categories")
         } detail: {
             NavigationStack(path: $mazeNavigationModel.mazePath) {
-                MazeGrid(mazeDataModel: MazeDataModel(mazes: mazes), category: mazeNavigationModel.selectedCategory, selection: $selectedMaze)
+                MazeGrid(mazeDataModel: MazeDataModel(mazes: mazes),
+                         category: mazeNavigationModel.selectedCategory, 
+                         selection: $selectedMaze)
             }
         }
     }

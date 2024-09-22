@@ -8,7 +8,14 @@
 import SwiftUI
 
 enum MazeCategory: Int, CaseIterable, Identifiable, Codable {
-    case rectangularMaze, caveMaze, cyclicMaze, keyMaze, teleportMaze, trapMaze, timeMaze, obstacleMaze
+    case rectangularMaze,
+         caveMaze, 
+         cyclicMaze, 
+         keyMaze, 
+         teleportMaze, 
+         trapMaze, 
+         timeMaze, 
+         obstacleMaze
 
     var id: Int { rawValue }
 

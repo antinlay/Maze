@@ -7,13 +7,6 @@
 
 import Foundation
 
-//protocol MazeMatrix {
-//    var lowerWalls: [[Bool]] { get set }
-//    var rightWalls: [[Bool]] { get set }
-//    var _col: Int { get }
-//    var _row: Int { get }
-//}
-
 protocol Parse {
     func parse() -> Result<Maze, ParseError>
 }
@@ -60,13 +53,13 @@ class ParseRectangular: ParseGrid, Parse {
     
     private func swapIfNeed(_ maze: inout Maze) {
         if maze.lowerWalls[size.row - 1] != Array(repeating: true, count: size.col) {
-            var tempMatrix = maze.rightWalls
+            let tempMatrix = maze.rightWalls
             maze.rightWalls = maze.lowerWalls
             maze.lowerWalls = tempMatrix
         }
     }
 
-    func parse () -> Result<Maze, ParseError>  {
+    func parse() -> Result<Maze, ParseError> {
         
         var result = Maze(col: 0, row: 0)
         
@@ -74,7 +67,9 @@ class ParseRectangular: ParseGrid, Parse {
             size = try mazeSize()
             result = Maze(col: size.col, row: size.row)
             try parseGrid(mazeRow: &result.rightWalls, fromString: 1, toString: size.row)
-            try parseGrid(mazeRow: &result.lowerWalls, fromString: size.row + 1, toString: stringData.count - 1)
+            try parseGrid(mazeRow: &result.lowerWalls,
+                          fromString: size.row + 1,
+                          toString: stringData.count - 1)
         } catch (let e) as ParseError {
             return .failure(e)
         } catch {

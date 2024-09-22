@@ -16,9 +16,10 @@ struct RectangularDraw: View {
     @State private var end: CGPoint?
     @State private var shortWay: [CGPoint] = []
     
-    private func drawingWalls(drawRightWalls: @escaping (_ i: Double, _ j: Double) -> some View,
-                              drawLowerWalls: @escaping (_ i: Double, _ j: Double) -> some View,
-                              drawTapRectangle: @escaping (_ i: Double, _ j: Double) -> some View) -> some View {
+    private func drawingWalls(
+            drawRightWalls: @escaping (_ i: Double, _ j: Double) -> some View,
+            drawLowerWalls: @escaping (_ i: Double, _ j: Double) -> some View,
+            drawTapRectangle: @escaping (_ i: Double, _ j: Double) -> some View) -> some View {
         ForEach(maze.lowerWalls.indices, id: \.self) { i in
             ForEach(maze.lowerWalls[i].indices, id: \.self) { j in
                 drawTapRectangle(Double(i), Double(j))
@@ -71,15 +72,21 @@ struct RectangularDraw: View {
             Line(from: fromLowerWall(i, j), to: toLowerWall(i, j))
                 .stroke(.accent, style: strokeStyle)
         } drawTapRectangle: { i, j in
-            TapRectangle(start: $start, end: $end, shortWay: $shortWay, maze: maze, id: CGPoint(x: j, y: i))
+            TapRectangle(start: $start,
+                         end: $end,
+                         shortWay: $shortWay,
+                         maze: maze,
+                         id: CGPoint(x: j, y: i))
                 .frame(width: cellWidth * 0.5, height: cellHeight * 0.5)
                 .position(x: (j + 0.5) * cellWidth, y: (i + 0.5) * cellHeight)
         }
         // Draw short way
         ForEach(shortWay.indices, id: \.self) { index in
             if index != shortWay.count - 1 {
-                Line(from: CGPoint(x: shortWay[index].x * cellWidth, y: shortWay[index].y * cellHeight),
-                     to: CGPoint(x: shortWay[index + 1].x * cellWidth, y: shortWay[index + 1].y * cellHeight))
+                Line(from: CGPoint(x: shortWay[index].x * cellWidth,
+                                   y: shortWay[index].y * cellHeight),
+                     to: CGPoint(x: shortWay[index + 1].x * cellWidth,
+                                 y: shortWay[index + 1].y * cellHeight))
                 .stroke(.path, style: strokeStyle)
             }
         }

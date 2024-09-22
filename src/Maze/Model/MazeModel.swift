@@ -56,8 +56,9 @@ struct Maze {
         self.rightWalls = [[]]
     }
     
-    private func resizeMatrix(newCols: Int, newRows: Int, matrix: Array<Array<Bool>>) -> [[Bool]] {
-        var newMatrix: [[Bool]] = Array(repeating: Array(repeating: false, count: newCols), count: newRows)
+    private func resizeMatrix(newCols: Int, newRows: Int, matrix: [[Bool]]) -> [[Bool]] {
+        var newMatrix: [[Bool]] = Array(repeating: Array(repeating: false, count: newCols),
+                                        count: newRows)
         for (i, row) in matrix.enumerated() {
             for (k, element) in row.enumerated() {
                 if i < newRows && k < newCols {
@@ -75,7 +76,7 @@ struct Maze {
         printMatrix(rightWalls)
     }
     
-    func printMatrix(_ matrix: Array<Array<Bool>>) {
+    func printMatrix(_ matrix: [[Bool]]) {
         for row in matrix {
             for element in row {
                 print(element ? 1 : 0, terminator: " ")

@@ -1,0 +1,29 @@
+{
+  "configurations" : [
+    {
+      "id" : "98720F98-2948-424B-B61A-D81C7BAD0924",
+      "name" : "Test Scheme Action",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "targetForVariableExpansion" : {
+      "containerPath" : "container:Maze.xcodeproj",
+      "identifier" : "5C0816652C86EC440080B4FD",
+      "name" : "Maze"
+    }
+  },
+  "testTargets" : [
+    {
+      "parallelizable" : true,
+      "target" : {
+        "containerPath" : "container:Maze.xcodeproj",
+        "identifier" : "5C0816762C86EC450080B4FD",
+        "name" : "MazeTests"
+      }
+    }
+  ],
+  "version" : 1
+}

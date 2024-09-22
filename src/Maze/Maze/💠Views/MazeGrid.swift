@@ -42,7 +42,7 @@ struct MazeGrid: View {
 
     var body: some View {
         if let category = category {
-            container { geometryProxy, scrollViewProxy in
+            container { _, scrollViewProxy in
                 LazyVGrid(columns: columns, alignment: .leading) {
                     ForEach(mazes) { maze in
                         gridItem(for: maze)
@@ -89,7 +89,8 @@ struct MazeGrid: View {
                 }
             }
         } else {
-            ContentUnavailableView("Choose a category", systemImage: "square.grid.3x3.topleft.filled")
+            ContentUnavailableView("Choose a category",
+                                   systemImage: "square.grid.3x3.topleft.filled")
                 .navigationTitle("")
         }
     }
@@ -134,15 +135,4 @@ struct MazeGrid: View {
     private var columns: [GridItem] {
         [ GridItem(.fixed(MazeTile.size), spacing: 0) ]
     }
-    
-//    func addSamples() {
-//        do {
-//            try modelContext.delete(model: MazeData.self)
-//        } catch {
-//            print("Failed to delete students.")
-//        }
-//        MazeData.mazes.forEach { maze in
-//            modelContext.insert(maze)
-//        }
-//    }
 }

@@ -13,8 +13,6 @@ struct MazeDraw: View {
     @State private var scale: CGFloat = 1.0
     @State private var showLines = false
     
-    
-        
     var body: some View {
         if !mazeData.isEmpty {
             GeometryReader { geometry in

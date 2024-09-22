@@ -24,7 +24,8 @@ dvi:
 	open ../README_RUS.md
 
 test:
-	xcodebuild test -scheme $(PROJECT_NAME)
+	make clean
+	xcodebuild test -scheme $(PROJECT_NAME) -derivedDataPath ./build
 
 clean: uninstall
 	rm -rf build

@@ -27,7 +27,8 @@ class ParseGrid {
         
         guard size.0 > 0 && size.1 > 0 else {
             let str = size.0 <= 0 ? "rows" : "columns"
-            throw ParseError.invalidSize("Error: Incorrect maze size property, \(str) is equal to or less than zero")
+            throw ParseError.invalidSize(
+                "Error: Incorrect maze size property, \(str) is equal to or less than zero")
         }
 
         return size
@@ -48,7 +49,8 @@ class ParseGrid {
                     mazeRow[k] = false
                 }
             case .failure(let e):
-                throw ParseError.invalidMatrix("Error: Incorrect element at position \(i):\(k) (\(e))")
+                throw ParseError.invalidMatrix(
+                    "Error: Incorrect element at position \(i):\(k) (\(e))")
             }
         }
     }
@@ -66,7 +68,8 @@ class ParseGrid {
         }
     }
     
-    public func validNum(element: String,_ inRangeFromZeroTo: Int) -> Result<Int, ParseError> {
+    public func validNum(element: String,
+                         _ inRangeFromZeroTo: Int) -> Result<Int, ParseError> {
         guard let num = Int(element) else {
             return .failure(ParseError.invalidFormat(element))
         }

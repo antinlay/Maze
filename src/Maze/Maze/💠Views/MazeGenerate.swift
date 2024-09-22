@@ -48,7 +48,8 @@ struct MazeDataGenerate: View {
         isDisabled = false
     }
     
-    private func container<Content: View>( @ViewBuilder content: @escaping () -> Content) -> some View {
+    private func container<Content: View>(
+        @ViewBuilder content: @escaping () -> Content) -> some View {
 #if os(iOS)
         Form { content() }
 #else
@@ -61,7 +62,9 @@ struct MazeDataGenerate: View {
     var body: some View {
         container {
             Section("Name:") {
-                TextField("", text: $name, prompt: Text(Date.now, style: .time) + Text(" ") + Text(Date.now, style: .date))
+                TextField("", text: $name,
+                          prompt: Text(Date.now, style: .time) + Text(" ") +
+                                Text(Date.now, style: .date))
                     .foregroundStyle(isDisabled ? .gray : .accent)
                     .font(.headline)
                     .disabled(isDisabled)
@@ -81,10 +84,15 @@ struct MazeDataGenerate: View {
             if category == .caveMaze {
                 Section("Cave configuration:") {
                     Group {
-                        Stepper("Birth limit: \(birthLimit)", value: $birthLimit, in: CaveConfigurations.minNeighbours...CaveConfigurations.maxNeighbours)
-                        Stepper("Death limit: \(deathLimit)", value: $deathLimit, in: CaveConfigurations.minNeighbours...CaveConfigurations.maxNeighbours)
+                        Stepper("Birth limit: \(birthLimit)",
+                                value: $birthLimit,
+                                in: CaveConfigurations.minNeighbours...CaveConfigurations.maxNeighbours)
+                        Stepper("Death limit: \(deathLimit)",
+                                value: $deathLimit,
+                                in: CaveConfigurations.minNeighbours...CaveConfigurations.maxNeighbours)
                         
-                        Stepper("Delay: \(stepDelay, specifier: "%.1f") seconds", value: $stepDelay, in: 0.3...5.0, step: 0.1)
+                        Stepper("Delay: \(stepDelay, specifier: "%.1f") seconds",
+                                value: $stepDelay, in: 0.3...5.0, step: 0.1)
                     }
                     .disabled(isAutomatic)
                 }
@@ -121,7 +129,13 @@ struct MazeDataGenerate: View {
             if let mazeData {
                 MazeDraw(mazeData: mazeData)
                     .padding()
-                    .frame(minWidth: 200, idealWidth: 400, maxWidth: .infinity, minHeight: 200, idealHeight: 400, maxHeight: .infinity, alignment: .center)
+                    .frame(minWidth: 200,
+                           idealWidth: 400,
+                           maxWidth: .infinity,
+                           minHeight: 200,
+                           idealHeight: 400,
+                           maxHeight: .infinity,
+                           alignment: .center)
             }
             if category == .caveMaze {
                 HStack {
@@ -152,7 +166,6 @@ struct MazeDataGenerate: View {
             timer = nil
         }
     }
-    
     
     private var discardButton: some View {
         Button("Discard", systemImage: "xmark") {
@@ -197,7 +210,7 @@ struct MazeDataGenerate: View {
     }
     
     private var saveButton: some View {
-        Button("Save", systemImage: "square.and.arrow.down") {
+        Button("Save", systemImage: "doc.fill.badge.plus") {
             if let mazeData {
                 mazeData.name = name
                 modelContext.insert(mazeData)

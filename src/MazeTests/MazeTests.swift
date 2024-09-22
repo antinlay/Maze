@@ -2,37 +2,13 @@
 //  MazeTests.swift
 //  MazeTests
 //
-//  Created by Janiece Eleonour on 03.09.2024.
+//  Created by Janiece Eleonour on 22.09.2024.
 //
 
 import XCTest
 @testable import Maze
 
 final class MazeTests: XCTestCase {
-
-    override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-    }
-
-    override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-    }
-
-    func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-        // Any test you write for XCTest can be annotated as throws and async.
-        // Mark your test throws to produce an unexpected failure when your test encounters an uncaught error.
-        // Mark your test async to allow awaiting for asynchronous code to complete. Check the results with assertions afterwards.
-    }
-
-    func testPerformanceExample() throws {
-        // This is an example of a performance test case.
-        measure {
-            // Put the code you want to measure the time of here.
-        }
-    }
-    
     // MARK: Find path tests
     
     func testFindPathEmptyMaze() {
@@ -89,7 +65,10 @@ final class MazeTests: XCTestCase {
         let start = CGPoint(x: 0, y: 0)
         let end = CGPoint(x: 1, y: 1)
         let path = maze.findPath(from: start, to: end)
-        XCTAssertEqual(path, [CGPoint(x: 1.5, y: 1.5), CGPoint(x: 1.5, y: 0.5), CGPoint(x: 0.5, y: 0.5)])
+        XCTAssertEqual(path, [
+            CGPoint(x: 1.5, y: 1.5),
+            CGPoint(x: 1.5, y: 0.5),
+            CGPoint(x: 0.5, y: 0.5)])
     }
     
     func testFindPathTemplateMaze() {
@@ -97,7 +76,56 @@ final class MazeTests: XCTestCase {
         let start = CGPoint(x: 0, y: 0)
         let end = CGPoint(x: 9, y: 9)
         let path = maze.findPath(from: start, to: end)
-        XCTAssertEqual(path, [CGPoint(x: 9.5, y: 9.5), CGPoint(x: 8.5, y: 9.5), CGPoint(x: 7.5, y: 9.5), CGPoint(x: 6.5, y: 9.5), CGPoint(x: 6.5, y: 8.5), CGPoint(x: 6.5, y: 7.5), CGPoint(x: 5.5, y: 7.5), CGPoint(x: 5.5, y: 6.5), CGPoint(x: 6.5, y: 6.5), CGPoint(x: 7.5, y: 6.5), CGPoint(x: 7.5, y: 5.5), CGPoint(x: 8.5, y: 5.5), CGPoint(x: 8.5, y: 6.5), CGPoint(x: 9.5, y: 6.5), CGPoint(x: 9.5, y: 5.5), CGPoint(x: 9.5, y: 4.5), CGPoint(x: 9.5, y: 3.5), CGPoint(x: 9.5, y: 2.5), CGPoint(x: 9.5, y: 1.5), CGPoint(x: 9.5, y: 0.5), CGPoint(x: 8.5, y: 0.5), CGPoint(x: 8.5, y: 1.5), CGPoint(x: 8.5, y: 2.5), CGPoint(x: 8.5, y: 3.5), CGPoint(x: 7.5, y: 3.5), CGPoint(x: 7.5, y: 2.5), CGPoint(x: 7.5, y: 1.5), CGPoint(x: 6.5, y: 1.5), CGPoint(x: 5.5, y: 1.5), CGPoint(x: 4.5, y: 1.5), CGPoint(x: 4.5, y: 0.5), CGPoint(x: 3.5, y: 0.5), CGPoint(x: 3.5, y: 1.5), CGPoint(x: 3.5, y: 2.5), CGPoint(x: 4.5, y: 2.5), CGPoint(x: 5.5, y: 2.5), CGPoint(x: 5.5, y: 3.5), CGPoint(x: 4.5, y: 3.5), CGPoint(x: 4.5, y: 4.5), CGPoint(x: 3.5, y: 4.5), CGPoint(x: 3.5, y: 3.5), CGPoint(x: 2.5, y: 3.5), CGPoint(x: 1.5, y: 3.5), CGPoint(x: 1.5, y: 2.5), CGPoint(x: 2.5, y: 2.5), CGPoint(x: 2.5, y: 1.5), CGPoint(x: 2.5, y: 0.5), CGPoint(x: 1.5, y: 0.5), CGPoint(x: 0.5, y: 0.5)])
+        XCTAssertEqual(path, [
+            CGPoint(x: 9.5, y: 9.5),
+            CGPoint(x: 8.5, y: 9.5),
+            CGPoint(x: 7.5, y: 9.5),
+            CGPoint(x: 6.5, y: 9.5),
+            CGPoint(x: 6.5, y: 8.5),
+            CGPoint(x: 6.5, y: 7.5),
+            CGPoint(x: 5.5, y: 7.5),
+            CGPoint(x: 5.5, y: 6.5),
+            CGPoint(x: 6.5, y: 6.5),
+            CGPoint(x: 7.5, y: 6.5),
+            CGPoint(x: 7.5, y: 5.5),
+            CGPoint(x: 8.5, y: 5.5),
+            CGPoint(x: 8.5, y: 6.5),
+            CGPoint(x: 9.5, y: 6.5),
+            CGPoint(x: 9.5, y: 5.5),
+            CGPoint(x: 9.5, y: 4.5),
+            CGPoint(x: 9.5, y: 3.5),
+            CGPoint(x: 9.5, y: 2.5),
+            CGPoint(x: 9.5, y: 1.5),
+            CGPoint(x: 9.5, y: 0.5),
+            CGPoint(x: 8.5, y: 0.5),
+            CGPoint(x: 8.5, y: 1.5),
+            CGPoint(x: 8.5, y: 2.5),
+            CGPoint(x: 8.5, y: 3.5),
+            CGPoint(x: 7.5, y: 3.5),
+            CGPoint(x: 7.5, y: 2.5),
+            CGPoint(x: 7.5, y: 1.5),
+            CGPoint(x: 6.5, y: 1.5),
+            CGPoint(x: 5.5, y: 1.5),
+            CGPoint(x: 4.5, y: 1.5),
+            CGPoint(x: 4.5, y: 0.5),
+            CGPoint(x: 3.5, y: 0.5),
+            CGPoint(x: 3.5, y: 1.5),
+            CGPoint(x: 3.5, y: 2.5),
+            CGPoint(x: 4.5, y: 2.5),
+            CGPoint(x: 5.5, y: 2.5),
+            CGPoint(x: 5.5, y: 3.5),
+            CGPoint(x: 4.5, y: 3.5),
+            CGPoint(x: 4.5, y: 4.5),
+            CGPoint(x: 3.5, y: 4.5),
+            CGPoint(x: 3.5, y: 3.5),
+            CGPoint(x: 2.5, y: 3.5),
+            CGPoint(x: 1.5, y: 3.5),
+            CGPoint(x: 1.5, y: 2.5),
+            CGPoint(x: 2.5, y: 2.5),
+            CGPoint(x: 2.5, y: 1.5),
+            CGPoint(x: 2.5, y: 0.5),
+            CGPoint(x: 1.5, y: 0.5),
+            CGPoint(x: 0.5, y: 0.5)])
     }
     
     // MARK: Generate tests
@@ -132,10 +160,10 @@ final class MazeTests: XCTestCase {
             for j in 0..<mazeG.maze.col {
                 var isCheck = false
                 
-                if i < mazeG.maze.row.up && mazeG.maze.lowerWalls[i][j] == false {
+                if i < mazeG.maze.row.upward && mazeG.maze.lowerWalls[i][j] == false {
                     isCheck = true
                 }
-                if i > 0 && mazeG.maze.lowerWalls[i.up][j] == false {
+                if i > 0 && mazeG.maze.lowerWalls[i.upward][j] == false {
                     isCheck = true
                 }
                 if j < mazeG.maze.col.left && mazeG.maze.rightWalls[i][j] == false {
@@ -149,5 +177,4 @@ final class MazeTests: XCTestCase {
             }
         }
     }
-
 }

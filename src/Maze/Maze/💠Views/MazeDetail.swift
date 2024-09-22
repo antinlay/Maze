@@ -14,7 +14,7 @@ struct MazeDetail: View {
     @State private var isExporting = false
     @State private var exportText = ""
     @State private var textDocument: TextFile?
-    @State private var error: ImportErrorSaver? = nil
+    @State private var error: ImportErrorSaver?
     @State private var showAlert = false
     
     var body: some View {
@@ -32,7 +32,9 @@ struct MazeDetail: View {
                 MazeEdit(maze: mazeData)
             }
         }
-        .fileExporter(isPresented: $isExporting, document: textDocument, contentType: .plainText) { result in
+        .fileExporter(isPresented: $isExporting,
+                      document: textDocument, 
+                      contentType: .plainText) { result in
             switch result {
             case .success(let url):
                 print("Saved to \(url)")

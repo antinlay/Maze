@@ -3,7 +3,7 @@ disabled_rules:
   - trailing_newline
 
 line_length:
-  warning: 100
+  warning: 105
   error: 120
 
 identifier_name:

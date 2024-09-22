@@ -16,7 +16,7 @@ struct MazeEdit: View {
     @State private var selectedItem: PhotosPickerItem?
     
     @State private var text = ""
-    @State private var error: ImportErrorSaver? = nil
+    @State private var error: ImportErrorSaver?
     @State private var isImporting = false
     @State private var showAlert = false
     @State private var rightWallsRow = 0
@@ -157,8 +157,7 @@ struct MazeEdit: View {
         
     }
     
-    
-    private func read(from url: URL) -> Result<String,Error> {
+    private func read(from url: URL) -> Result<String, Error> {
         let accessing = url.startAccessingSecurityScopedResource()
         defer {
             if accessing {
@@ -166,7 +165,7 @@ struct MazeEdit: View {
             }
         }
         
-        return Result { try String(contentsOf: url) }
+        return Result { try String(contentsOf: url, encoding: .utf8) }
     }
     
 }

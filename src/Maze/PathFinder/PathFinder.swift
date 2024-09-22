@@ -80,13 +80,21 @@ extension Maze {
             route.append(CGPoint(x: Double(jCol) + 0.5, y: Double(iRow) + 0.5))
             
             while iRow != start.iRow || jCol != start.jCol {
-                if iRow < row.upward && lowerWalls[iRow][jCol] == false && field[iRow.down][jCol] == step.left {
+                if iRow < row.upward
+                    && lowerWalls[iRow][jCol] == false
+                    && field[iRow.down][jCol] == step.left {
                     iRow += 1
-                } else if iRow > 0 && lowerWalls[iRow.upward][jCol] == false && field[iRow.upward][jCol] == step.left {
+                } else if iRow > 0
+                            && lowerWalls[iRow.upward][jCol] == false
+                            && field[iRow.upward][jCol] == step.left {
                     iRow -= 1
-                } else if jCol < col.left && rightWalls[iRow][jCol] == false && field[iRow][jCol.right] == step.left {
+                } else if jCol < col.left
+                            && rightWalls[iRow][jCol] == false
+                            && field[iRow][jCol.right] == step.left {
                     jCol += 1
-                } else if jCol > 0 && rightWalls[iRow][jCol.left] == false && field[iRow][jCol.left] == step.left {
+                } else if jCol > 0
+                            && rightWalls[iRow][jCol.left] == false
+                            && field[iRow][jCol.left] == step.left {
                     jCol -= 1
                 }
                 route.append(CGPoint(x: Double(jCol) + 0.5, y: Double(iRow) + 0.5))
