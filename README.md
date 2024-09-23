@@ -10,9 +10,9 @@ Maze is a SwiftUI project that generates and solves mazes using various algorith
 
 ## Requirements
 
-- Xcode 12.0 or later
-- Swift 5.3 or later
-- iOS 14.0 or later
+- Xcode 15.0 or later
+- Swift 5.5 or later
+- iOS 15.0 or later
 - Make (optional, for running the project from the command line)
 
 ## Installation
